@@ -16,4 +16,16 @@ Together, the application also compiles a top list of reviewed restaurants by fr
 
 ### **User Stories**
 
-- This is a list
+- As a user, I want to be able to view a map of recommended restaurants.
+
+- As a user, I want to be able to select a restaurant, add a price, and rate it out of 5.
+
+- As a user, I want to be able to save or unsave a restaurant, removing or adding it to my list of favourite restaurants.
+
+- As a user, I want to be able to add and remove friends and monitor a list of my friends.
+
+- As a user, I want to be able to receive restaurant recommendations: a list of top-rated or "unique" restaurants by my friends.
+
+- As a user, I want to be able to like a good suggestion made by a friend.
+
+- As a user, I want to be able to earn a title of "Food Connoisseur" if I receive a lot of "good suggestion made" ratings.
