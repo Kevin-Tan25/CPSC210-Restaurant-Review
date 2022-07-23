@@ -15,3 +15,5 @@ After eating at a restaurant, you can select the restaurant, insert the price yo
 Together, the application also compiles a top list of reviewed restaurants by friends and displays them on a dashboard for the user. There is also another suggestion for users to try less popular/ less tried restaurants.
 
 ### **User Stories**
+
+- This is a list
