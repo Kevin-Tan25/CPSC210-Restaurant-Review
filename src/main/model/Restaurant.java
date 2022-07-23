@@ -44,4 +44,12 @@ public class Restaurant {
     public void deleteLocation(int locationNumber) {
         locations.remove(locationNumber - 1);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getLocations() {
+        return locations;
+    }
 }
