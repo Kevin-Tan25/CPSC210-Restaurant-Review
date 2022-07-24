@@ -27,6 +27,14 @@ public class Restaurant {
         reviews = new ArrayList<Review>();
     }
 
+    // REQUIRES: name is a non-empty string, and locations is a non-empty list
+    // EFFECTS: creates a restaurant object with specified name and location
+    public Restaurant(String name, ArrayList<String> locations) {
+        this.name = name;
+        this.locations = locations;
+        reviews = new ArrayList<Review>();
+    }
+
     // REQUIRES: name is not an empty string
     // MODIFIES: this
     // EFFECTS: changes the restaurant's name
@@ -34,14 +42,14 @@ public class Restaurant {
         this.name = name;
     }
 
-    // REQUIRES: location is not an empty string
+    // REQUIRES: location is not an empty string, locations do not repeat
     // MODIFIES: this
     // EFFECTS: add a restaurant location
     public void addLocation(String location) {
         locations.add(location);
     }
 
-    // REQUIRES: location is not an empty string, locations is not an empty list
+    // REQUIRES: location is not an empty string, locations is not an empty list, locations do not repeat
     // MODIFIES: this
     // EFFECTS: changes the restaurant's location at specified location # to a new location
     public void editLocation(int locationNumber,String location) {
@@ -56,6 +64,7 @@ public class Restaurant {
         locations.remove(locationNumber - 1);
     }
 
+    // REQUIRES: not duplicate reviews
     // MODIFIES: this
     // EFFECTS: adds a review to the restaurant
     public void addReview(Review r) {
