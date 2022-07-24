@@ -85,7 +85,7 @@ class RestaurantTest {
         r1.addReview(rev2);
         assertEquals(r1.getReviews().size(),2);
         assertEquals(r1.getReviews().get(0), rev1);
-        assertEquals(r1.getReviews().get(0), rev2);
+        assertEquals(r1.getReviews().get(1), rev2);
     }
 
 }
