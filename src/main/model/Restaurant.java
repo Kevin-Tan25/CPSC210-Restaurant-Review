@@ -80,5 +80,6 @@ public class Restaurant {
     }
 
     public ArrayList<Review> getReviews() {
-        return reviews; }
+        return reviews;
+    }
 }
