@@ -8,12 +8,14 @@ public class Restaurant {
 
     private String name;
     private ArrayList<String> locations;
+    private ArrayList<Review> reviews;
 
     // EFFECTS: creates a restaurant object with specified name and
     public Restaurant(String name, String location) {
         this.name = name;
         locations = new ArrayList<String>();
         locations.add(location);
+        reviews = new ArrayList<Review>();
     }
 
     // REQUIRES: name is not an empty string
@@ -45,6 +47,12 @@ public class Restaurant {
         locations.remove(locationNumber - 1);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a review to the restaurant
+    public void addReview(Review r) {
+        reviews.add(r);
+    }
+
     public String getName() {
         return name;
     }
@@ -52,4 +60,7 @@ public class Restaurant {
     public ArrayList<String> getLocations() {
         return locations;
     }
+
+    public ArrayList<Review> getReviews() {
+        return reviews; }
 }
