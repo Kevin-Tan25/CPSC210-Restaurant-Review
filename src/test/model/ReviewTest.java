@@ -23,7 +23,7 @@ public class ReviewTest {
         assertEquals(rev1.getRestaurant(), r1);
         assertEquals(rev1.getRating(), 4);
         assertEquals(rev1.getCost(), 3.99);
-        assertEquals(rev1.getRating(), "Good and cheap");
+        assertEquals(rev1.getReviewComment(), "Good and cheap");
     }
 
     @Test
