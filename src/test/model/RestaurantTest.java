@@ -20,7 +20,8 @@ class RestaurantTest {
     public void setUp() {
         r1 = new Restaurant("McDonald's", "5728 University Blvd");
         r2 = new Restaurant("McDonald's");
-        r3 = new Restaurant("McDonald's", (ArrayList<String>) Arrays.asList("5728 University Blvd", "3308 W Broadway"));
+        ArrayList<String> list3= new ArrayList<String>(Arrays.asList("5728 University Blvd", "3308 W Broadway"));
+        r3 = new Restaurant("McDonald's", list3);
 
         rev1 = new Review(1, r1, 4, 3.99, "Good and cheap");
         rev2 = new Review(2, r1, 2, 6.00, "Cheap but terrible service");
@@ -47,13 +48,12 @@ class RestaurantTest {
     @Test
     public void testAddLocation() {
         assertEquals(r2.getLocations().size(), 0);
-        assertEquals(r2.getLocations().get(0), null);
-        r1.addLocation("5728 University Blvd");
-        assertEquals(r1.getLocations().size(), 1);
-        assertEquals(r1.getLocations().get(0), "5728 University Blvd");
-        r1.addLocation("3308 W Broadway");
-        assertEquals(r1.getLocations().size(), 2);
-        assertEquals(r1.getLocations().get(1), "5728 University Blvd");
+        r2.addLocation("5728 University Blvd");
+        assertEquals(r2.getLocations().size(), 1);
+        assertEquals(r2.getLocations().get(0), "5728 University Blvd");
+        r2.addLocation("3308 W Broadway");
+        assertEquals(r2.getLocations().size(), 2);
+        assertEquals(r2.getLocations().get(1), "3308 W Broadway");
     }
 
     @Test
@@ -73,7 +73,6 @@ class RestaurantTest {
         assertEquals(r3.getLocations().get(0), "3308 W Broadway");
         assertEquals(r3.getLocations().size(), 1);
         r3.deleteLocation(1);
-        assertEquals(r3.getLocations().get(0), null);
         assertEquals(r3.getLocations().size(), 0);
     }
 
