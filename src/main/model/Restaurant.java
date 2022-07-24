@@ -10,7 +10,16 @@ public class Restaurant {
     private ArrayList<String> locations;
     private ArrayList<Review> reviews;
 
-    // EFFECTS: creates a restaurant object with specified name and
+    // REQUIRES: name is not an empty String
+    // EFFECTS: creates a restaurant object with specified name and location
+    public Restaurant(String name) {
+        this.name = name;
+        locations = new ArrayList<String>();
+        reviews = new ArrayList<Review>();
+    }
+
+    // REQUIRES: both Strings are non-empty
+    // EFFECTS: creates a restaurant object with specified name and location
     public Restaurant(String name, String location) {
         this.name = name;
         locations = new ArrayList<String>();
