@@ -18,6 +18,15 @@ public class ReviewTest {
     }
 
     @Test
+    public void testConstructor() {
+        assertEquals(rev1.getReviewIdentifier(), 1);
+        assertEquals(rev1.getRestaurant(), r1);
+        assertEquals(rev1.getRating(), 4);
+        assertEquals(rev1.getCost(), 3.99);
+        assertEquals(rev1.getRating(), "Good and cheap");
+    }
+
+    @Test
     public void testChangeRating() {
         assertEquals(rev1.getRating(), 4);
         rev1.changeRating(3);

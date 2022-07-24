@@ -41,6 +41,10 @@ public class Review {
         this.cost = cost;
     }
 
+    public int getReviewIdentifier() {
+        return reviewIdentifier;
+    }
+
     public Restaurant getRestaurant() {
         return restaurant;
     }

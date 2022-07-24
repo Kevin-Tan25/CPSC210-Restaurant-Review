@@ -44,8 +44,19 @@ public class User {
         myFriends.remove(friendPosition - 1);
     }
 
-    // EFFECTS: returns a list of reviews made by the user
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
     public ArrayList<Review> getMyReviews() {
         return myReviews;
+    }
+
+    public ArrayList<User> getMyFriends() {
+        return myFriends;
     }
 }
