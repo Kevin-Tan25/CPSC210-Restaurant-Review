@@ -93,4 +93,33 @@ class RestaurantTest {
         assertEquals(r1.getName(), "McDonald's");
     }
 
+    @Test
+    public void testToString() {
+        assertEquals(r1.toString(), "[Restaurant Name = McDonald's]");
+    }
+
+    @Test
+    public void testGetAverageCost() {
+        r1.addReview(rev1);
+        assertEquals(r1.getAverageCost(), 3.99);
+        r1.addReview(rev2);
+        assertEquals(r1.getAverageCost(), 4.995);
+    }
+
+    @Test
+    public void testGetAverageRating() {
+        r1.addReview(rev1);
+        assertEquals(r1.getAverageRating(), 4);
+        r1.addReview(rev2);
+        assertEquals(r1.getAverageRating(), 3);
+    }
+
+    @Test
+    public void testGetNumReview() {
+        assertEquals(r1.getNumReviews(), 0);
+        r1.addReview(rev1);
+        assertEquals(r1.getNumReviews(), 1);
+        r1.addReview(rev2);
+        assertEquals(r1.getNumReviews(), 2);
+    }
 }
