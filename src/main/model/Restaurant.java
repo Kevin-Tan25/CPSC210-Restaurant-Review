@@ -2,6 +2,7 @@ package model;
 
 // Restaurant documents the name and location of a restaurant
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Restaurant {
@@ -9,10 +10,11 @@ public class Restaurant {
     private String name;
     private ArrayList<String> locations;
     private ArrayList<Review> reviews;
-    private int averageRating;
-    private double averageCost;
+    private int totalRating;
+    private double totalCost;
     private int numReviews;
 
+//    TODO: need to fix average rating, fix average cost to 2 decimal points
     // REQUIRES: name is not an empty String
     // EFFECTS: creates a restaurant object with specified name and location
     public Restaurant(String name) {
@@ -20,8 +22,8 @@ public class Restaurant {
         locations = new ArrayList<String>();
         reviews = new ArrayList<Review>();
         numReviews = 0;
-        averageRating = 0;
-        averageCost = 0;
+        totalRating = 0;
+        totalCost = 0;
     }
 
     // REQUIRES: both Strings are non-empty
@@ -32,8 +34,8 @@ public class Restaurant {
         locations.add(location);
         reviews = new ArrayList<Review>();
         numReviews = 0;
-        averageRating = 0;
-        averageCost = 0;
+        totalRating = 0;
+        totalCost = 0;
     }
 
     // REQUIRES: name is a non-empty string, and locations is a non-empty list
@@ -43,8 +45,8 @@ public class Restaurant {
         this.locations = locations;
         reviews = new ArrayList<Review>();
         numReviews = 0;
-        averageRating = 0;
-        averageCost = 0;
+        totalRating = 0;
+        totalCost = 0;
     }
 
     // REQUIRES: name is not an empty string
@@ -81,9 +83,9 @@ public class Restaurant {
     // EFFECTS: adds a review to the restaurant
     public void addReview(Review r) {
         reviews.add(r);
-        numReviews += 1;
-        averageRating = (averageRating + r.getRating()) / numReviews;
-        averageCost = (averageCost + r.getCost()) / numReviews;
+        numReviews++;
+        totalRating += r.getRating();
+        totalCost += r.getCost();
     }
 
     public String getName() {
@@ -99,11 +101,11 @@ public class Restaurant {
     }
 
     public int getAverageRating() {
-        return averageRating;
+        return totalRating / numReviews;
     }
 
     public double getAverageCost() {
-        return averageCost;
+        return totalCost / numReviews;
     }
 
     public int getNumReviews() {

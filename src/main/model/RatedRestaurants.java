@@ -59,7 +59,7 @@ public class RatedRestaurants {
         Collections.sort(sortedRestaurant, new Comparator<Restaurant>() {
             @Override
             public int compare(Restaurant r1, Restaurant r2) {
-                return Integer.valueOf(r2.getAverageRating()).compareTo(r1.getAverageRating());
+                return Integer.compare(r2.getAverageRating(), r1.getAverageRating());
             }
         });
         if (sortedRestaurant.size() <= 5) {

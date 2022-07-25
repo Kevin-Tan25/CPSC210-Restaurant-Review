@@ -154,7 +154,7 @@ public class RestaurantReviewApp {
     private void viewTopRestaurants() {
         for (int i = 0; i < allLoggedRestaurants.getTopFiveRated().size(); i++) {
             Restaurant topRestaurant = allLoggedRestaurants.getTopFiveRated().get(i);
-            System.out.println(topRestaurant + ", average rating is " + topRestaurant.getAverageRating());
+            System.out.println(topRestaurant);
             System.out.println("The average rating is: " + topRestaurant.getAverageRating());
             System.out.println("The average cost is: " + topRestaurant.getAverageCost() + "\n");
         }
