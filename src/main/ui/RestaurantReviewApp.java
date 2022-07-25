@@ -1,5 +1,7 @@
 package ui;
 
+import model.Restaurant;
+import model.Review;
 import model.User;
 
 import java.util.Scanner;
@@ -10,6 +12,10 @@ public class RestaurantReviewApp {
 
     private User user;
     private Scanner input;
+    private Restaurant r1;
+    private Restaurant r2;
+    private Review rev1;
+    private Review rev2;
 
     // EFFECTS: runs the Restaurant Review application
     public RestaurantReviewApp() {
@@ -56,7 +62,13 @@ public class RestaurantReviewApp {
     // MODIFIES: this
     // EFFECTS: initializes user with existing reviews
     private void init() {
+        r1 = new Restaurant("McDonald's", "5728 University Blvd");
+        r2 = new Restaurant("Burger King", "1234 University Blvd");
+        rev1 = new Review(1, r1, 4, 3.99, "Good and cheap");
+        rev2 = new Review(2, r2, 3, 5.99, "Not bad");
         user = new User(1,"Kevin");
+        user.addReview(rev1);
+        user.addReview(rev2);
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -84,8 +96,22 @@ public class RestaurantReviewApp {
             manageFriends();
         } else if (selection.equals("r")) {
             displayReview();
+        } else if (selection.equals("b")) {
+            // returns back
         } else {
             System.out.println("Selection not valid");
         }
+    }
+
+    // TODO: add a MANAGE friend functionality
+    // EFFECTS: prints a list of friends
+    private void manageFriends() {
+        System.out.println(user.getMyFriends());
+    }
+
+    // TODO: add a MANAGE todo functionality
+    // EFFECTS: prints a list of reviews written by the user
+    private void displayReview() {
+        System.out.println(user.getMyReviews());
     }
 }
