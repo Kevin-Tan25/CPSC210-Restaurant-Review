@@ -60,6 +60,8 @@ public class RestaurantReviewApp {
             writeReview();
         } else if (command.equals("t")) {
             viewTopRestaurants();
+        } else if (command.equals("s")) {
+            searchRestaurantReviews();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -101,6 +103,7 @@ public class RestaurantReviewApp {
         System.out.println("\ta -> view my account");
         System.out.println("\tw -> write a review");
         System.out.println("\tt -> view top restaurants");
+        System.out.println("\ts -> search restaurant reviews");
         System.out.println("\tq -> quit");
     }
 
@@ -154,6 +157,23 @@ public class RestaurantReviewApp {
             System.out.println(topRestaurant + ", average rating is " + topRestaurant.getAverageRating());
             System.out.println("The average rating is: " + topRestaurant.getAverageRating());
             System.out.println("The average cost is: " + topRestaurant.getAverageCost() + "\n");
+        }
+    }
+
+    // EFFECTS: lets user search a restaurant with review and see all reviews about it
+    private void searchRestaurantReviews() {
+        System.out.println("Here are some restaurants that have reviews:");
+        for (int i = 0; i < allLoggedRestaurantsName.getRatedRestaurants().size(); i++) {
+            System.out.println("\t" + allLoggedRestaurantsName.getRatedRestaurants().get(i));
+        }
+        System.out.println("Which restaurant would you like to view?");
+        String selection = input.next();
+        selection = selection.toLowerCase();
+        int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
+        Restaurant restaurant = allLoggedRestaurants.getRatedRestaurants().get(indexOfSelection);
+        System.out.println(restaurant.getName() + ": " + restaurant.getNumReviews() + " review(s)");
+        for (int i = 0; i < restaurant.getReviews().size(); i++) {
+            System.out.println(restaurant.getReviews().get(i));
         }
     }
 
