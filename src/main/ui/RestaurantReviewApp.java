@@ -137,16 +137,10 @@ public class RestaurantReviewApp {
         selection = input.next();
         selection = selection.toLowerCase();
 
-        System.out.println(selection);
-
-//        System.out.println(allLoggedRestaurantsName);
-//        System.out.println(allLoggedRestaurantsName.getRatedRestaurants().contains(selection));
-//        System.out.println(allLoggedRestaurantsName.isRatedRestaurant(selection));
-
         if (allLoggedRestaurantsName.isRatedRestaurant(selection)) {
             writeExistingReview(selection);
         } else if (selection.equals("n")) {
-//            writeReviewForNewRestaurant();
+            writeReviewForNewRestaurant();
         } else if (selection.equals("b")) {
             // returns back to menu
         } else {
@@ -157,16 +151,40 @@ public class RestaurantReviewApp {
     // EFFECTS: adds a review for an existing restaurant
     private void writeExistingReview(String selection) {
         int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
-        Restaurant resto = allLoggedRestaurants.get(indexOfSelection);
+        Restaurant restaurant = allLoggedRestaurants.get(indexOfSelection);
         System.out.println("Please provide a rating (out of 5): ");
         int rating = input.nextInt();
         System.out.println("Please provide a cost (without $ signs): ");
         double cost = input.nextDouble();
         System.out.println("Please provide a comment: ");
         String reviewComment = input.next();
-        Review rev = new Review(resto,rating,cost,reviewComment);
-        resto.addReview(rev);
-        user.addReview(rev);
+        Review review = new Review(restaurant,rating,cost,reviewComment);
+        restaurant.addReview(review);
+        user.addReview(review);
+        System.out.println("Successfully added!");
+    }
+
+    // EFFECTS: creates a new restaurant and adds a review for the restaurant
+    private void writeReviewForNewRestaurant() {
+        System.out.println("Please provide the restaurant's name:");
+        String restaurantName = input.next();
+        System.out.println("Please the restaurant's location:");
+        String restaurantLocation = input.next();
+        Restaurant restaurant = new Restaurant(restaurantName, restaurantLocation);
+
+        System.out.println("\nNow time to write a review.");
+        System.out.println("Please provide a rating (out of 5): ");
+        int rating = input.nextInt();
+        System.out.println("Please provide a cost (without $ signs): ");
+        double cost = input.nextDouble();
+        System.out.println("Please provide a comment: ");
+        String reviewComment = input.next();
+        Review review = new Review(restaurant,rating,cost,reviewComment);
+        restaurant.addReview(review);
+        user.addReview(review);
+        allLoggedRestaurants.add(restaurant);
+        allLoggedRestaurantsName.addRestaurant(restaurantName);
+        System.out.println("Successfully added!");
     }
 
     // TODO: add a MANAGE friend functionality
