@@ -10,10 +10,12 @@ import java.util.Comparator;
 public class RatedRestaurants {
 
     private ArrayList<Restaurant> ratedRestaurants;
+    private ArrayList<Restaurant> topFiveBestRatedRestaurants;
 
     // EFFECTS: creates an empty rated restaurants object
     public RatedRestaurants() {
         ratedRestaurants = new ArrayList<Restaurant>();
+        topFiveBestRatedRestaurants = new ArrayList<Restaurant>();
     }
 
     // REQUIRES: restaurant is not repeated in the list
@@ -46,12 +48,18 @@ public class RatedRestaurants {
         return ratedRestaurants;
     }
 
-    public Restaurant getTopFiveRated() {
+    // Sorts the list in ascending order based on average rating
+    // Referenced from Greg Anderson YouTube
+    public void getTopFiveRated() {
         Collections.sort(ratedRestaurants, new Comparator<Restaurant>() {
             @Override
             public int compare(Restaurant r1, Restaurant r2) {
-                return r1.get().compareTo(o2.getAge());
+                return Integer.valueOf(r1.getAverageRating()).compareTo(r2.getAverageRating());
             }
         });
+        // Takes top 5 restaurants
+        for (int i = 0; i < 5; i++) {
+            topFiveBestRatedRestaurants.add(ratedRestaurants.get(i));
+        }
     }
 }
