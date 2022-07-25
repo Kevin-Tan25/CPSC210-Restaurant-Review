@@ -14,7 +14,6 @@ public class Restaurant {
     private double totalCost;
     private int numReviews;
 
-//    TODO: need to fix average rating, fix average cost to 2 decimal points
     // REQUIRES: name is not an empty String
     // EFFECTS: creates a restaurant object with specified name and location
     public Restaurant(String name) {

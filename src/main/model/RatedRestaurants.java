@@ -62,14 +62,7 @@ public class RatedRestaurants {
                 return Integer.compare(r2.getAverageRating(), r1.getAverageRating());
             }
         });
-        if (sortedRestaurant.size() <= 5) {
-            topFiveBestRatedRestaurants = sortedRestaurant;
-        } else {
-            // Takes top 5 restaurants
-            for (int i = 0; i < 5; i++) {
-                topFiveBestRatedRestaurants.add(sortedRestaurant.get(i));
-            }
-        }
-        return topFiveBestRatedRestaurants;
+
+        return sortedRestaurant;
     }
 }
