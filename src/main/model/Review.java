@@ -64,7 +64,6 @@ public class Review {
     // EFFECTS: returns a string representation of Review: taken from TELLER app example
     @Override
     public String toString() {
-        String balanceStr = String.format("%.2f", cost);  // get balance to 2 decimal places as a string
-        return "[ Restaurant name = " + restaurant.getName() + "| Rating = " + rating + "| Cost = $" + balanceStr + "]";
+        return "[Name = " + restaurant.getName() + "| Rating = " + rating + "| Comment = " + reviewComment + "]\n";
     }
 }

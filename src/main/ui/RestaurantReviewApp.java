@@ -97,16 +97,21 @@ public class RestaurantReviewApp {
         } else if (selection.equals("r")) {
             displayReview();
         } else if (selection.equals("b")) {
-            // returns back
+            // returns back to menu
         } else {
             System.out.println("Selection not valid");
         }
     }
 
-    // TODO: add a MANAGE friend functionality
+    // TODO: add a MANAGE friend functionality, learn how to format not in array form
     // EFFECTS: prints a list of friends
     private void manageFriends() {
-        System.out.println(user.getMyFriends());
+        for (int i = 0; i < user.getMyReviews().size(); i++) {
+            System.out.println(user.getMyReviews().get(i));
+        }
+//        for (Review r: user.getMyReviews()) {
+//            System.out.println(r + "\n");
+//        }
     }
 
     // TODO: add a MANAGE todo functionality
