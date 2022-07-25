@@ -58,8 +58,8 @@ public class RestaurantReviewApp {
             viewMyAccount();
         } else if (command.equals("w")) {
             writeReview();
-//        } else if (command.equals("t")) {
-//            viewTopRestaurants();
+        } else if (command.equals("t")) {
+            viewTopRestaurants();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -78,6 +78,8 @@ public class RestaurantReviewApp {
         allLoggedRestaurants.addRestaurant(r2);
         rev1 = new Review(r1, 4, 3.99, "Good and cheap");
         rev2 = new Review(r2, 3, 5.99, "Not bad");
+        r1.addReview(rev1);
+        r2.addReview(rev2);
         user = new User("Kevin");
         user.addReview(rev1);
         user.addReview(rev2);
@@ -146,9 +148,14 @@ public class RestaurantReviewApp {
     }
 
     // EFFECTS: views top 5 top rated restaurants based on average rating
-//    private void viewTopRestaurants() {
-//        for(int i = 0; i < allLoggedRestaurants.getTopFiveRated().;)
-//    }
+    private void viewTopRestaurants() {
+        for (int i = 0; i < allLoggedRestaurants.getTopFiveRated().size(); i++) {
+            Restaurant topRestaurant = allLoggedRestaurants.getTopFiveRated().get(i);
+            System.out.println(topRestaurant.getNumReviews());
+            System.out.println(topRestaurant.getAverageCost());
+            System.out.println(topRestaurant + ", average rating is " + topRestaurant.getAverageRating());
+        }
+    }
 
     // EFFECTS: adds a review for an existing restaurant
     private void writeExistingReview(String selection) {

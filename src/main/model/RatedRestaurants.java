@@ -55,11 +55,11 @@ public class RatedRestaurants {
 
     // Sorts the list in ascending order based on average rating
     // Referenced from Greg Anderson YouTube
-    public void getTopFiveRated() {
+    public ArrayList<Restaurant> getTopFiveRated() {
         Collections.sort(sortedRestaurant, new Comparator<Restaurant>() {
             @Override
             public int compare(Restaurant r1, Restaurant r2) {
-                return Integer.valueOf(r1.getAverageRating()).compareTo(r2.getAverageRating());
+                return Integer.valueOf(r2.getAverageRating()).compareTo(r1.getAverageRating());
             }
         });
         if (sortedRestaurant.size() <= 5) {
@@ -70,5 +70,6 @@ public class RatedRestaurants {
                 topFiveBestRatedRestaurants.add(sortedRestaurant.get(i));
             }
         }
+        return topFiveBestRatedRestaurants;
     }
 }
