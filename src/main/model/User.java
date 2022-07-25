@@ -10,6 +10,7 @@ public class User {
     private String userName;
     private ArrayList<Review> myReviews;
     private ArrayList<User> myFriends;
+    private int numReviews;
 
     // EFFECTS: creates a User object
     public User(int userID, String userName) {
@@ -60,4 +61,13 @@ public class User {
         return myFriends;
     }
 
+    public int getNumReviews() {
+        return myReviews.size();
+    }
+
+    // EFFECTS: returns string representation of user: based off teller app
+    @Override
+    public String toString() {
+        return "[Name = " + userName + "| Number of Reviews = " + numReviews + "]\n";
+    }
 }

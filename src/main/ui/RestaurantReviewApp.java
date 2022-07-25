@@ -11,6 +11,9 @@ import java.util.Scanner;
 public class RestaurantReviewApp {
 
     private User user;
+    private User testUser1;
+    private User testUser2;
+    private User testUser3;
     private Scanner input;
     private Restaurant r1;
     private Restaurant r2;
@@ -69,6 +72,10 @@ public class RestaurantReviewApp {
         user = new User(1,"Kevin");
         user.addReview(rev1);
         user.addReview(rev2);
+        testUser1 = new User(2, "Joe");
+        testUser2 = new User(3, "Stephen");
+        testUser3 = new User(4, "Jose");
+
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -103,20 +110,19 @@ public class RestaurantReviewApp {
         }
     }
 
-    // TODO: add a MANAGE friend functionality, learn how to format not in array form
+    // TODO: add a MANAGE friend functionality
     // EFFECTS: prints a list of friends
     private void manageFriends() {
         for (int i = 0; i < user.getMyReviews().size(); i++) {
             System.out.println(user.getMyReviews().get(i));
         }
-//        for (Review r: user.getMyReviews()) {
-//            System.out.println(r + "\n");
-//        }
     }
 
     // TODO: add a MANAGE todo functionality
     // EFFECTS: prints a list of reviews written by the user
     private void displayReview() {
-        System.out.println(user.getMyReviews());
+        for (int i = 0; i < user.getMyReviews().size(); i++) {
+            System.out.println(user.getMyReviews().get(i));
+        }
     }
 }
