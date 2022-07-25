@@ -82,4 +82,10 @@ public class Restaurant {
     public ArrayList<Review> getReviews() {
         return reviews;
     }
+
+    // EFFECTS: returns string representation of user: based off teller app
+    @Override
+    public String toString() {
+        return "[Restaurant Name = " + name + "]";
+    }
 }
