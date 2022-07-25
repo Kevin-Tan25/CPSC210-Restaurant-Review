@@ -59,4 +59,5 @@ public class User {
     public ArrayList<User> getMyFriends() {
         return myFriends;
     }
+
 }
