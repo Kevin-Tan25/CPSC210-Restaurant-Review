@@ -1,9 +1,6 @@
 package ui;
 
-import model.RatedRestaurantsName;
-import model.Restaurant;
-import model.Review;
-import model.User;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,7 +15,7 @@ public class RestaurantReviewApp {
     private User testUser3;
     private Scanner input;
 //    A list of all restaurants that have received reviews
-    private ArrayList<Restaurant> allLoggedRestaurants;
+    private RatedRestaurants allLoggedRestaurants;
     private RatedRestaurantsName allLoggedRestaurantsName;
     private Restaurant r1;
     private Restaurant r2;
@@ -76,9 +73,9 @@ public class RestaurantReviewApp {
         allLoggedRestaurantsName = new RatedRestaurantsName();
         allLoggedRestaurantsName.addRestaurant(r1.getName());
         allLoggedRestaurantsName.addRestaurant(r2.getName());
-        allLoggedRestaurants = new ArrayList<Restaurant>();
-        allLoggedRestaurants.add(r1);
-        allLoggedRestaurants.add(r2);
+        allLoggedRestaurants = new RatedRestaurants();
+        allLoggedRestaurants.addRestaurant(r1);
+        allLoggedRestaurants.addRestaurant(r2);
         rev1 = new Review(r1, 4, 3.99, "Good and cheap");
         rev2 = new Review(r2, 3, 5.99, "Not bad");
         user = new User("Kevin");
@@ -101,7 +98,7 @@ public class RestaurantReviewApp {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> view my account");
         System.out.println("\tw -> write a review");
-//        System.out.println("\tt -> transfer");
+        System.out.println("\tt -> view top restaurants");
         System.out.println("\tq -> quit");
     }
 
@@ -148,10 +145,15 @@ public class RestaurantReviewApp {
         }
     }
 
+    // EFFECTS: views top 5 top rated restaurants based on average rating
+//    private void viewTopRestaurants() {
+//        for(int i = 0; i < allLoggedRestaurants.getTopFiveRated().;)
+//    }
+
     // EFFECTS: adds a review for an existing restaurant
     private void writeExistingReview(String selection) {
         int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
-        Restaurant restaurant = allLoggedRestaurants.get(indexOfSelection);
+        Restaurant restaurant = allLoggedRestaurants.getRatedRestaurants().get(indexOfSelection);
         System.out.println("Please provide a rating (out of 5): ");
         int rating = input.nextInt();
         System.out.println("Please provide a cost (without $ signs): ");
@@ -182,7 +184,7 @@ public class RestaurantReviewApp {
         Review review = new Review(restaurant,rating,cost,reviewComment);
         restaurant.addReview(review);
         user.addReview(review);
-        allLoggedRestaurants.add(restaurant);
+        allLoggedRestaurants.addRestaurant(restaurant);
         allLoggedRestaurantsName.addRestaurant(restaurantName);
         System.out.println("Successfully added!");
     }
