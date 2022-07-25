@@ -17,26 +17,26 @@ public class RatedRestaurantsName {
     // MODIFIES: this
     // EFFECTS: adds the restaurant to the list
     public void addRestaurant(String restaurant) {
-        ratedRestaurants.add(restaurant);
+        ratedRestaurants.add(restaurant.toLowerCase());
     }
 
     // REQUIRES: list is not empty, string is not empty, target restaurant exists in list
     // MODIFIES: this
     // EFFECTS: remove the restaurant from the list
     public void deleteRestaurant(String restaurant) {
-        ratedRestaurants.remove(restaurant);
+        ratedRestaurants.remove(restaurant.toLowerCase());
     }
 
     // REQUIRES: restaurant is not repeated in the list, strings are not empty
     // MODIFIES: this
     // EFFECTS: changes the name of the target restaurant to new restaurant
     public void editRestaurantName(String targetRestaurant, String newRestaurant) {
-        ratedRestaurants.set(ratedRestaurants.indexOf(targetRestaurant), newRestaurant);
+        ratedRestaurants.set(ratedRestaurants.indexOf(targetRestaurant.toLowerCase()), newRestaurant.toLowerCase());
     }
 
     // EFFECTS: returns true if ratedRestaurants already contains restaurant name
     public Boolean isRatedRestaurant(String restaurant) {
-        return ratedRestaurants.contains(restaurant);
+        return ratedRestaurants.contains(restaurant.toLowerCase());
     }
 
     public ArrayList<String> getRatedRestaurants() {

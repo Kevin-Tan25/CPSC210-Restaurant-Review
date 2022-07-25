@@ -137,6 +137,12 @@ public class RestaurantReviewApp {
         selection = input.next();
         selection = selection.toLowerCase();
 
+        System.out.println(selection);
+
+//        System.out.println(allLoggedRestaurantsName);
+//        System.out.println(allLoggedRestaurantsName.getRatedRestaurants().contains(selection));
+//        System.out.println(allLoggedRestaurantsName.isRatedRestaurant(selection));
+
         if (allLoggedRestaurantsName.isRatedRestaurant(selection)) {
             writeExistingReview(selection);
         } else if (selection.equals("n")) {
@@ -151,8 +157,16 @@ public class RestaurantReviewApp {
     // EFFECTS: adds a review for an existing restaurant
     private void writeExistingReview(String selection) {
         int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
-        Restaurant r = allLoggedRestaurants.get(indexOfSelection);
-        System.out.println();
+        Restaurant resto = allLoggedRestaurants.get(indexOfSelection);
+        System.out.println("Please provide a rating (out of 5): \n");
+        int rating = input.nextInt();
+        System.out.println("Please provide a cost (without $ signs): \n");
+        double cost = input.nextDouble();
+        System.out.println("Please provide a comment: \n");
+        String reviewComment = input.next();
+        Review rev = new Review(resto,rating,cost,reviewComment);
+        resto.addReview(rev);
+        user.addReview(rev);
     }
 
     // TODO: add a MANAGE friend functionality

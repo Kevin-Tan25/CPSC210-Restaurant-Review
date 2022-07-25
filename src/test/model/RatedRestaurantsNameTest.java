@@ -3,9 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RatedRestaurantsTest {
+public class RatedRestaurantsNameTest {
 
     RatedRestaurantsName rr;
 
@@ -24,13 +24,13 @@ public class RatedRestaurantsTest {
         assertEquals(rr.getRatedRestaurants().size(), 0);
         rr.addRestaurant("McDonald's");
         assertEquals(rr.getRatedRestaurants().size(), 1);
-        assertEquals(rr.getRatedRestaurants().get(0), "McDonald's");
+        assertEquals(rr.getRatedRestaurants().get(0), "mcdonald's");
         rr.addRestaurant("Burger King");
         assertEquals(rr.getRatedRestaurants().size(), 2);
-        assertEquals(rr.getRatedRestaurants().get(1), "Burger King");
+        assertEquals(rr.getRatedRestaurants().get(1), "burger king");
         rr.deleteRestaurant("McDonald's");
         assertEquals(rr.getRatedRestaurants().size(), 1);
-        assertEquals(rr.getRatedRestaurants().get(0), "Burger King");
+        assertEquals(rr.getRatedRestaurants().get(0), "burger king");
         rr.deleteRestaurant("Burger King");
         assertEquals(rr.getRatedRestaurants().size(), 0);
     }
@@ -40,15 +40,27 @@ public class RatedRestaurantsTest {
         assertEquals(rr.getRatedRestaurants().size(), 0);
         rr.addRestaurant("McDonald's");
         assertEquals(rr.getRatedRestaurants().size(), 1);
-        assertEquals(rr.getRatedRestaurants().get(0), "McDonald's");
+        assertEquals(rr.getRatedRestaurants().get(0), "mcdonald's");
         rr.addRestaurant("Burger King");
         assertEquals(rr.getRatedRestaurants().size(), 2);
-        assertEquals(rr.getRatedRestaurants().get(1), "Burger King");
+        assertEquals(rr.getRatedRestaurants().get(1), "burger king");
         rr.editRestaurantName("McDonald's", "Five Guys");
         assertEquals(rr.getRatedRestaurants().size(), 2);
-        assertEquals(rr.getRatedRestaurants().get(0), "Five Guys");
+        assertEquals(rr.getRatedRestaurants().get(0), "five guys");
         rr.editRestaurantName("Burger King", "Chef Hung");
         assertEquals(rr.getRatedRestaurants().size(), 2);
-        assertEquals(rr.getRatedRestaurants().get(1), "Chef Hung");
+        assertEquals(rr.getRatedRestaurants().get(1), "chef hung");
+    }
+
+    @Test
+    public void testIsRatedRestaurant() {
+        assertEquals(rr.getRatedRestaurants().size(), 0);
+        rr.addRestaurant("McDonald's");
+        assertEquals(rr.getRatedRestaurants().size(), 1);
+        assertEquals(rr.getRatedRestaurants().get(0), "mcdonald's");
+        rr.addRestaurant("Burger King");
+        assertEquals(rr.getRatedRestaurants().size(), 2);
+        assertTrue(rr.isRatedRestaurant("Burger King"));
+        assertFalse(rr.isRatedRestaurant("Five Guys"));
     }
 }
