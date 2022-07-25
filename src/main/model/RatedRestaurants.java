@@ -11,13 +11,11 @@ public class RatedRestaurants {
 
     private ArrayList<Restaurant> ratedRestaurants;
     private ArrayList<Restaurant> sortedRestaurant;
-    private ArrayList<Restaurant> topFiveBestRatedRestaurants;
 
     // EFFECTS: creates an empty rated restaurants object
     public RatedRestaurants() {
         ratedRestaurants = new ArrayList<Restaurant>();
         sortedRestaurant = new ArrayList<Restaurant>();
-        topFiveBestRatedRestaurants = new ArrayList<Restaurant>();
     }
 
     // REQUIRES: restaurant is not repeated in the list
@@ -31,7 +29,7 @@ public class RatedRestaurants {
     // REQUIRES: list is not empty, target restaurant exists in list
     // MODIFIES: this
     // EFFECTS: remove the restaurant from the list
-    public void deleteRestaurant(String restaurant) {
+    public void deleteRestaurant(Restaurant restaurant) {
         ratedRestaurants.remove(restaurant);
         sortedRestaurant.remove(restaurant);
     }
@@ -44,18 +42,17 @@ public class RatedRestaurants {
         sortedRestaurant.set(sortedRestaurant.indexOf(targetRestaurant), newRestaurant);
     }
 
-    // EFFECTS: returns true if ratedRestaurants already contains restaurant
-    public Boolean isRatedRestaurant(Restaurant restaurant) {
-        return ratedRestaurants.contains(restaurant);
-    }
-
     public ArrayList<Restaurant> getRatedRestaurants() {
         return ratedRestaurants;
     }
 
+    public ArrayList<Restaurant> getSortedRestaurant() {
+        return sortedRestaurant;
+    }
+
     // Sorts the list in ascending order based on average rating
     // Referenced from Greg Anderson YouTube
-    public ArrayList<Restaurant> getTopFiveRated() {
+    public ArrayList<Restaurant> getTopRestaurants() {
         Collections.sort(sortedRestaurant, new Comparator<Restaurant>() {
             @Override
             public int compare(Restaurant r1, Restaurant r2) {

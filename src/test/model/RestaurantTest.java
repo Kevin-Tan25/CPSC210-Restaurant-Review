@@ -88,4 +88,9 @@ class RestaurantTest {
         assertEquals(r1.getReviews().get(1), rev2);
     }
 
+    @Test
+    public void testGetName() {
+        assertEquals(r1.getName(), "McDonald's");
+    }
+
 }
