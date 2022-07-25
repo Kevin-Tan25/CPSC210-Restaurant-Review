@@ -72,4 +72,18 @@ public class UserTest {
         u1.deleteFriend(1);
         assertEquals(u1.getMyFriends().size(),0);
     }
+
+    @Test
+    public void testToString() {
+        assertEquals(u1.toString(), "[Name = Kevin| Number of Reviews = 0]");
+    }
+
+    @Test
+    public void testGetNumReview() {
+        assertEquals(u1.getNumReviews(), 0);
+        u1.addReview(rev1);
+        assertEquals(u1.getNumReviews(), 1);
+        u1.addReview(rev2);
+        assertEquals(u1.getNumReviews(), 2);
+    }
 }
