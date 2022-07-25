@@ -68,6 +68,6 @@ public class User {
     // EFFECTS: returns string representation of user: based off teller app
     @Override
     public String toString() {
-        return "[Name = " + userName + "| Number of Reviews = " + numReviews + "]\n";
+        return "[Name = " + userName + "| Number of Reviews = " + getNumReviews() + "]";
     }
 }

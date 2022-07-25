@@ -75,6 +75,9 @@ public class RestaurantReviewApp {
         testUser1 = new User(2, "Joe");
         testUser2 = new User(3, "Stephen");
         testUser3 = new User(4, "Jose");
+        user.addFriend(testUser1);
+        user.addFriend(testUser2);
+        user.addFriend(testUser3);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -113,8 +116,8 @@ public class RestaurantReviewApp {
     // TODO: add a MANAGE friend functionality
     // EFFECTS: prints a list of friends
     private void manageFriends() {
-        for (int i = 0; i < user.getMyReviews().size(); i++) {
-            System.out.println(user.getMyReviews().get(i));
+        for (int i = 0; i < user.getMyFriends().size(); i++) {
+            System.out.println(user.getMyFriends().get(i));
         }
     }
 

@@ -64,6 +64,6 @@ public class Review {
     // EFFECTS: returns a string representation of Review: taken from TELLER app example
     @Override
     public String toString() {
-        return "[Name = " + restaurant.getName() + "| Rating = " + rating + "| Comment = " + reviewComment + "]\n";
+        return "[Name = " + restaurant.getName() + "| Rating = " + rating + "| Comment = " + reviewComment + "]";
     }
 }
