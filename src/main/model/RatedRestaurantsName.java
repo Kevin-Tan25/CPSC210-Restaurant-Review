@@ -4,12 +4,12 @@ package model;
 
 import java.util.ArrayList;
 
-public class RatedRestaurants {
+public class RatedRestaurantsName {
 
     private ArrayList<String> ratedRestaurants;
 
     // EFFECTS: creates an empty rated restaurants object
-    public RatedRestaurants() {
+    public RatedRestaurantsName() {
         ratedRestaurants = new ArrayList<String>();
     }
 
@@ -32,6 +32,11 @@ public class RatedRestaurants {
     // EFFECTS: changes the name of the target restaurant to new restaurant
     public void editRestaurantName(String targetRestaurant, String newRestaurant) {
         ratedRestaurants.set(ratedRestaurants.indexOf(targetRestaurant), newRestaurant);
+    }
+
+    // EFFECTS: returns true if ratedRestaurants already contains restaurant name
+    public Boolean isRatedRestaurant(String restaurant) {
+        return ratedRestaurants.contains(restaurant);
     }
 
     public ArrayList<String> getRatedRestaurants() {

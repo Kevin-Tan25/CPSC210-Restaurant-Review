@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RatedRestaurantsTest {
 
-    RatedRestaurants rr;
+    RatedRestaurantsName rr;
 
     @BeforeEach
     public void setUp() {
-        rr = new RatedRestaurants();
+        rr = new RatedRestaurantsName();
     }
 
     @Test

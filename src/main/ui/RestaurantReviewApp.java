@@ -1,5 +1,6 @@
 package ui;
 
+import model.RatedRestaurantsName;
 import model.Restaurant;
 import model.Review;
 import model.User;
@@ -18,6 +19,7 @@ public class RestaurantReviewApp {
     private Scanner input;
 //    A list of all restaurants that have received reviews
     private ArrayList<Restaurant> allLoggedRestaurants;
+    private RatedRestaurantsName allLoggedRestaurantsName;
     private Restaurant r1;
     private Restaurant r2;
     private Review rev1;
@@ -71,6 +73,9 @@ public class RestaurantReviewApp {
     private void init() {
         r1 = new Restaurant("McDonald's", "5728 University Blvd");
         r2 = new Restaurant("Burger King", "1234 University Blvd");
+        allLoggedRestaurantsName = new RatedRestaurantsName();
+        allLoggedRestaurantsName.addRestaurant(r1.getName());
+        allLoggedRestaurantsName.addRestaurant(r2.getName());
         allLoggedRestaurants = new ArrayList<Restaurant>();
         allLoggedRestaurants.add(r1);
         allLoggedRestaurants.add(r2);
@@ -124,16 +129,16 @@ public class RestaurantReviewApp {
     private void writeReview() {
         String selection = "";
         System.out.println("Which restaurant would you like to write a review for?\n");
-        for (int i = 0; i < allLoggedRestaurants.size(); i++) {
-            System.out.println("\t" + allLoggedRestaurants.get(i));
+        for (int i = 0; i < allLoggedRestaurantsName.getRatedRestaurants().size(); i++) {
+            System.out.println("\t" + allLoggedRestaurantsName.getRatedRestaurants().get(i));
         }
         System.out.println("\tn -> write review for new restaurant");
         System.out.println("\tb -> return to home");
         selection = input.next();
         selection = selection.toLowerCase();
 
-        if (selection.equals("e")) {
-
+        if (allLoggedRestaurantsName.isRatedRestaurant(selection)) {
+            writeExistingReview();
         } else if (selection.equals("n")) {
 //            writeReviewForNewRestaurant();
         } else if (selection.equals("b")) {
@@ -141,6 +146,11 @@ public class RestaurantReviewApp {
         } else {
             System.out.println("Selection not valid");
         }
+    }
+
+    // EFFECTS: adds a review for an existing restaurant
+    private void writeExistingReview() {
+
     }
 
     // TODO: add a MANAGE friend functionality
