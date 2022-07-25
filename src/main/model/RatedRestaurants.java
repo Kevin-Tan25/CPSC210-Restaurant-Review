@@ -5,6 +5,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class RatedRestaurants {
 
@@ -46,6 +47,11 @@ public class RatedRestaurants {
     }
 
     public Restaurant getTopFiveRated() {
-        Collections.sort(ratedRestaurants);
+        Collections.sort(ratedRestaurants, new Comparator<Restaurant>() {
+            @Override
+            public int compare(Restaurant r1, Restaurant r2) {
+                return r1.get().compareTo(o2.getAge());
+            }
+        });
     }
 }

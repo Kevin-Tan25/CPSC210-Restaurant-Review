@@ -98,6 +98,18 @@ public class Restaurant {
         return reviews;
     }
 
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public double getAverageCost() {
+        return averageCost;
+    }
+
+    public int getNumReviews() {
+        return numReviews;
+    }
+
     // EFFECTS: returns string representation of user: based off teller app
     @Override
     public String toString() {
