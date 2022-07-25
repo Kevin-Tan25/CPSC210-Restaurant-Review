@@ -5,15 +5,13 @@ package model;
 
 public class Review {
 
-    private int reviewIdentifier;
     private Restaurant restaurant;
     private int rating;
     private double cost;
     private String reviewComment;
 
     // EFFECTS: creates a review object for a restaurant with a given rating and review comment
-    public Review(int reviewIdentifier, Restaurant restaurant, int rating, double cost, String reviewComment) {
-        this.reviewIdentifier = reviewIdentifier;
+    public Review(Restaurant restaurant, int rating, double cost, String reviewComment) {
         this.restaurant = restaurant;
         this.rating = rating;
         this.cost = cost;
@@ -39,10 +37,6 @@ public class Review {
     // EFFECTS: updates rating for company to the new rating
     public void changeCost(double cost) {
         this.cost = cost;
-    }
-
-    public int getReviewIdentifier() {
-        return reviewIdentifier;
     }
 
     public Restaurant getRestaurant() {

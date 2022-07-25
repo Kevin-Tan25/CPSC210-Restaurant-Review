@@ -18,20 +18,19 @@ public class UserTest {
 
     @BeforeEach
     public void setUp() {
-        u1 = new User(1, "Kevin");
-        u2 = new User(2, "Steve");
-        u3 = new User(3, "Joe");
+        u1 = new User("Kevin");
+        u2 = new User("Steve");
+        u3 = new User("Joe");
 
         r1 = new Restaurant("McDonald's", "5728 University Blvd");
         r2 = new Restaurant("Burger King", "1234 University Blvd");
 
-        rev1 = new Review(1, r1, 4, 3.99, "Good and cheap");
-        rev2 = new Review(2, r2, 3, 5.99, "Not bad");
+        rev1 = new Review(r1, 4, 3.99, "Good and cheap");
+        rev2 = new Review(r2, 3, 5.99, "Not bad");
     }
 
     @Test
     public void testConstructor() {
-        assertEquals(u1.getUserID(), 1);
         assertEquals(u1.getUserName(), "Kevin");
         assertEquals(u1.getMyReviews().size(), 0);
         assertEquals(u1.getMyFriends().size(), 0);

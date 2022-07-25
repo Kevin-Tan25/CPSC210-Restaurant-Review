@@ -23,8 +23,8 @@ class RestaurantTest {
         ArrayList<String> list3= new ArrayList<String>(Arrays.asList("5728 University Blvd", "3308 W Broadway"));
         r3 = new Restaurant("McDonald's", list3);
 
-        rev1 = new Review(1, r1, 4, 3.99, "Good and cheap");
-        rev2 = new Review(2, r1, 2, 6.00, "Cheap but terrible service");
+        rev1 = new Review(r1, 4, 3.99, "Good and cheap");
+        rev2 = new Review(r1, 2, 6.00, "Cheap but terrible service");
     }
 
     @Test

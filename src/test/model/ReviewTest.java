@@ -14,12 +14,11 @@ public class ReviewTest {
     @BeforeEach
     public void setUp() {
         r1 = new Restaurant("McDonald's", "5728 University Blvd");
-        rev1 = new Review(1, r1, 4, 3.99, "Good and cheap");
+        rev1 = new Review(r1, 4, 3.99, "Good and cheap");
     }
 
     @Test
     public void testConstructor() {
-        assertEquals(rev1.getReviewIdentifier(), 1);
         assertEquals(rev1.getRestaurant(), r1);
         assertEquals(rev1.getRating(), 4);
         assertEquals(rev1.getCost(), 3.99);

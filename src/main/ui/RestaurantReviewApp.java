@@ -79,14 +79,14 @@ public class RestaurantReviewApp {
         allLoggedRestaurants = new ArrayList<Restaurant>();
         allLoggedRestaurants.add(r1);
         allLoggedRestaurants.add(r2);
-        rev1 = new Review(1, r1, 4, 3.99, "Good and cheap");
-        rev2 = new Review(2, r2, 3, 5.99, "Not bad");
-        user = new User(1,"Kevin");
+        rev1 = new Review(r1, 4, 3.99, "Good and cheap");
+        rev2 = new Review(r2, 3, 5.99, "Not bad");
+        user = new User("Kevin");
         user.addReview(rev1);
         user.addReview(rev2);
-        testUser1 = new User(2, "Joe");
-        testUser2 = new User(3, "Stephen");
-        testUser3 = new User(4, "Jose");
+        testUser1 = new User("Joe");
+        testUser2 = new User("Stephen");
+        testUser3 = new User("Jose");
         user.addFriend(testUser1);
         user.addFriend(testUser2);
         user.addFriend(testUser3);
@@ -138,7 +138,7 @@ public class RestaurantReviewApp {
         selection = selection.toLowerCase();
 
         if (allLoggedRestaurantsName.isRatedRestaurant(selection)) {
-            writeExistingReview();
+            writeExistingReview(selection);
         } else if (selection.equals("n")) {
 //            writeReviewForNewRestaurant();
         } else if (selection.equals("b")) {
@@ -149,8 +149,10 @@ public class RestaurantReviewApp {
     }
 
     // EFFECTS: adds a review for an existing restaurant
-    private void writeExistingReview() {
-
+    private void writeExistingReview(String selection) {
+        int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
+        Restaurant r = allLoggedRestaurants.get(indexOfSelection);
+        System.out.println();
     }
 
     // TODO: add a MANAGE friend functionality

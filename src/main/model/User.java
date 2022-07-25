@@ -6,15 +6,13 @@ import java.util.ArrayList;
 
 public class User {
 
-    private int userID;
     private String userName;
     private ArrayList<Review> myReviews;
     private ArrayList<User> myFriends;
     private int numReviews;
 
     // EFFECTS: creates a User object
-    public User(int userID, String userName) {
-        this.userID = userID;
+    public User(String userName) {
         this.userName = userName;
         myReviews = new ArrayList<Review>();
         myFriends = new ArrayList<User>();
@@ -43,10 +41,6 @@ public class User {
     // EFFECTS: delete friend at specified #
     public void deleteFriend(int friendPosition) {
         myFriends.remove(friendPosition - 1);
-    }
-
-    public int getUserID() {
-        return userID;
     }
 
     public String getUserName() {
