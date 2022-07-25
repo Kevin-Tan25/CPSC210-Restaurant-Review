@@ -158,11 +158,11 @@ public class RestaurantReviewApp {
     private void writeExistingReview(String selection) {
         int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
         Restaurant resto = allLoggedRestaurants.get(indexOfSelection);
-        System.out.println("Please provide a rating (out of 5): \n");
+        System.out.println("Please provide a rating (out of 5): ");
         int rating = input.nextInt();
-        System.out.println("Please provide a cost (without $ signs): \n");
+        System.out.println("Please provide a cost (without $ signs): ");
         double cost = input.nextDouble();
-        System.out.println("Please provide a comment: \n");
+        System.out.println("Please provide a comment: ");
         String reviewComment = input.next();
         Review rev = new Review(resto,rating,cost,reviewComment);
         resto.addReview(rev);
