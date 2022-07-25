@@ -51,4 +51,9 @@ public class ReviewTest {
         rev1.changeCost(2.00);
         assertEquals(rev1.getCost(), 2.00);
     }
+
+    @Test
+    public void testToString() {
+        assertEquals(rev1.toString(), "[Name = McDonald's| Rating = 4| Comment = Good and cheap]");
+    }
 }
