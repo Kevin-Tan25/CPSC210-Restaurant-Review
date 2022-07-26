@@ -195,7 +195,9 @@ public class RestaurantReviewApp {
 
     // EFFECTS: views top 5 top rated restaurants based on average rating
     private void viewTopRestaurants() {
+        System.out.println("Runnin viewTopRestaurants program");
         if (allLoggedRestaurants.getTopRestaurants().size() <= 5) {
+//            System.out.println(allLoggedRestaurants.getTopRestaurants());
             for (int i = 0; i < allLoggedRestaurants.getTopRestaurants().size(); i++) {
                 Restaurant topRestaurant = allLoggedRestaurants.getTopRestaurants().get(i);
                 System.out.println(topRestaurant);
@@ -209,6 +211,7 @@ public class RestaurantReviewApp {
                 System.out.println("The average rating is: " + topRestaurant.getAverageRating());
                 System.out.println("The average cost is: $" + topRestaurant.getAverageCost() + "\n");
             }
+//            System.out.println(allLoggedRestaurants.getTopFiveRestaurant());
         }
     }
 

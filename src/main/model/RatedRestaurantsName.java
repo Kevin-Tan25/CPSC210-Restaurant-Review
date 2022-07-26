@@ -36,7 +36,12 @@ public class RatedRestaurantsName {
 
     // EFFECTS: returns true if ratedRestaurants already contains restaurant name
     public Boolean isRatedRestaurant(String restaurant) {
-        return ratedRestaurants.contains(restaurant.toLowerCase());
+        if (ratedRestaurants.contains(restaurant.toLowerCase())) {
+            return true;
+        } else {
+            return false;
+        }
+//        return ratedRestaurants.contains(restaurant.toLowerCase());
     }
 
     public ArrayList<String> getRatedRestaurants() {
