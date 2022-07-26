@@ -9,7 +9,6 @@ public class User {
     private String userName;
     private ArrayList<Review> myReviews;
     private ArrayList<User> myFriends;
-    private int numReviews;
 
     // EFFECTS: creates a User object
     public User(String userName) {

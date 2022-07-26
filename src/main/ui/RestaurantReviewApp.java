@@ -79,7 +79,7 @@ public class RestaurantReviewApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes user with existing reviews
+    // EFFECTS: initializes reviews
     private void init() {
         rev1 = new Review(r1, 4, 3.99, "Good and cheap");
         rev2 = new Review(r2, 3, 5.99, "Not bad");
@@ -97,6 +97,8 @@ public class RestaurantReviewApp {
         input.useDelimiter("\n");
     }
 
+    // MODIFIES: this
+    // EFFECTS: intializes restaurant class
     private void initRestaurants() {
         r1 = new Restaurant("McDonald's", "5728 University Blvd");
         r2 = new Restaurant("Burger King", "1234 University Blvd");
@@ -105,7 +107,8 @@ public class RestaurantReviewApp {
         r5 = new Restaurant("Miku", "4012 Robson St");
         r6 = new Restaurant("My Home Cuisine", "1984 University Blvd");
     }
-
+    // MODIFIES: this
+    // EFFECTS: intializes restaurant class lists
     private void initRestaurantLists() {
         allLoggedRestaurantsName = new RatedRestaurantsName();
         allLoggedRestaurantsName.addRestaurant(r1.getName());
@@ -123,6 +126,8 @@ public class RestaurantReviewApp {
         allLoggedRestaurants.addRestaurant(r6);
     }
 
+    // MODIFIES: this
+    // EFFECTS: intializes test users for the program
     private void initUsers() {
         user = new User("Kevin");
         user.addReview(rev1);

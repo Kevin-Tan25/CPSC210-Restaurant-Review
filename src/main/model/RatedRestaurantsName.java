@@ -34,14 +34,13 @@ public class RatedRestaurantsName {
         ratedRestaurants.set(ratedRestaurants.indexOf(targetRestaurant.toLowerCase()), newRestaurant.toLowerCase());
     }
 
-    // EFFECTS: returns true if ratedRestaurants already contains restaurant name
+    // EFFECTS: returns true if ratedRestaurants already contains restaurant name, false otherwise
     public Boolean isRatedRestaurant(String restaurant) {
         if (ratedRestaurants.contains(restaurant.toLowerCase())) {
             return true;
         } else {
             return false;
         }
-//        return ratedRestaurants.contains(restaurant.toLowerCase());
     }
 
     public ArrayList<String> getRatedRestaurants() {

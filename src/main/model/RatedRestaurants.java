@@ -11,13 +11,11 @@ public class RatedRestaurants {
 
     private ArrayList<Restaurant> ratedRestaurants;
     private ArrayList<Restaurant> sortedRestaurant;
-    private ArrayList<Restaurant> topFiveRestaurant;
 
     // EFFECTS: creates an empty rated restaurants object
     public RatedRestaurants() {
         ratedRestaurants = new ArrayList<Restaurant>();
         sortedRestaurant = new ArrayList<Restaurant>();
-        topFiveRestaurant = new ArrayList<Restaurant>();
     }
 
     // REQUIRES: restaurant is not repeated in the list
@@ -52,10 +50,6 @@ public class RatedRestaurants {
         return sortedRestaurant;
     }
 
-    public ArrayList<Restaurant> getTopFiveRestaurant() {
-        return topFiveRestaurant;
-    }
-
     // Sorts the list in ascending order based on average rating
     // Referenced from Greg Anderson YouTube
     public ArrayList<Restaurant> getTopRestaurants() {
@@ -67,16 +61,5 @@ public class RatedRestaurants {
         });
         return sortedRestaurant;
 
-//        System.out.println(topFiveRestaurant.size());
-//        if (sortedRestaurant.size() <= 5) {
-//            return sortedRestaurant;
-//        } else {
-//            for (int i = 0; i < 5; i++) {
-//                System.out.println(sortedRestaurant.get(i));
-//                topFiveRestaurant.add(sortedRestaurant.get(i));
-//            }
-//            System.out.println(topFiveRestaurant.size());
-//            return topFiveRestaurant;
-//        }
     }
 }
