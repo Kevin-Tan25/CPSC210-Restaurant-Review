@@ -107,6 +107,7 @@ public class RestaurantReviewApp {
         r5 = new Restaurant("Miku", "4012 Robson St");
         r6 = new Restaurant("My Home Cuisine", "1984 University Blvd");
     }
+
     // MODIFIES: this
     // EFFECTS: intializes restaurant class lists
     private void initRestaurantLists() {
