@@ -54,6 +54,7 @@ public class User {
         return myFriends;
     }
 
+    // EFFECTS: returns the amount of reviews that a person wrote
     public int getNumReviews() {
         return myReviews.size();
     }
