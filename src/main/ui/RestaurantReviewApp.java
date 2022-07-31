@@ -166,9 +166,9 @@ public class RestaurantReviewApp {
         } else if (command.equals("f")) {
             searchRestaurantReviews();
         } else if (command.equals("s")) {
-            saveWorkRoom();
+            saveUserReviews();
         } else if (command.equals("l")) {
-            loadWorkRoom();
+            loadUserReviews();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -312,8 +312,8 @@ public class RestaurantReviewApp {
         }
     }
 
-    // EFFECTS: saves the workroom to file
-    private void saveWorkRoom() {
+    // EFFECTS: saves the user reviews to file
+    private void saveUserReviews() {
         try {
             jsonWriter.open();
             jsonWriter.write(user);
@@ -325,8 +325,8 @@ public class RestaurantReviewApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
-    private void loadWorkRoom() {
+    // EFFECTS: loads user reviews from file
+    private void loadUserReviews() {
         try {
             user = jsonReader.read();
             System.out.println("Loaded " + user.getUserName() + " from " + JSON_STORE);
