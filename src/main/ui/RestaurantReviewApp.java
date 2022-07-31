@@ -5,6 +5,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -73,22 +74,6 @@ public class RestaurantReviewApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user command
-    private void processCommand(String command) {
-        if (command.equals("a")) {
-            viewMyAccount();
-        } else if (command.equals("w")) {
-            writeReview();
-        } else if (command.equals("t")) {
-            viewTopRestaurants();
-        } else if (command.equals("s")) {
-            searchRestaurantReviews();
-        } else {
-            System.out.println("Selection not valid...");
-        }
-    }
-
-    // MODIFIES: this
     // EFFECTS: initializes reviews
     private void init() {
         rev1 = new Review(r1, 4, 3.99, "Good and cheap");
@@ -141,10 +126,10 @@ public class RestaurantReviewApp {
     // EFFECTS: intializes test users for the program
     private void initUsers() {
         user = new User("Kevin");
-        user.addReview(rev1);
-        user.addReview(rev2);
-        user.addReview(rev3);
-        user.addReview(rev4);
+//        user.addReview(rev1);
+//        user.addReview(rev2);
+//        user.addReview(rev3);
+//        user.addReview(rev4);
         testUser1 = new User("Joe");
         testUser1.addReview(rev5);
         testUser1.addReview(rev6);
@@ -163,8 +148,30 @@ public class RestaurantReviewApp {
         System.out.println("\ta -> view my account");
         System.out.println("\tw -> write a review");
         System.out.println("\tt -> view top restaurants");
-        System.out.println("\ts -> search restaurant reviews");
+        System.out.println("\tf -> search restaurant reviews");
+        System.out.println("\ts -> save work room to file");
+        System.out.println("\tl -> load work room from file");
         System.out.println("\tq -> quit");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    private void processCommand(String command) {
+        if (command.equals("a")) {
+            viewMyAccount();
+        } else if (command.equals("w")) {
+            writeReview();
+        } else if (command.equals("t")) {
+            viewTopRestaurants();
+        } else if (command.equals("f")) {
+            searchRestaurantReviews();
+        } else if (command.equals("s")) {
+            saveWorkRoom();
+        } else if (command.equals("l")) {
+            loadWorkRoom();
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
 
     // EFFECTS: lets user view a list of their reviews, their username, or their friends
@@ -298,6 +305,29 @@ public class RestaurantReviewApp {
     private void displayReview() {
         for (int i = 0; i < user.getMyReviews().size(); i++) {
             System.out.println(user.getMyReviews().get(i));
+        }
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved " + user.getUserName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded " + user.getUserName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 }
