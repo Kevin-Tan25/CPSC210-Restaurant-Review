@@ -1,5 +1,6 @@
 package persistence;
 
+import model.User;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            WorkRoom wr = reader.read();
+            User user = reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -22,11 +23,11 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
+        JsonReader reader = new JsonReader("./data/testReaderEmptyUser.json");
         try {
-            WorkRoom wr = reader.read();
-            assertEquals("My work room", wr.getName());
-            assertEquals(0, wr.numThingies());
+            User user = reader.read();
+            assertEquals("Test User", user.getUserName());
+            assertEquals(0, user.getNumReviews());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
