@@ -218,7 +218,7 @@ public class RestaurantReviewApp {
 
     // EFFECTS: views top 5 top rated restaurants based on average rating
     private void viewTopRestaurants() {
-        System.out.println("Runnin viewTopRestaurants program");
+        System.out.println("Here are your top 5 restaurant recommendations:");
         if (allLoggedRestaurants.getTopRestaurants().size() <= 5) {
 //            System.out.println(allLoggedRestaurants.getTopRestaurants());
             for (int i = 0; i < allLoggedRestaurants.getTopRestaurants().size(); i++) {
@@ -303,8 +303,12 @@ public class RestaurantReviewApp {
 
     // EFFECTS: prints a list of reviews written by the user
     private void displayReview() {
-        for (int i = 0; i < user.getMyReviews().size(); i++) {
-            System.out.println(user.getMyReviews().get(i));
+        if (user.getMyReviews().size() == 0) {
+            System.out.println("No reviews written so far");
+        } else {
+            for (int i = 0; i < user.getMyReviews().size(); i++) {
+                System.out.println(user.getMyReviews().get(i));
+            }
         }
     }
 
