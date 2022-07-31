@@ -1,7 +1,10 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,6 +12,9 @@ import java.util.Scanner;
 
 public class RestaurantReviewApp {
 
+    private static final String JSON_STORE = "./data/reviews.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
     private User user;
     private User testUser1;
     private User testUser2;
@@ -31,7 +37,11 @@ public class RestaurantReviewApp {
     private Review rev6;
 
     // EFFECTS: runs the Restaurant Review application
-    public RestaurantReviewApp() {
+    public RestaurantReviewApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        user = new User("Kevin");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runRestaurantReview();
     }
 
