@@ -3,7 +3,10 @@ package model;
 // A review documents a restaurant, and any comments/ ratings associated with the restaurant. Can edit the review.
 
 
-public class Review {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Review implements Writable {
 
     private Restaurant restaurant;
     private int rating;
@@ -59,5 +62,17 @@ public class Review {
     @Override
     public String toString() {
         return "[Name = " + restaurant.getName() + "| Rating = " + rating + "| Comment = " + reviewComment + "]";
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("restaurantName", restaurant.getName());
+        json.put("address", restaurant.getLocations());
+        json.put("rating", rating);
+        json.put("cost", cost);
+        json.put("comment", reviewComment);
+        return json;
     }
 }

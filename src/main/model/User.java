@@ -2,9 +2,13 @@ package model;
 
 // User identifies the person writing a review
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class User {
+public class User implements Writable {
 
     private String userName;
     private ArrayList<Review> myReviews;
@@ -63,5 +67,24 @@ public class User {
     @Override
     public String toString() {
         return "[Name = " + userName + "| Number of Reviews = " + getNumReviews() + "]";
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", userName);
+        json.put("reviews", reviewsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray reviewsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Review r : myReviews) {
+            jsonArray.put(r.toJson());
+        }
+
+        return jsonArray;
     }
 }
