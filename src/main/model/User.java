@@ -87,9 +87,4 @@ public class User implements Writable {
 
         return jsonArray;
     }
-
-    // EFFECTS: returns a list of reviews written by user
-    public ArrayList<Review> getReviews() {
-        return myReviews;
-    }
 }

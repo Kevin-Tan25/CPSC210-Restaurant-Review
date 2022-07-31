@@ -1,6 +1,8 @@
 package persistence;
 
 
+import model.Restaurant;
+import model.Review;
 import model.User;
 import org.junit.jupiter.api.Test;
 
@@ -45,21 +47,23 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralWorkroom() {
         try {
-            WorkRoom wr = new WorkRoom("My work room");
-            wr.addThingy(new Thingy("saw", Category.METALWORK));
-            wr.addThingy(new Thingy("needle", Category.STITCHING));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            User user = new User("Test User");
+            Restaurant r1 = new Restaurant("Five Guys", "4823 Thompson Ave");
+            user.addReview(new Review(r1, 5, 8.45, "Lots of peanuts"));
+            Restaurant r2 = new Restaurant("A&W", "1498 Fisherman Dr");
+            user.addReview(new Review(r2, 4, 6.78, "Bomb poutine!"));
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralUser.json");
             writer.open();
-            writer.write(wr);
+            writer.write(user);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
-            wr = reader.read();
-            assertEquals("My work room", wr.getName());
-            List<Thingy> thingies = wr.getThingies();
-            assertEquals(2, thingies.size());
-            checkThingy("saw", Category.METALWORK, thingies.get(0));
-            checkThingy("needle", Category.STITCHING, thingies.get(1));
+            JsonReader reader = new JsonReader("./data/testWriterGeneralUser.json");
+            user = reader.read();
+            assertEquals("Test User", user.getUserName());
+            List<Review> reviews = user.getMyReviews();
+            assertEquals(2, user.getNumReviews());
+            checkReview("Five Guys", "4823 Thompson Ave", 5, 8.45, "Lots of peanuts", reviews.get(0));
+            checkReview("A&W", "1498 Fisherman Dr", 4, 6.78, "Bomb poutine!", reviews.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
