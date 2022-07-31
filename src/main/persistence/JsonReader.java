@@ -1,6 +1,8 @@
 package persistence;
 
+import model.Restaurant;
 import model.Review;
+import model.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,9 +22,9 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads user from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Review read() throws IOException {
+    public User read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseReview(jsonObject);
@@ -40,29 +42,33 @@ public class JsonReader {
     }
 
     // EFFECTS: parses workroom from JSON object and returns it
-    private Review parseReview(JSONObject jsonObject) {
+    private User parseReview(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        Review r = new Review(name);
-        addThingies(r, jsonObject);
-        return r;
+        User u = new User(name);
+        addReviews(u, jsonObject);
+        return u;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
-    private void addThingies(Review wr, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
+    // MODIFIES: u
+    // EFFECTS: parses reviews from JSON object and adds them to user
+    private void addReviews(User u, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("reviews");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addThingy(wr, nextThingy);
+            JSONObject review = (JSONObject) json;
+            addReview(u, review);
         }
     }
 
-    // MODIFIES: wr
+    // MODIFIES: u
     // EFFECTS: parses thingy from JSON object and adds it to workroom
-    private void addThingy(Review wr, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Category category = Category.valueOf(jsonObject.getString("category"));
-        Thingy thingy = new Thingy(name, category);
-        r.addThingy(thingy);
+    private void addReview(User u, JSONObject jsonObject) {
+        String restaurantName = jsonObject.getString("restaurantName");
+        String address = jsonObject.getString("address");
+        int rating = jsonObject.getInt("rating");
+        double cost = jsonObject.getDouble("cost");
+        String comment = jsonObject.getString("comment");
+        Restaurant r = new Restaurant(restaurantName, address);
+        Review review = new Review(r, rating, cost, comment);
+        u.addReview(review);
     }
 }
