@@ -29,13 +29,13 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyUser() {
         try {
-            User user = new User("Test user");
+            User user = new User("Test User");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyUser.json");
             writer.open();
             writer.write(user);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyUser.json");
             user = reader.read();
             assertEquals("Test User", user.getUserName());
             assertEquals(0, user.getNumReviews());
