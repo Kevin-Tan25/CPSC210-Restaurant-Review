@@ -25,7 +25,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyUser() {
         try {
             User user = new User("Test user");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyUser.json");
