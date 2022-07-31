@@ -45,7 +45,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralUser() {
         try {
             User user = new User("Test User");
             Restaurant r1 = new Restaurant("Five Guys", "4823 Thompson Ave");

@@ -1,17 +1,19 @@
 {
-  "reviews": [{
-    "restaurantName": "Five Guys",
-    "address": "4823 Thompson Ave",
-    "rating": 5,
-    "cost": 8.45,
-    "comment": "Lots of peanuts"
-  },
-    {
-      "restaurantName": "A&W",
-      "address": "1498 Fisherman Dr",
-      "rating": 4,
-      "cost": 6.78,
-      "comment": "Bomb poutine!"
-    }],
-  "name": "Test User"
+    "reviews": [
+        {
+            "address": ["4823 Thompson Ave"],
+            "cost": 8.45,
+            "restaurantName": "Five Guys",
+            "rating": 5,
+            "comment": "Lots of peanuts"
+        },
+        {
+            "address": ["1498 Fisherman Dr"],
+            "cost": 6.78,
+            "restaurantName": "A&W",
+            "rating": 4,
+            "comment": "Bomb poutine!"
+        }
+    ],
+    "name": "Test User"
 }

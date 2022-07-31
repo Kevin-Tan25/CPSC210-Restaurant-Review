@@ -69,7 +69,7 @@ public class Review implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("restaurantName", restaurant.getName());
-        json.put("address", restaurant.getLocations());
+        json.put("address", restaurant.getLocation());
         json.put("rating", rating);
         json.put("cost", cost);
         json.put("comment", reviewComment);
