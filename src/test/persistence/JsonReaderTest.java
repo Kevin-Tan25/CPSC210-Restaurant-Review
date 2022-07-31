@@ -41,9 +41,9 @@ class JsonReaderTest extends JsonTest {
             User user = reader.read();
             assertEquals("Test User", user.getUserName());
             List<Review> reviews = user.getMyReviews();
-            assertEquals(2, thingies.size());
-            checkThingy("needle", Category.STITCHING, thingies.get(0));
-            checkThingy("saw", Category.WOODWORK, thingies.get(1));
+            assertEquals(2, user.getNumReviews());
+            checkReview("McDonald's", "5728 University Blvd", 4, 3.99, "Good and cheap", reviews.get(0));
+            checkReview("Burger King", "1234 University Blvd", 3, 5.99, "Not bad", reviews.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
