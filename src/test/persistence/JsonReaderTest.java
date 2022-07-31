@@ -1,5 +1,6 @@
 package persistence;
 
+import model.Review;
 import model.User;
 import org.junit.jupiter.api.Test;
 
@@ -35,11 +36,11 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
+        JsonReader reader = new JsonReader("./data/testReaderGeneralUser.json");
         try {
-            WorkRoom wr = reader.read();
-            assertEquals("My work room", wr.getName());
-            List<Thingy> thingies = wr.getThingies();
+            User user = reader.read();
+            assertEquals("Test User", user.getUserName());
+            List<Review> reviews = user.getMyReviews();
             assertEquals(2, thingies.size());
             checkThingy("needle", Category.STITCHING, thingies.get(0));
             checkThingy("saw", Category.WOODWORK, thingies.get(1));
