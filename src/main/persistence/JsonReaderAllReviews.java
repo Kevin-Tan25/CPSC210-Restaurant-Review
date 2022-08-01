@@ -43,7 +43,6 @@ public class JsonReaderAllReviews {
 
     // EFFECTS: parses ratedRestaurants from JSON object and returns it
     private RatedRestaurants parseReview(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
         RatedRestaurants restaurants = new RatedRestaurants();
         addRatedRestaurants(restaurants, jsonObject);
         return restaurants;
@@ -70,6 +69,7 @@ public class JsonReaderAllReviews {
             JSONObject review = (JSONObject) json;
             addReview(restaurant, review);
         }
+        restaurants.addRestaurant(restaurant);
     }
 
     // MODIFIES: restaurants

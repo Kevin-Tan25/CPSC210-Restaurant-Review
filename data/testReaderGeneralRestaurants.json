@@ -1,0 +1,26 @@
+{
+  "restaurants": [
+    {
+      "address": "5728 University Blvd",
+      "restaurantName": "McDonald's",
+      "reviews": [
+        {
+          "cost": 3.99,
+          "rating": 4,
+          "comment": "Good and cheap"
+        }
+      ]
+    },
+    {
+      "address": "1234 University Blvd",
+      "restaurantName": "Burger King",
+      "reviews": [
+        {
+          "cost": 5.99,
+          "rating": 3,
+          "comment": "Not bad"
+        }
+      ]
+    }
+  ]
+}

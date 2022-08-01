@@ -1,6 +1,7 @@
 package persistence;
 
 import model.RatedRestaurants;
+import model.Restaurant;
 import model.Review;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
-        JsonReaderUser reader = new JsonReaderUser("./data/noSuchFile.json");
+        JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/noSuchFile.json");
         try {
             RatedRestaurants restaurants = reader.read();
             fail("IOException expected");
@@ -26,11 +27,10 @@ class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReaderUser reader = new JsonReaderUser("./data/testReaderEmptyUser.json");
+        JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testReaderEmptyRestaurants.json");
         try {
-            User user = reader.read();
-            assertEquals("Test User", user.getUserName());
-            assertEquals(0, user.getNumReviews());
+            RatedRestaurants restaurants = reader.read();
+            assertEquals(0, restaurants.getRatedRestaurants().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -38,14 +38,13 @@ class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderGeneralWorkRoom() {
-        JsonReaderUser reader = new JsonReaderUser("./data/testReaderGeneralUser.json");
+        JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testReaderGeneralRestaurants.json");
         try {
-            User user = reader.read();
-            assertEquals("Test User", user.getUserName());
-            List<Review> reviews = user.getMyReviews();
-            assertEquals(2, user.getNumReviews());
-            checkReview("McDonald's", "5728 University Blvd", 4, 3.99, "Good and cheap", reviews.get(0));
-            checkReview("Burger King", "1234 University Blvd", 3, 5.99, "Not bad", reviews.get(1));
+            RatedRestaurants ratedRestaurants = reader.read();
+            List<Restaurant> restaurants = ratedRestaurants.getRatedRestaurants();
+            assertEquals(2, restaurants.size());
+            checkReview("McDonald's", "5728 University Blvd", 4, 3.99, "Good and cheap", restaurants.get(0).getReviews().get(0));
+            checkReview("Burger King", "1234 University Blvd", 3, 5.99, "Not bad", restaurants.get(1).getReviews().get(0));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

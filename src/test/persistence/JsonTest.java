@@ -1,6 +1,7 @@
 package persistence;
 
 
+import model.Restaurant;
 import model.Review;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,4 +15,5 @@ public class JsonTest {
         assertEquals(cost, review.getCost());
         assertEquals(comment, review.getReviewComment());
     }
+
 }
