@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // Taken from JsonSerializationDemo file
-class JsonReaderTestAllReviews extends JsonTest {
+class JsonReaderTestAllRestaurants extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
@@ -25,7 +25,7 @@ class JsonReaderTestAllReviews extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyRestaurantList() {
         JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testReaderEmptyRestaurants.json");
         try {
             RatedRestaurants restaurants = reader.read();
@@ -36,7 +36,7 @@ class JsonReaderTestAllReviews extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralRestaurantList() {
         JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testReaderGeneralRestaurants.json");
         try {
             RatedRestaurants restaurants = reader.read();
