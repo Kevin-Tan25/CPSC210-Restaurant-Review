@@ -1,10 +1,7 @@
 package ui;
 
 import model.*;
-import persistence.JsonReaderAllRestaurants;
-import persistence.JsonReaderUser;
-import persistence.JsonWriterAllRestaurants;
-import persistence.JsonWriterUser;
+import persistence.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +17,7 @@ public class RestaurantReviewApp {
     private JsonReaderUser jsonReaderUser;
     private JsonWriterAllRestaurants jsonWriterAllRestaurants;
     private JsonReaderAllRestaurants jsonReaderAllRestaurants;
+    private JsonReaderAllRestaurantsName jsonReaderAllRestaurantsName;
     private User user;
     private User testUser1;
     private User testUser2;
@@ -50,6 +48,7 @@ public class RestaurantReviewApp {
         jsonReaderUser = new JsonReaderUser(JSON_USER_REVIEWS);
         jsonWriterAllRestaurants = new JsonWriterAllRestaurants(JSON_ALL_RESTAURANTS);
         jsonReaderAllRestaurants = new JsonReaderAllRestaurants(JSON_ALL_RESTAURANTS);
+        jsonReaderAllRestaurantsName = new JsonReaderAllRestaurantsName(JSON_ALL_RESTAURANTS);
         runRestaurantReview();
     }
 
@@ -347,6 +346,7 @@ public class RestaurantReviewApp {
         try {
             user = jsonReaderUser.read();
             allLoggedRestaurants = jsonReaderAllRestaurants.read();
+            allLoggedRestaurantsName = jsonReaderAllRestaurantsName.read();
             System.out.println("Loaded " + user.getUserName() + " from " + JSON_USER_REVIEWS);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_USER_REVIEWS);
