@@ -39,12 +39,12 @@ class JsonReaderTestAllReviews extends JsonTest {
     void testReaderGeneralWorkRoom() {
         JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testReaderGeneralRestaurants.json");
         try {
-            RatedRestaurants ratedRestaurants = reader.read();
-            List<Restaurant> restaurants = ratedRestaurants.getRatedRestaurants();
-            assertEquals(2, restaurants.size());
-            checkReview("McDonald's", "5728 University Blvd", 4, 3.99, "Good and cheap", restaurants.get(0).getReviews().get(0));
-            checkReview("Miku", "4012 Robson St", 5, 46.78, "Best sushi in town", restaurants.get(1).getReviews().get(0));
-            checkReview("Miku", "4012 Robson St", 5, 41.99, "Great service. Good ambiance.", restaurants.get(1).getReviews().get(1));
+            RatedRestaurants restaurants = reader.read();
+            List<Restaurant> listRestaurants = restaurants.getRatedRestaurants();
+            assertEquals(2, listRestaurants.size());
+            checkReview("McDonald's", "5728 University Blvd", 4, 3.99, "Good and cheap", listRestaurants.get(0).getReviews().get(0));
+            checkReview("Miku", "4012 Robson St", 5, 46.78, "Best sushi in town", listRestaurants.get(1).getReviews().get(0));
+            checkReview("Miku", "4012 Robson St", 5, 41.99, "Great service. Good ambiance.", listRestaurants.get(1).getReviews().get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
