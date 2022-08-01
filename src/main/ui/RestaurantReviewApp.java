@@ -44,6 +44,7 @@ public class RestaurantReviewApp {
         input = new Scanner(System.in);
         user = new User("Kevin");
         allLoggedRestaurants = new RatedRestaurants();
+        allLoggedRestaurantsName = new RatedRestaurantsName();
         jsonWriterUser = new JsonWriterUser(JSON_USER_REVIEWS);
         jsonReaderUser = new JsonReaderUser(JSON_USER_REVIEWS);
         jsonWriterAllRestaurants = new JsonWriterAllRestaurants(JSON_ALL_RESTAURANTS);
