@@ -2,12 +2,16 @@ package model;
 
 // A tandem Arraylist for ratedRestaurantsName, which keeps track of restaurants that have received reviews
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class RatedRestaurants {
+public class RatedRestaurants implements Writable {
 
     private ArrayList<Restaurant> ratedRestaurants;
     private ArrayList<Restaurant> sortedRestaurant;
@@ -61,5 +65,23 @@ public class RatedRestaurants {
         });
         return sortedRestaurant;
 
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("restaurants", restaurantsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns all restaurants in RatedRestaurants as a JSON array
+    private JSONArray restaurantsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Restaurant r : ratedRestaurants) {
+            jsonArray.put(r.toJson());
+        }
+
+        return jsonArray;
     }
 }

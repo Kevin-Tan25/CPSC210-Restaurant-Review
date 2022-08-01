@@ -2,10 +2,14 @@ package model;
 
 // Restaurant documents the name and location of a restaurant
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class Restaurant {
+public class Restaurant implements Writable {
 
     private String name;
     private String location;
@@ -70,5 +74,24 @@ public class Restaurant {
     @Override
     public String toString() {
         return "[Restaurant Name = " + name + "]";
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("restaurantName", name);
+        json.put("address", location);
+        json.put("reviews", reviewToJson());
+        return json;
+    }
+
+    private JSONArray reviewToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Review r : reviews) {
+            jsonArray.put(r.toJson());
+        }
+
+        return jsonArray;
     }
 }

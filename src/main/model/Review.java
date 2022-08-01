@@ -68,8 +68,6 @@ public class Review implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("restaurantName", restaurant.getName());
-        json.put("address", restaurant.getLocation());
         json.put("rating", rating);
         json.put("cost", cost);
         json.put("comment", reviewComment);

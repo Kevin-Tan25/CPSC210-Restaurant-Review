@@ -1,22 +1,23 @@
 package persistence;
 
+import model.RatedRestaurants;
 import model.Review;
-import model.User;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 // Taken from JsonSerializationDemo file
-class JsonReaderTest extends JsonTest {
+class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
         JsonReaderUser reader = new JsonReaderUser("./data/noSuchFile.json");
         try {
-            User user = reader.read();
+            RatedRestaurants restaurants = reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
