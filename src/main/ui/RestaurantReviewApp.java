@@ -1,7 +1,9 @@
 package ui;
 
 import model.*;
+import persistence.JsonReaderAllReviews;
 import persistence.JsonReaderUser;
+import persistence.JsonWriterAllReviews;
 import persistence.JsonWriterUser;
 
 import java.io.FileNotFoundException;
@@ -12,9 +14,12 @@ import java.util.Scanner;
 
 public class RestaurantReviewApp {
 
-    private static final String JSON_STORE = "./data/reviews.json";
-    private JsonWriterUser jsonWriter;
-    private JsonReaderUser jsonReader;
+    private static final String JSON_USER_REVIEWS = "./data/reviews.json";
+    private static final String JSON_ALL_RESTAURANTS = "./data/allReviews.json";
+    private JsonWriterUser jsonWriterUser;
+    private JsonReaderUser jsonReaderUser;
+    private JsonWriterAllReviews jsonWriterAllRestaurants;
+    private JsonReaderAllReviews jsonReaderAllRestaurants;
     private User user;
     private User testUser1;
     private User testUser2;
@@ -40,8 +45,11 @@ public class RestaurantReviewApp {
     public RestaurantReviewApp() throws FileNotFoundException {
         input = new Scanner(System.in);
         user = new User("Kevin");
-        jsonWriter = new JsonWriterUser(JSON_STORE);
-        jsonReader = new JsonReaderUser(JSON_STORE);
+        allLoggedRestaurants = new RatedRestaurants();
+        jsonWriterUser = new JsonWriterUser(JSON_USER_REVIEWS);
+        jsonReaderUser = new JsonReaderUser(JSON_USER_REVIEWS);
+        jsonWriterAllRestaurants = new JsonWriterAllReviews(JSON_ALL_RESTAURANTS);
+        jsonReaderAllRestaurants = new JsonReaderAllReviews(JSON_ALL_RESTAURANTS);
         runRestaurantReview();
     }
 
@@ -52,7 +60,7 @@ public class RestaurantReviewApp {
         String command = null;
 
         initRestaurants();
-        initRestaurantLists();
+//        initRestaurantLists();
         init();
         initUsers();
         System.out.println("Welcome to the Restaurant review App,");
@@ -104,22 +112,22 @@ public class RestaurantReviewApp {
 
     // MODIFIES: this
     // EFFECTS: intializes restaurant class lists
-    private void initRestaurantLists() {
-        allLoggedRestaurantsName = new RatedRestaurantsName();
-        allLoggedRestaurantsName.addRestaurant(r1.getName());
-        allLoggedRestaurantsName.addRestaurant(r2.getName());
-        allLoggedRestaurantsName.addRestaurant(r3.getName());
-        allLoggedRestaurantsName.addRestaurant(r4.getName());
-        allLoggedRestaurantsName.addRestaurant(r5.getName());
-        allLoggedRestaurantsName.addRestaurant(r6.getName());
-        allLoggedRestaurants = new RatedRestaurants();
-        allLoggedRestaurants.addRestaurant(r1);
-        allLoggedRestaurants.addRestaurant(r2);
-        allLoggedRestaurants.addRestaurant(r3);
-        allLoggedRestaurants.addRestaurant(r4);
-        allLoggedRestaurants.addRestaurant(r5);
-        allLoggedRestaurants.addRestaurant(r6);
-    }
+//    private void initRestaurantLists() {
+//        allLoggedRestaurantsName = new RatedRestaurantsName();
+//        allLoggedRestaurantsName.addRestaurant(r1.getName());
+//        allLoggedRestaurantsName.addRestaurant(r2.getName());
+//        allLoggedRestaurantsName.addRestaurant(r3.getName());
+//        allLoggedRestaurantsName.addRestaurant(r4.getName());
+//        allLoggedRestaurantsName.addRestaurant(r5.getName());
+//        allLoggedRestaurantsName.addRestaurant(r6.getName());
+//        allLoggedRestaurants = new RatedRestaurants();
+//        allLoggedRestaurants.addRestaurant(r1);
+//        allLoggedRestaurants.addRestaurant(r2);
+//        allLoggedRestaurants.addRestaurant(r3);
+//        allLoggedRestaurants.addRestaurant(r4);
+//        allLoggedRestaurants.addRestaurant(r5);
+//        allLoggedRestaurants.addRestaurant(r6);
+//    }
 
     // MODIFIES: this
     // EFFECTS: intializes test users for the program
@@ -148,8 +156,8 @@ public class RestaurantReviewApp {
         System.out.println("\tw -> write a review");
         System.out.println("\tt -> view top restaurants");
         System.out.println("\tf -> search restaurant reviews");
-        System.out.println("\ts -> save work room to file");
-        System.out.println("\tl -> load work room from file");
+        System.out.println("\ts -> save reviews to file");
+        System.out.println("\tl -> load reviews from file");
         System.out.println("\tq -> quit");
     }
 
@@ -165,9 +173,9 @@ public class RestaurantReviewApp {
         } else if (command.equals("f")) {
             searchRestaurantReviews();
         } else if (command.equals("s")) {
-            saveUserReviews();
+            saveAllReviews();
         } else if (command.equals("l")) {
-            loadUserReviews();
+            loadAllReviews();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -218,6 +226,9 @@ public class RestaurantReviewApp {
     // EFFECTS: views top 5 top rated restaurants based on average rating
     private void viewTopRestaurants() {
         System.out.println("Here are your top 5 restaurant recommendations:");
+        if (allLoggedRestaurants.getTopRestaurants().size() == 0) {
+            System.out.println("No restaurants logged so far. Please write a review for a restaurant first.");
+        }
         if (allLoggedRestaurants.getTopRestaurants().size() <= 5) {
 //            System.out.println(allLoggedRestaurants.getTopRestaurants());
             for (int i = 0; i < allLoggedRestaurants.getTopRestaurants().size(); i++) {
@@ -311,26 +322,30 @@ public class RestaurantReviewApp {
         }
     }
 
-    // EFFECTS: saves the user reviews to file
-    private void saveUserReviews() {
+    // EFFECTS: saves all reviews to file
+    private void saveAllReviews() {
         try {
-            jsonWriter.open();
-            jsonWriter.write(user);
-            jsonWriter.close();
-            System.out.println("Saved " + user.getUserName() + " to " + JSON_STORE);
+            jsonWriterUser.open();
+            jsonWriterUser.write(user);
+            jsonWriterUser.close();
+            jsonWriterAllRestaurants.open();
+            jsonWriterAllRestaurants.write(allLoggedRestaurants);
+            jsonWriterAllRestaurants.close();
+            System.out.println("Saved " + user.getUserName() + " to " + JSON_USER_REVIEWS);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + JSON_USER_REVIEWS);
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: loads user reviews from file
-    private void loadUserReviews() {
+    // EFFECTS: loads all reviews from file
+    private void loadAllReviews() {
         try {
-            user = jsonReader.read();
-            System.out.println("Loaded " + user.getUserName() + " from " + JSON_STORE);
+            user = jsonReaderUser.read();
+            allLoggedRestaurants = jsonReaderAllRestaurants.read();
+            System.out.println("Loaded " + user.getUserName() + " from " + JSON_USER_REVIEWS);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Unable to read from file: " + JSON_USER_REVIEWS);
         }
     }
 }

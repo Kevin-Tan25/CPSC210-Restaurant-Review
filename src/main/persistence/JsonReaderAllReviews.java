@@ -1,6 +1,7 @@
 package persistence;
 
 import model.RatedRestaurants;
+import model.RatedRestaurantsName;
 import model.Restaurant;
 import model.Review;
 import org.json.JSONArray;
@@ -44,23 +45,24 @@ public class JsonReaderAllReviews {
     // EFFECTS: parses ratedRestaurants from JSON object and returns it
     private RatedRestaurants parseReview(JSONObject jsonObject) {
         RatedRestaurants restaurants = new RatedRestaurants();
-        addRatedRestaurants(restaurants, jsonObject);
+        RatedRestaurantsName restaurantsName = new RatedRestaurantsName();
+        addRatedRestaurants(restaurants, restaurantsName, jsonObject);
         return restaurants;
     }
 
     // MODIFIES: restaurants
     // EFFECTS: parses reviews from JSON object and adds them to ratedRestaurant
-    private void addRatedRestaurants(RatedRestaurants restaurants, JSONObject jsonObject) {
+    private void addRatedRestaurants(RatedRestaurants restaurants, RatedRestaurantsName restaurantsName, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("restaurants");
         for (Object json : jsonArray) {
             JSONObject restaurant = (JSONObject) json;
-            addRestaurant(restaurants, restaurant);
+            addRestaurant(restaurants, restaurantsName, restaurant);
         }
     }
 
     // MODIFIES: restaurants
     // EFFECTS: parses thingy from JSON object and adds it to Rated Restaurants
-    private void addRestaurant(RatedRestaurants restaurants, JSONObject jsonObject) {
+    private void addRestaurant(RatedRestaurants restaurants, RatedRestaurantsName restaurantsName, JSONObject jsonObject) {
         String restaurantName = jsonObject.getString("restaurantName");
         String address = jsonObject.getString("address");
         Restaurant restaurant = new Restaurant(restaurantName, address);
@@ -70,6 +72,7 @@ public class JsonReaderAllReviews {
             addReview(restaurant, review);
         }
         restaurants.addRestaurant(restaurant);
+        restaurantsName.addRestaurant(restaurant.getName());
     }
 
     // MODIFIES: restaurants
