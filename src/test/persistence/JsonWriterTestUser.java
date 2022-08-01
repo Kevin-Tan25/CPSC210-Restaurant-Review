@@ -18,7 +18,7 @@ class JsonWriterTestUser extends JsonTest {
     void testWriterInvalidFile() {
         try {
             User user = new User("Test User");
-            JsonWriterUser writer = new JsonWriterUser("./data/my\0illegal:fileName.json");
+            JsonWriterUser writer = new JsonWriterUser("./data/my\0IllegalFileName.json");
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {
@@ -30,12 +30,12 @@ class JsonWriterTestUser extends JsonTest {
     void testWriterEmptyUser() {
         try {
             User user = new User("Test User");
-            JsonWriterUser writer = new JsonWriterUser("./data/testWriterEmptyUser.json");
+            JsonWriterUser writer = new JsonWriterUser("./data/testWriterNoUser.json");
             writer.open();
             writer.write(user);
             writer.close();
 
-            JsonReaderUser reader = new JsonReaderUser("./data/testWriterEmptyUser.json");
+            JsonReaderUser reader = new JsonReaderUser("./data/testWriterNoUser.json");
             user = reader.read();
             assertEquals("Test User", user.getUserName());
             assertEquals(0, user.getNumReviews());

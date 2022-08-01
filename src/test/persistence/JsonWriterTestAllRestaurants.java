@@ -19,7 +19,7 @@ class JsonWriterTestAllRestaurants extends JsonTest {
     void testWriterInvalidFile() {
         try {
             RatedRestaurants restaurants = new RatedRestaurants();
-            JsonWriterUser writer = new JsonWriterUser("./data/my\0illegal:fileName.json");
+            JsonWriterUser writer = new JsonWriterUser("./data/my\0IllegalFileName.json");
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {
@@ -28,15 +28,15 @@ class JsonWriterTestAllRestaurants extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyUser() {
+    void testWriterNoRestaurants() {
         try {
             RatedRestaurants restaurants = new RatedRestaurants();
-            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/testWriterEmptyRestaurants.json");
+            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/testWriterNoRestaurants.json");
             writer.open();
             writer.write(restaurants);
             writer.close();
 
-            JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testWriterEmptyRestaurants.json");
+            JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testWriterNoRestaurants.json");
             restaurants = reader.read();
             assertEquals(0, restaurants.getRatedRestaurants().size());
         } catch (IOException e) {
@@ -45,7 +45,7 @@ class JsonWriterTestAllRestaurants extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralUser() {
+    void testWriterGeneralRestaurants() {
         try {
             RatedRestaurants restaurants = new RatedRestaurants();
             Restaurant r1 = new Restaurant("Five Guys", "4823 Thompson Ave");

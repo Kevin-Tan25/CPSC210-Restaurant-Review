@@ -24,8 +24,8 @@ class JsonReaderTestUser extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
-        JsonReaderUser reader = new JsonReaderUser("./data/testReaderEmptyUser.json");
+    void testReaderNoUser() {
+        JsonReaderUser reader = new JsonReaderUser("./data/testReaderNoUser.json");
         try {
             User user = reader.read();
             assertEquals("Test User", user.getUserName());
@@ -36,7 +36,7 @@ class JsonReaderTestUser extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralUser() {
         JsonReaderUser reader = new JsonReaderUser("./data/testReaderGeneralUser.json");
         try {
             User user = reader.read();

@@ -27,7 +27,7 @@ public class JsonReaderTestAllRestaurantsname extends JsonTest{
 
     @Test
     void testReaderEmptyRestaurantList() {
-        JsonReaderAllRestaurantsName reader = new JsonReaderAllRestaurantsName("./data/testReaderEmptyRestaurants.json");
+        JsonReaderAllRestaurantsName reader = new JsonReaderAllRestaurantsName("./data/testReaderNoRestaurants.json");
         try {
             RatedRestaurantsName restaurantsName = reader.read();
             assertEquals(restaurantsName.getRatedRestaurants().size(), 0);
