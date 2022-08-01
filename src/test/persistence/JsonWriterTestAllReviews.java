@@ -54,7 +54,7 @@ class JsonWriterTestAllReviews extends JsonTest {
             Restaurant r2 = new Restaurant("A&W", "1498 Fisherman Dr");
             r2.addReview(new Review(r2, 4, 6.78, "Bomb poutine!"));
             restaurants.addRestaurant(r2);
-            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/testWriterGeneralRestaurants.json.json");
+            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/testWriterGeneralRestaurants.json");
             writer.open();
             writer.write(restaurants);
             writer.close();
