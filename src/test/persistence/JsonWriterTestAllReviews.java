@@ -36,7 +36,7 @@ class JsonWriterTestAllReviews extends JsonTest {
             writer.write(restaurants);
             writer.close();
 
-            JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testWriterEmptyUser.json");
+            JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testWriterEmptyRestaurants.json");
             restaurants = reader.read();
             assertEquals(0, restaurants.getRatedRestaurants().size());
         } catch (IOException e) {
