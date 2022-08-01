@@ -31,12 +31,12 @@ class JsonWriterTestAllReviews extends JsonTest {
     void testWriterEmptyUser() {
         try {
             RatedRestaurants restaurants = new RatedRestaurants();
-            JsonWriterAllReviews writer = new JsonWriterAllReviews("./data/testWriterEmptyRestaurants.json");
+            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/testWriterEmptyRestaurants.json");
             writer.open();
             writer.write(restaurants);
             writer.close();
 
-            JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testWriterEmptyRestaurants.json");
+            JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testWriterEmptyRestaurants.json");
             restaurants = reader.read();
             assertEquals(0, restaurants.getRatedRestaurants().size());
         } catch (IOException e) {
@@ -54,12 +54,12 @@ class JsonWriterTestAllReviews extends JsonTest {
             Restaurant r2 = new Restaurant("A&W", "1498 Fisherman Dr");
             r2.addReview(new Review(r2, 4, 6.78, "Bomb poutine!"));
             restaurants.addRestaurant(r2);
-            JsonWriterAllReviews writer = new JsonWriterAllReviews("./data/testWriterGeneralRestaurants.json.json");
+            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/testWriterGeneralRestaurants.json.json");
             writer.open();
             writer.write(restaurants);
             writer.close();
 
-            JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testWriterGeneralRestaurants.json");
+            JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testWriterGeneralRestaurants.json");
             restaurants = reader.read();
             List<Restaurant> numRestaurants = restaurants.getRatedRestaurants();
             assertEquals(2, numRestaurants.size());

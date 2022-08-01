@@ -1,9 +1,9 @@
 package ui;
 
 import model.*;
-import persistence.JsonReaderAllReviews;
+import persistence.JsonReaderAllRestaurants;
 import persistence.JsonReaderUser;
-import persistence.JsonWriterAllReviews;
+import persistence.JsonWriterAllRestaurants;
 import persistence.JsonWriterUser;
 
 import java.io.FileNotFoundException;
@@ -18,8 +18,8 @@ public class RestaurantReviewApp {
     private static final String JSON_ALL_RESTAURANTS = "./data/allReviews.json";
     private JsonWriterUser jsonWriterUser;
     private JsonReaderUser jsonReaderUser;
-    private JsonWriterAllReviews jsonWriterAllRestaurants;
-    private JsonReaderAllReviews jsonReaderAllRestaurants;
+    private JsonWriterAllRestaurants jsonWriterAllRestaurants;
+    private JsonReaderAllRestaurants jsonReaderAllRestaurants;
     private User user;
     private User testUser1;
     private User testUser2;
@@ -48,8 +48,8 @@ public class RestaurantReviewApp {
         allLoggedRestaurants = new RatedRestaurants();
         jsonWriterUser = new JsonWriterUser(JSON_USER_REVIEWS);
         jsonReaderUser = new JsonReaderUser(JSON_USER_REVIEWS);
-        jsonWriterAllRestaurants = new JsonWriterAllReviews(JSON_ALL_RESTAURANTS);
-        jsonReaderAllRestaurants = new JsonReaderAllReviews(JSON_ALL_RESTAURANTS);
+        jsonWriterAllRestaurants = new JsonWriterAllRestaurants(JSON_ALL_RESTAURANTS);
+        jsonReaderAllRestaurants = new JsonReaderAllRestaurants(JSON_ALL_RESTAURANTS);
         runRestaurantReview();
     }
 
@@ -251,17 +251,21 @@ public class RestaurantReviewApp {
     // EFFECTS: lets user search a restaurant with review and see all reviews about it
     private void searchRestaurantReviews() {
         System.out.println("Here are some restaurants that have reviews:");
-        for (int i = 0; i < allLoggedRestaurantsName.getRatedRestaurants().size(); i++) {
-            System.out.println("\t" + allLoggedRestaurantsName.getRatedRestaurants().get(i));
-        }
-        System.out.println("Which restaurant would you like to view?");
-        String selection = input.next();
-        selection = selection.toLowerCase();
-        int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
-        Restaurant restaurant = allLoggedRestaurants.getRatedRestaurants().get(indexOfSelection);
-        System.out.println(restaurant.getName() + ": " + restaurant.getNumReviews() + " review(s)");
-        for (int i = 0; i < restaurant.getReviews().size(); i++) {
-            System.out.println(restaurant.getReviews().get(i));
+        if (allLoggedRestaurantsName.getRatedRestaurants().size() == 0) {
+            System.out.println("No existing restaurants");
+        } else {
+            for (int i = 0; i < allLoggedRestaurantsName.getRatedRestaurants().size(); i++) {
+                System.out.println("\t" + allLoggedRestaurantsName.getRatedRestaurants().get(i));
+            }
+            System.out.println("Which restaurant would you like to view?");
+            String selection = input.next();
+            selection = selection.toLowerCase();
+            int indexOfSelection = allLoggedRestaurantsName.getRatedRestaurants().indexOf(selection);
+            Restaurant restaurant = allLoggedRestaurants.getRatedRestaurants().get(indexOfSelection);
+            System.out.println(restaurant.getName() + ": " + restaurant.getNumReviews() + " review(s)");
+            for (int i = 0; i < restaurant.getReviews().size(); i++) {
+                System.out.println(restaurant.getReviews().get(i));
+            }
         }
     }
 

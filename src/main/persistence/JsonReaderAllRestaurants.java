@@ -15,11 +15,11 @@ import java.util.stream.Stream;
 
 // Taken from JsonSerializationDemo file
 // Represents a reader that reads user from JSON data stored in file
-public class JsonReaderAllReviews {
+public class JsonReaderAllRestaurants {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    public JsonReaderAllReviews(String source) {
+    public JsonReaderAllRestaurants(String source) {
         this.source = source;
     }
 
@@ -45,24 +45,23 @@ public class JsonReaderAllReviews {
     // EFFECTS: parses ratedRestaurants from JSON object and returns it
     private RatedRestaurants parseReview(JSONObject jsonObject) {
         RatedRestaurants restaurants = new RatedRestaurants();
-        RatedRestaurantsName restaurantsName = new RatedRestaurantsName();
-        addRatedRestaurants(restaurants, restaurantsName, jsonObject);
+        addRatedRestaurants(restaurants, jsonObject);
         return restaurants;
     }
 
     // MODIFIES: restaurants
     // EFFECTS: parses reviews from JSON object and adds them to ratedRestaurant
-    private void addRatedRestaurants(RatedRestaurants restaurants, RatedRestaurantsName restaurantsName, JSONObject jsonObject) {
+    private void addRatedRestaurants(RatedRestaurants restaurants, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("restaurants");
         for (Object json : jsonArray) {
             JSONObject restaurant = (JSONObject) json;
-            addRestaurant(restaurants, restaurantsName, restaurant);
+            addRestaurant(restaurants, restaurant);
         }
     }
 
     // MODIFIES: restaurants
     // EFFECTS: parses thingy from JSON object and adds it to Rated Restaurants
-    private void addRestaurant(RatedRestaurants restaurants, RatedRestaurantsName restaurantsName, JSONObject jsonObject) {
+    private void addRestaurant(RatedRestaurants restaurants, JSONObject jsonObject) {
         String restaurantName = jsonObject.getString("restaurantName");
         String address = jsonObject.getString("address");
         Restaurant restaurant = new Restaurant(restaurantName, address);
@@ -72,7 +71,6 @@ public class JsonReaderAllReviews {
             addReview(restaurant, review);
         }
         restaurants.addRestaurant(restaurant);
-        restaurantsName.addRestaurant(restaurant.getName());
     }
 
     // MODIFIES: restaurants

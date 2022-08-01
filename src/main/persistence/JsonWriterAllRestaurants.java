@@ -1,7 +1,6 @@
 package persistence;
 
 import model.RatedRestaurants;
-import model.User;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -10,13 +9,13 @@ import java.io.PrintWriter;
 
 // Taken from JsonSerializationDemo file
 // Represents a writer that writes JSON representation of workroom to file
-public class JsonWriterAllReviews {
+public class JsonWriterAllRestaurants {
     private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
 
     // EFFECTS: constructs writer to write to destination file
-    public JsonWriterAllReviews(String destination) {
+    public JsonWriterAllRestaurants(String destination) {
         this.destination = destination;
     }
 

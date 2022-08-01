@@ -2,7 +2,6 @@ package persistence;
 
 import model.RatedRestaurants;
 import model.Restaurant;
-import model.Review;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
-        JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/noSuchFile.json");
+        JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/noSuchFile.json");
         try {
             RatedRestaurants restaurants = reader.read();
             fail("IOException expected");
@@ -27,7 +26,7 @@ class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testReaderEmptyRestaurants.json");
+        JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testReaderEmptyRestaurants.json");
         try {
             RatedRestaurants restaurants = reader.read();
             assertEquals(0, restaurants.getRatedRestaurants().size());
@@ -38,7 +37,7 @@ class JsonReaderTestAllReviews extends JsonTest {
 
     @Test
     void testReaderGeneralWorkRoom() {
-        JsonReaderAllReviews reader = new JsonReaderAllReviews("./data/testReaderGeneralRestaurants.json");
+        JsonReaderAllRestaurants reader = new JsonReaderAllRestaurants("./data/testReaderGeneralRestaurants.json");
         try {
             RatedRestaurants ratedRestaurants = reader.read();
             List<Restaurant> restaurants = ratedRestaurants.getRatedRestaurants();
