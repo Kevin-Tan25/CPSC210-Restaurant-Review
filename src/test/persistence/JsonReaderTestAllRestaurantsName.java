@@ -1,8 +1,6 @@
 package persistence;
 
-import model.RatedRestaurants;
 import model.RatedRestaurantsName;
-import model.Restaurant;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -12,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // Taken from JsonSerializationDemo file
-public class JsonReaderTestAllRestaurantsname extends JsonTest{
+public class JsonReaderTestAllRestaurantsName extends JsonTest{
 
     @Test
     void testReaderNonExistentFile() {

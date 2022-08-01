@@ -19,7 +19,7 @@ class JsonWriterTestAllRestaurants extends JsonTest {
     void testWriterInvalidFile() {
         try {
             RatedRestaurants restaurants = new RatedRestaurants();
-            JsonWriterUser writer = new JsonWriterUser("./data/my\0IllegalFileName.json");
+            JsonWriterAllRestaurants writer = new JsonWriterAllRestaurants("./data/my\0IllegalFileName.json");
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {

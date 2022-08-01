@@ -41,6 +41,13 @@
             "rating": 2,
             "location": "1984 University Blvd",
             "comment": "Soymilk was bad"
+        },
+        {
+            "cost": 12.99,
+            "restaurantName": "rice burger",
+            "rating": 3,
+            "location": "1234 rice street",
+            "comment": "Expensive for its portion"
         }
     ],
     "name": "Kevin"

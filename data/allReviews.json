@@ -89,5 +89,16 @@
             }
         ],
         "restaurantName": "My Home Cuisine"
+    },
+    {
+        "address": "1234 rice street",
+        "reviews": [{
+            "cost": 12.99,
+            "restaurantName": "rice burger",
+            "rating": 3,
+            "location": "1234 rice street",
+            "comment": "Expensive for its portion"
+        }],
+        "restaurantName": "rice burger"
     }
 ]}
