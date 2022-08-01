@@ -1,0 +1,24 @@
+{
+  "restaurants":  [{
+    "address": "4823 Thompson Ave",
+    "restaurantName": "Five Guys",
+    "reviews": [
+      {
+        "cost": 8.45,
+        "rating": 5,
+        "comment": "Lots of peanuts"
+      }
+    ]
+  },
+  {
+    "address": "1498 Fisherman Dr",
+    "restaurantName": "A&W",
+    "reviews": [
+      {
+        "cost": 6.78,
+        "rating": 4,
+        "comment": "Bomb poutine!"
+      }
+    ]
+  }]
+}

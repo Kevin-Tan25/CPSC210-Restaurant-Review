@@ -85,6 +85,7 @@ public class Restaurant implements Writable {
         return json;
     }
 
+    // EFFECTS: returns all reviews in restaurant as a JSON array
     private JSONArray reviewToJson() {
         JSONArray jsonArray = new JSONArray();
 
