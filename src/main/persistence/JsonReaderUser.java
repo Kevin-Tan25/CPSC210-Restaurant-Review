@@ -13,12 +13,12 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Taken from JsonSerializationDemo file
-// Represents a reader that reads workroom from JSON data stored in file
-public class JsonReader {
+// Represents a reader that reads user from JSON data stored in file
+public class JsonReaderUser {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    public JsonReader(String source) {
+    public JsonReaderUser(String source) {
         this.source = source;
     }
 

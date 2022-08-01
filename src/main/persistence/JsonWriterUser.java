@@ -9,13 +9,13 @@ import java.io.PrintWriter;
 
 // Taken from JsonSerializationDemo file
 // Represents a writer that writes JSON representation of workroom to file
-public class JsonWriter {
+public class JsonWriterUser {
     private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
 
     // EFFECTS: constructs writer to write to destination file
-    public JsonWriter(String destination) {
+    public JsonWriterUser(String destination) {
         this.destination = destination;
     }
 

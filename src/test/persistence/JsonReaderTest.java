@@ -14,7 +14,7 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
-        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+        JsonReaderUser reader = new JsonReaderUser("./data/noSuchFile.json");
         try {
             User user = reader.read();
             fail("IOException expected");
@@ -25,7 +25,7 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyUser.json");
+        JsonReaderUser reader = new JsonReaderUser("./data/testReaderEmptyUser.json");
         try {
             User user = reader.read();
             assertEquals("Test User", user.getUserName());
@@ -37,7 +37,7 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralUser.json");
+        JsonReaderUser reader = new JsonReaderUser("./data/testReaderGeneralUser.json");
         try {
             User user = reader.read();
             assertEquals("Test User", user.getUserName());

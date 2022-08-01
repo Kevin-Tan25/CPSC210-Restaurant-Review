@@ -1,12 +1,11 @@
 package ui;
 
 import model.*;
-import persistence.JsonReader;
-import persistence.JsonWriter;
+import persistence.JsonReaderUser;
+import persistence.JsonWriterUser;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 // Based off Teller app UI package TELLER APP class
@@ -14,8 +13,8 @@ import java.util.Scanner;
 public class RestaurantReviewApp {
 
     private static final String JSON_STORE = "./data/reviews.json";
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private JsonWriterUser jsonWriter;
+    private JsonReaderUser jsonReader;
     private User user;
     private User testUser1;
     private User testUser2;
@@ -41,8 +40,8 @@ public class RestaurantReviewApp {
     public RestaurantReviewApp() throws FileNotFoundException {
         input = new Scanner(System.in);
         user = new User("Kevin");
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriterUser(JSON_STORE);
+        jsonReader = new JsonReaderUser(JSON_STORE);
         runRestaurantReview();
     }
 

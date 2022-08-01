@@ -18,7 +18,7 @@ class JsonWriterTest extends JsonTest {
     void testWriterInvalidFile() {
         try {
             User user = new User("Test User");
-            JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
+            JsonWriterUser writer = new JsonWriterUser("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {
@@ -30,12 +30,12 @@ class JsonWriterTest extends JsonTest {
     void testWriterEmptyUser() {
         try {
             User user = new User("Test User");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyUser.json");
+            JsonWriterUser writer = new JsonWriterUser("./data/testWriterEmptyUser.json");
             writer.open();
             writer.write(user);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyUser.json");
+            JsonReaderUser reader = new JsonReaderUser("./data/testWriterEmptyUser.json");
             user = reader.read();
             assertEquals("Test User", user.getUserName());
             assertEquals(0, user.getNumReviews());
@@ -52,12 +52,12 @@ class JsonWriterTest extends JsonTest {
             user.addReview(new Review(r1, 5, 8.45, "Lots of peanuts"));
             Restaurant r2 = new Restaurant("A&W", "1498 Fisherman Dr");
             user.addReview(new Review(r2, 4, 6.78, "Bomb poutine!"));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralUser.json");
+            JsonWriterUser writer = new JsonWriterUser("./data/testWriterGeneralUser.json");
             writer.open();
             writer.write(user);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralUser.json");
+            JsonReaderUser reader = new JsonReaderUser("./data/testWriterGeneralUser.json");
             user = reader.read();
             assertEquals("Test User", user.getUserName());
             List<Review> reviews = user.getMyReviews();

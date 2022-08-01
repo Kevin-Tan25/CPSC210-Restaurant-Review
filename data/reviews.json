@@ -27,20 +27,6 @@
             "restaurantName": "A&W",
             "rating": 4,
             "comment": "Bomb poutine!"
-        },
-        {
-            "address": "1234 University Blvd",
-            "cost": 3.67,
-            "restaurantName": "Burger King",
-            "rating": 4,
-            "comment": "not bad"
-        },
-        {
-            "address": "1234 Sesame Street",
-            "cost": 11.99,
-            "restaurantName": "Rice Burger",
-            "rating": 3,
-            "comment": "Overpriced"
         }
     ],
     "name": "Kevin"

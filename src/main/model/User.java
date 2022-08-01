@@ -77,7 +77,7 @@ public class User implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns things in this user as a JSON array
     private JSONArray reviewsToJson() {
         JSONArray jsonArray = new JSONArray();
 
