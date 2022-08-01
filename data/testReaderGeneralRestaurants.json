@@ -12,15 +12,20 @@
       ]
     },
     {
-      "address": "1234 University Blvd",
-      "restaurantName": "Burger King",
+      "address": "4012 Robson St",
       "reviews": [
         {
-          "cost": 5.99,
-          "rating": 3,
-          "comment": "Not bad"
+          "cost": 46.78,
+          "rating": 5,
+          "comment": "Best sushi in town"
+        },
+        {
+          "cost": 41.99,
+          "rating": 5,
+          "comment": "Great service. Good ambiance."
         }
-      ]
+      ],
+      "restaurantName": "Miku"
     }
   ]
 }

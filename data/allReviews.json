@@ -1,70 +1,93 @@
-{
-  "restaurants": [
+{"restaurants": [
     {
-      "address": "5728 University Blvd",
-      "restaurantName": "McDonald's",
-      "reviews": [
-        {
-          "cost": 3.99,
-          "rating": 4,
-          "comment": "Good and cheap"
-        }
-      ]
+        "address": "5728 University Blvd",
+        "reviews": [{
+            "cost": 3.99,
+            "restaurantName": "McDonald's",
+            "rating": 4,
+            "location": "5728 University Blvd",
+            "comment": "Good and cheap"
+        }],
+        "restaurantName": "McDonald's"
     },
     {
-      "address": "1234 University Blvd",
-      "restaurantName": "Burger King",
-      "reviews": [
-        {
-          "cost": 5.99,
-          "rating": 3,
-          "comment": "Not bad"
-        }
-      ]
+        "address": "1234 University Blvd",
+        "reviews": [{
+            "cost": 5.99,
+            "restaurantName": "Burger King",
+            "rating": 3,
+            "location": "1234 University Blvd",
+            "comment": "Not bad"
+        }],
+        "restaurantName": "Burger King"
     },
     {
-      "address": "4823 Thompson Ave",
-      "restaurantName": "Five Guys",
-      "reviews": [
-        {
-          "cost": 8.45,
-          "rating": 5,
-          "comment": "Lots of peanuts"
-        }
-      ]
+        "address": "4823 Thompson Ave",
+        "reviews": [{
+            "cost": 8.45,
+            "restaurantName": "Five Guys",
+            "rating": 5,
+            "location": "4823 Thompson Ave",
+            "comment": "Lots of peanuts"
+        }],
+        "restaurantName": "Five Guys"
     },
     {
-      "address": "1498 Fisherman Dr",
-      "restaurantName": "A&W",
-      "reviews": [
-        {
-          "cost": 6.78,
-          "rating": 4,
-          "comment": "Bomb poutine!"
-        }
-      ]
+        "address": "1498 Fisherman Dr",
+        "reviews": [{
+            "cost": 6.78,
+            "restaurantName": "A&W",
+            "rating": 4,
+            "location": "1498 Fisherman Dr",
+            "comment": "Bomb poutine!"
+        }],
+        "restaurantName": "A&W"
     },
     {
-      "address": "4012 Robson St",
-      "restaurantName": "Miku",
-      "reviews": [
-        {
-          "cost": 46.78,
-          "rating": 5,
-          "comment": "Best sushi in town"
-        }
-      ]
+        "address": "4012 Robson St",
+        "reviews": [
+            {
+                "cost": 46.78,
+                "restaurantName": "Miku",
+                "rating": 5,
+                "location": "4012 Robson St",
+                "comment": "Best sushi in town"
+            },
+            {
+                "cost": 41.99,
+                "restaurantName": "Miku",
+                "rating": 5,
+                "location": "4012 Robson St",
+                "comment": "Great service. Good ambiance."
+            },
+            {
+                "cost": 41.99,
+                "restaurantName": "Miku",
+                "rating": 5,
+                "location": "4012 Robson St",
+                "comment": "Miku is the best"
+            }
+        ],
+        "restaurantName": "Miku"
     },
     {
-      "address": "1984 University Blvd",
-      "restaurantName": "My Home Cuisine",
-      "reviews": [
-        {
-          "cost": 11.00,
-          "rating": 2,
-          "comment": "Food kinda mid"
-        }
-      ]
+        "address": "1984 University Blvd",
+        "reviews": [
+            {
+                "cost": 11,
+                "restaurantName": "My Home Cuisine",
+                "rating": 2,
+                "location": "1984 University Blvd",
+                "comment": "Food kinda mid"
+            },
+            {
+                "cost": 5.99,
+                "restaurantName": "My Home Cuisine",
+                "rating": 2,
+                "location": "1984 University Blvd",
+                "comment": "Soymilk was bad"
+            }
+        ],
+        "restaurantName": "My Home Cuisine"
     }
-  ]
-}
+]}

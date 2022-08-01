@@ -43,7 +43,8 @@ class JsonReaderTestAllReviews extends JsonTest {
             List<Restaurant> restaurants = ratedRestaurants.getRatedRestaurants();
             assertEquals(2, restaurants.size());
             checkReview("McDonald's", "5728 University Blvd", 4, 3.99, "Good and cheap", restaurants.get(0).getReviews().get(0));
-            checkReview("Burger King", "1234 University Blvd", 3, 5.99, "Not bad", restaurants.get(1).getReviews().get(0));
+            checkReview("Miku", "4012 Robson St", 5, 46.78, "Best sushi in town", restaurants.get(1).getReviews().get(0));
+            checkReview("Miku", "4012 Robson St", 5, 41.99, "Great service. Good ambiance.", restaurants.get(1).getReviews().get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

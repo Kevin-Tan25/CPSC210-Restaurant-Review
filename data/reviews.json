@@ -1,32 +1,46 @@
 {
     "reviews": [
         {
-            "address": "5728 University Blvd",
             "cost": 3.99,
             "restaurantName": "McDonald's",
             "rating": 4,
+            "location": "5728 University Blvd",
             "comment": "Good and cheap"
         },
         {
-            "address": "1234 University Blvd",
             "cost": 5.99,
             "restaurantName": "Burger King",
             "rating": 3,
+            "location": "1234 University Blvd",
             "comment": "Not bad"
         },
         {
-            "address": "4823 Thompson Ave",
             "cost": 8.45,
             "restaurantName": "Five Guys",
             "rating": 5,
+            "location": "4823 Thompson Ave",
             "comment": "Lots of peanuts"
         },
         {
-            "address": "1498 Fisherman Dr",
             "cost": 6.78,
             "restaurantName": "A&W",
             "rating": 4,
+            "location": "1498 Fisherman Dr",
             "comment": "Bomb poutine!"
+        },
+        {
+            "cost": 41.99,
+            "restaurantName": "Miku",
+            "rating": 5,
+            "location": "4012 Robson St",
+            "comment": "Great service. Good ambiance."
+        },
+        {
+            "cost": 5.99,
+            "restaurantName": "My Home Cuisine",
+            "rating": 2,
+            "location": "1984 University Blvd",
+            "comment": "Soymilk was bad"
         }
     ],
     "name": "Kevin"

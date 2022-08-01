@@ -60,10 +60,10 @@ public class JsonReaderUser {
     }
 
     // MODIFIES: u
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses review from JSON object and adds it to the user
     private void addReview(User u, JSONObject jsonObject) {
         String restaurantName = jsonObject.getString("restaurantName");
-        String address = jsonObject.getString("address");
+        String address = jsonObject.getString("location");
         int rating = jsonObject.getInt("rating");
         double cost = jsonObject.getDouble("cost");
         String comment = jsonObject.getString("comment");

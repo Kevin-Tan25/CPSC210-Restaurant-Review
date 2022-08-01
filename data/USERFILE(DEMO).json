@@ -6,6 +6,7 @@
       "restaurantName": "McDonald's",
       "rating": 4,
       "comment": "Good and cheap"
+
     },
     {
       "address": "1234 University Blvd",
@@ -27,6 +28,13 @@
       "restaurantName": "A&W",
       "rating": 4,
       "comment": "Bomb poutine!"
+    },
+    {
+      "address": "4012 Robson St",
+      "cost": 41.99,
+      "restaurantName": "Miku",
+      "rating": 5,
+      "comment": "Great service. Good ambiance."
     }
   ],
   "name": "Kevin"
