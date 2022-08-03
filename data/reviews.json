@@ -36,18 +36,11 @@
             "comment": "Great service. Good ambiance."
         },
         {
-            "cost": 5.99,
-            "restaurantName": "My Home Cuisine",
-            "rating": 2,
-            "location": "1984 University Blvd",
-            "comment": "Soymilk was bad"
-        },
-        {
-            "cost": 12.99,
-            "restaurantName": "rice burger",
-            "rating": 3,
-            "location": "1234 rice street",
-            "comment": "Expensive for its portion"
+            "cost": 100,
+            "restaurantName": "Miku",
+            "rating": 4,
+            "location": "4012 Robson St",
+            "comment": "Robbed Benny's wallet"
         }
     ],
     "name": "Kevin"

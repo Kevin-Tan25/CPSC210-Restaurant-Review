@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // Taken from JsonSerializationDemo file
-public class JsonReaderTestAllRestaurantsName extends JsonTest{
+public class JsonReaderAllRestaurantsNameTest extends JsonTest{
 
     @Test
     void testReaderNonExistentFile() {

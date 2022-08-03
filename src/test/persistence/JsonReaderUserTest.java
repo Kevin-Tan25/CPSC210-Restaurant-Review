@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Taken from JsonSerializationDemo file
-class JsonReaderTestUser extends JsonTest {
+class JsonReaderUserTest extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {

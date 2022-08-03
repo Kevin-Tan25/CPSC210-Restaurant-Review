@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Taken from JsonSerializationDemo file
-class JsonWriterTestUser extends JsonTest {
+class JsonWriterUserTest extends JsonTest {
 
     @Test
     void testWriterInvalidFile() {
