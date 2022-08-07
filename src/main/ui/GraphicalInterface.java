@@ -36,8 +36,10 @@ public class GraphicalInterface extends JFrame {
     private RatedRestaurants allLoggedRestaurants = new RatedRestaurants();
 
     private JFrame frameInterface;
-    private JList listRestaurants = new JList();
-    private DefaultListModel modelRestaurants = new DefaultListModel();
+    private JList<String> listRestaurants = new JList<String>();
+    private DefaultListModel<String> modelRestaurants = new DefaultListModel<String>();
+    private JList<String> listReviews = new JList<String>();
+    private DefaultListModel<String> modelReviews = new DefaultListModel<String>();
     private JSplitPane splitPane = new JSplitPane();
 
     public GraphicalInterface() throws FileNotFoundException {
@@ -68,7 +70,11 @@ public class GraphicalInterface extends JFrame {
         JPanel menuButtonLayout = new JPanel();
         menuButtonLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
         JPanel buttonPane = new JPanel(new GridLayout(10, 1, 10, 5));
-        buttonPane.add(new JButton("View my account"));
+
+        JButton viewMyReviewsButton = new JButton("View my reviews");
+        ViewReviewsListener viewReviews = new ViewReviewsListener(viewMyReviewsButton);
+        viewMyReviewsButton.addActionListener(viewReviews);
+        buttonPane.add(viewMyReviewsButton);
 
         JButton addReviewButton = new JButton("Write a review");
         AddReviewListener addReview = new AddReviewListener(addReviewButton);
@@ -76,8 +82,6 @@ public class GraphicalInterface extends JFrame {
         buttonPane.add(addReviewButton);
 
         topRestaurantsButton(buttonPane);
-
-        buttonPane.add(new JButton("Search restaurant reviews"));
 
         JButton saveReviewsButton = new JButton("Save reviews to file");
         SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
@@ -228,6 +232,7 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            modelRestaurants = new DefaultListModel<>();
             JPanel layout = new JPanel(new BorderLayout());
             JLabel topFiveRestaurants = new JLabel("Here are your top 5 restaurant recommendations:");
 
@@ -262,6 +267,41 @@ public class GraphicalInterface extends JFrame {
         }
     }
 
+    class ViewReviewsListener implements ActionListener {
+        private JButton button;
+
+        public ViewReviewsListener(JButton button) {
+            this.button = button;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            modelReviews = new DefaultListModel<>();
+            JPanel layout = new JPanel(new BorderLayout());
+            JLabel yourReviewsLabel = new JLabel("Here are your reviews:");
+
+            if (user.getMyReviews().size() == 0) {
+                JLabel noRestaurantsDisplay = new JLabel("You have no reviews yet.");
+                layout.add(noRestaurantsDisplay, BorderLayout.CENTER);
+            } else {
+                layout.add(yourReviewsLabel, BorderLayout.NORTH);
+                for (int i = 0; i < user.getMyReviews().size(); i++) {
+                    addUserReviewsToList(i);
+                }
+                listReviews.setModel(modelReviews);
+                JScrollPane scrollPane = new JScrollPane(listReviews);
+                layout.add(scrollPane);
+            }
+            splitPane.setRightComponent(layout);
+            layout.revalidate();
+        }
+
+        private void addUserReviewsToList(int i) {
+            Review userReview = user.getMyReviews().get(i);
+            modelReviews.addElement(userReview.toString());
+        }
+    }
+
     class LoadReviewsListener implements ActionListener {
         private JButton button;
 
@@ -271,6 +311,7 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            modelReviews = new DefaultListModel<>();
             JLabel loadReviewMessage = new JLabel("");
             try {
                 user = jsonReaderUser.read();
