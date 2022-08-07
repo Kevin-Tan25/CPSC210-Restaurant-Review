@@ -139,19 +139,60 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JPanel layout = new JPanel(new GridBagLayout());
-
-            JPanel textFieldButtonLayout = new JPanel(new FlowLayout());
-
+//            JPanel layout = new JPanel(new GridBagLayout());
+//
+//            JPanel textFieldButtonLayout = new JPanel(new FlowLayout());
+//
             JButton submit = new JButton("Submit");
+//
+//            JTextField textField = new JTextField();
+//            textField.setPreferredSize(new Dimension(150, 30));
+//
+//            textFieldButtonLayout.add(submit);
+//            textFieldButtonLayout.add(textField);
+//
+//            layout.add(textFieldButtonLayout);
+//
+//            splitPane.setRightComponent(layout);
+//            layout.revalidate();
+            JPanel layout = new JPanel(new GridBagLayout());
+            JPanel inputFieldPane = new JPanel(new GridLayout(11, 1));
 
-            JTextField textField = new JTextField();
-            textField.setPreferredSize(new Dimension(150, 30));
+            inputFieldPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
-            textFieldButtonLayout.add(submit);
-            textFieldButtonLayout.add(textField);
+            JLabel restaurantName = new JLabel("Input restaurant name:");
+            JTextField restaurantNameTextField = new JTextField();
+            restaurantNameTextField.setPreferredSize(new Dimension(70, 15));
 
-            layout.add(textFieldButtonLayout);
+            JLabel restaurantLocation = new JLabel("Input restaurant location:");
+            JTextField restaurantLocationTextField = new JTextField();
+            restaurantLocationTextField.setPreferredSize(new Dimension(70, 15));
+
+            JLabel rating = new JLabel("Please provide a rating (out of 5):");
+            JTextField ratingTextField = new JTextField();
+            ratingTextField.setPreferredSize(new Dimension(70, 15));
+
+            JLabel cost = new JLabel("Please provide a cost (without $ signs):");
+            JTextField costTextField = new JTextField();
+            costTextField.setPreferredSize(new Dimension(70, 15));
+
+            JLabel reviewComment = new JLabel("Please provide a comment:");
+            JTextField reviewCommentTextField = new JTextField();
+            reviewComment.setPreferredSize(new Dimension(70, 15));
+
+            inputFieldPane.add(restaurantName);
+            inputFieldPane.add(restaurantNameTextField);
+            inputFieldPane.add(restaurantLocation);
+            inputFieldPane.add(restaurantLocationTextField);
+            inputFieldPane.add(rating);
+            inputFieldPane.add(ratingTextField);
+            inputFieldPane.add(cost);
+            inputFieldPane.add(costTextField);
+            inputFieldPane.add(reviewComment);
+            inputFieldPane.add(reviewCommentTextField);
+            inputFieldPane.add(submit);
+
+            layout.add(inputFieldPane);
 
             splitPane.setRightComponent(layout);
             layout.revalidate();
