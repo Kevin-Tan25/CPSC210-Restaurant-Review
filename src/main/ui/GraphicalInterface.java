@@ -105,28 +105,28 @@ public class GraphicalInterface extends JFrame {
     }
 
     private void loadReviews(JPanel buttonPane) {
-        JButton loadReviewsButton = new JButton("Load reviews from file");
+        JButton loadReviewsButton = new JButton("Load Reviews from File");
         LoadReviewsListener loadReviews = new LoadReviewsListener(loadReviewsButton);
         loadReviewsButton.addActionListener(loadReviews);
         buttonPane.add(loadReviewsButton);
     }
 
     private void saveReviews(JPanel buttonPane) {
-        JButton saveReviewsButton = new JButton("Save reviews to file");
+        JButton saveReviewsButton = new JButton("Save Reviews to File");
         SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
         saveReviewsButton.addActionListener(saveReviews);
         buttonPane.add(saveReviewsButton);
     }
 
     private void addReview(JPanel buttonPane) {
-        JButton addReviewButton = new JButton("Write a review");
+        JButton addReviewButton = new JButton("Write a Review");
         AddReviewListener addReview = new AddReviewListener(addReviewButton);
         addReviewButton.addActionListener(addReview);
         buttonPane.add(addReviewButton);
     }
 
     private void viewMyReviews(JPanel buttonPane) {
-        JButton viewMyReviewsButton = new JButton("View my reviews");
+        JButton viewMyReviewsButton = new JButton("View my Reviews");
         ViewReviewsListener viewReviews = new ViewReviewsListener(viewMyReviewsButton);
         viewMyReviewsButton.addActionListener(viewReviews);
         buttonPane.add(viewMyReviewsButton);
@@ -135,7 +135,7 @@ public class GraphicalInterface extends JFrame {
     // MODIFIES: this
     // EFFECTS: when button clicked will display top restaurants
     private void viewTopRestaurants(JPanel buttonPane) {
-        JButton viewTopRestaurantsButton = new JButton("View top restaurants");
+        JButton viewTopRestaurantsButton = new JButton("View Top Restaurants");
         ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener(viewTopRestaurantsButton);
         viewTopRestaurantsButton.addActionListener(viewTopRestaurants);
         buttonPane.add(viewTopRestaurantsButton);

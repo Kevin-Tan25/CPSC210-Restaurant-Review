@@ -31,3 +31,17 @@ Together, the application also compiles a top list of reviewed restaurants by fr
 - As a user, I want to be able to save my reviews to file.
 
 - As a user, I want to be able to load my reviews from file.
+
+### **Instructions for Grader**
+
+- You can generate the first required event (adding a review for a restaurant), by clicking on the button labelled "Write a Review", and filling out the fields.
+
+- You can generate the second required event (to view your reviews) by selecting the button labelled "View My Reviews", which is a list of all reviews that YOU wrote.
+
+- You can also generate another list by clicking on the "View Top Restaurants" section, which shows a list of restaurants ranked by their average rating.
+
+- You can locate my visual component by...  or You can trigger my audio component by...
+
+- You can save the state of my application by clicking on the "Save Reviews to File" button.
+
+- You can reload the state of my application by clicking on the "Load Reviews from File" button.
