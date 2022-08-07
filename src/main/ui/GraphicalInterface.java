@@ -2,6 +2,7 @@ package ui;
 
 import model.RatedRestaurants;
 import model.Restaurant;
+import model.Review;
 import model.User;
 import persistence.JsonReaderAllRestaurants;
 import persistence.JsonReaderUser;
@@ -132,6 +133,11 @@ public class GraphicalInterface extends JFrame {
 
     class AddReviewListener implements ActionListener {
         private JButton button;
+        JTextField restaurantNameTextField;
+        JTextField restaurantLocationTextField;
+        JTextField ratingTextField;
+        JTextField costTextField;
+        JTextField reviewCommentTextField;
 
         public AddReviewListener(JButton button) {
             this.button = button;
@@ -139,46 +145,36 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-//            JPanel layout = new JPanel(new GridBagLayout());
-//
-//            JPanel textFieldButtonLayout = new JPanel(new FlowLayout());
-//
-            JButton submit = new JButton("Submit");
-//
-//            JTextField textField = new JTextField();
-//            textField.setPreferredSize(new Dimension(150, 30));
-//
-//            textFieldButtonLayout.add(submit);
-//            textFieldButtonLayout.add(textField);
-//
-//            layout.add(textFieldButtonLayout);
-//
-//            splitPane.setRightComponent(layout);
-//            layout.revalidate();
             JPanel layout = new JPanel(new GridBagLayout());
             JPanel inputFieldPane = new JPanel(new GridLayout(11, 1));
 
             inputFieldPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
             JLabel restaurantName = new JLabel("Input restaurant name:");
-            JTextField restaurantNameTextField = new JTextField();
+            restaurantNameTextField = new JTextField();
             restaurantNameTextField.setPreferredSize(new Dimension(70, 15));
 
             JLabel restaurantLocation = new JLabel("Input restaurant location:");
-            JTextField restaurantLocationTextField = new JTextField();
+            restaurantLocationTextField = new JTextField();
             restaurantLocationTextField.setPreferredSize(new Dimension(70, 15));
 
             JLabel rating = new JLabel("Please provide a rating (out of 5):");
-            JTextField ratingTextField = new JTextField();
+            ratingTextField = new JTextField();
             ratingTextField.setPreferredSize(new Dimension(70, 15));
 
             JLabel cost = new JLabel("Please provide a cost (without $ signs):");
-            JTextField costTextField = new JTextField();
+            costTextField = new JTextField();
             costTextField.setPreferredSize(new Dimension(70, 15));
 
             JLabel reviewComment = new JLabel("Please provide a comment:");
-            JTextField reviewCommentTextField = new JTextField();
+            reviewCommentTextField = new JTextField();
             reviewComment.setPreferredSize(new Dimension(70, 15));
+
+            JButton submitButton = new JButton("Submit");
+            SubmitButtonListener submitReview = new SubmitButtonListener(submitButton);
+            submitButton.addActionListener(submitReview);
+
+
 
             inputFieldPane.add(restaurantName);
             inputFieldPane.add(restaurantNameTextField);
@@ -190,12 +186,36 @@ public class GraphicalInterface extends JFrame {
             inputFieldPane.add(costTextField);
             inputFieldPane.add(reviewComment);
             inputFieldPane.add(reviewCommentTextField);
-            inputFieldPane.add(submit);
+            inputFieldPane.add(submitButton);
 
             layout.add(inputFieldPane);
 
             splitPane.setRightComponent(layout);
             layout.revalidate();
+        }
+
+        class SubmitButtonListener implements ActionListener {
+            private JButton button;
+
+            public SubmitButtonListener(JButton button) {
+                this.button = button;
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String restaurantName = restaurantNameTextField.getText();
+                String restaurantLocation = restaurantLocationTextField.getText();
+                int rating = Integer.parseInt(ratingTextField.getText());
+                double cost = Double.parseDouble(costTextField.getText());
+                String reviewComment = reviewCommentTextField.getText();
+                Restaurant restaurant = new Restaurant(restaurantName, restaurantLocation);
+                Review review = new Review(restaurant,rating,cost,reviewComment);
+                restaurant.addReview(review);
+                user.addReview(review);
+                allLoggedRestaurants.addRestaurant(restaurant);
+                JLabel successfullyAdded = new JLabel("Successfully added!");
+                splitPane.setRightComponent(successfullyAdded);
+            }
         }
     }
 
