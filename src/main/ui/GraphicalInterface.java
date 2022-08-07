@@ -40,7 +40,7 @@ public class GraphicalInterface extends JFrame {
     private GridBagConstraints gbc = new GridBagConstraints();
     private JSplitPane splitPane = new JSplitPane();
 
-    public GraphicalInterface() {
+    public GraphicalInterface() throws FileNotFoundException {
         super("Restaurant Review");
         try {
             initializePersistence();
@@ -145,7 +145,18 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            JPanel layout = new JPanel(new FlowLayout());
 
+            JButton submit = new JButton("Submit");
+
+            JTextField textField = new JTextField();
+            textField.setPreferredSize(new Dimension(150, 30));
+
+            layout.add(submit);
+            layout.add(textField);
+            layout.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+
+            splitPane.setRightComponent(layout);
         }
     }
 
@@ -239,11 +250,5 @@ public class GraphicalInterface extends JFrame {
                 saveReviewMessage.revalidate();
             }
         }
-    }
-
-
-
-    public static void main(String[] args) {
-        new GraphicalInterface();
     }
 }
