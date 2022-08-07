@@ -83,10 +83,10 @@ public class GraphicalInterface extends JFrame {
 
         buttonPane.add(new JButton("Search restaurant reviews"));
 
-//        JButton saveReviewsButton = new JButton("Save reviews to file");
-//        SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
-//        saveReviewsButton.addActionListener(saveReviews);
-//        buttonPane.add(saveReviewsButton);
+        JButton saveReviewsButton = new JButton("Save reviews to file");
+        SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
+        saveReviewsButton.addActionListener(saveReviews);
+        buttonPane.add(saveReviewsButton);
 
         JButton loadReviewsButton = new JButton("Load reviews from file");
         LoadReviewsListener loadReviews = new LoadReviewsListener(loadReviewsButton);
@@ -204,16 +204,43 @@ public class GraphicalInterface extends JFrame {
             try {
                 user = jsonReaderUser.read();
                 allLoggedRestaurants = jsonReaderAllRestaurants.read();
-                loadReviewMessage = new JLabel("Loaded restaurant reviews!");
+                loadReviewMessage = new JLabel("Loaded restaurant reviews: " + JSON_USER_REVIEWS);
             } catch (IOException exception) {
-                System.out.println("Unable to read from file: " + JSON_USER_REVIEWS);
-                loadReviewMessage = new JLabel("Unable to load reviews.");
+                loadReviewMessage = new JLabel("Unable to load reviews: " + JSON_USER_REVIEWS);
             } finally {
                 splitPane.setRightComponent(loadReviewMessage);
                 loadReviewMessage.revalidate();
             }
         }
     }
+
+    class SaveReviewsListener implements ActionListener {
+        private JButton button;
+
+        public SaveReviewsListener(JButton button) {
+            this.button = button;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel saveReviewMessage = new JLabel("");
+            try {
+                jsonWriterUser.open();
+                jsonWriterUser.write(user);
+                jsonWriterUser.close();
+                jsonWriterAllRestaurants.open();
+                jsonWriterAllRestaurants.write(allLoggedRestaurants);
+                jsonWriterAllRestaurants.close();
+                saveReviewMessage = new JLabel("Saved restaurant reviews: " + JSON_USER_REVIEWS);
+            } catch (FileNotFoundException exception) {
+                saveReviewMessage = new JLabel("Unable to write to file: " + JSON_USER_REVIEWS);
+            } finally {
+                splitPane.setRightComponent(saveReviewMessage);
+                saveReviewMessage.revalidate();
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) {

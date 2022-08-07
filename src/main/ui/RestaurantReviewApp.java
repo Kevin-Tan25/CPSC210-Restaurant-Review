@@ -230,7 +230,6 @@ public class RestaurantReviewApp {
             System.out.println("No restaurants logged so far. Please write a review for a restaurant first.");
         }
         if (allLoggedRestaurants.getTopRestaurants().size() <= 5) {
-//            System.out.println(allLoggedRestaurants.getTopRestaurants());
             for (int i = 0; i < allLoggedRestaurants.getTopRestaurants().size(); i++) {
                 Restaurant topRestaurant = allLoggedRestaurants.getTopRestaurants().get(i);
                 System.out.println(topRestaurant);
@@ -244,7 +243,6 @@ public class RestaurantReviewApp {
                 System.out.println("The average rating is: " + topRestaurant.getAverageRating());
                 System.out.println("The average cost is: $" + topRestaurant.getAverageCost() + "\n");
             }
-//            System.out.println(allLoggedRestaurants.getTopFiveRestaurant());
         }
     }
 
