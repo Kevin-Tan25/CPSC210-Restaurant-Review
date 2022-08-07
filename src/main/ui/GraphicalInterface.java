@@ -19,8 +19,8 @@ public class GraphicalInterface extends JFrame {
     private RatedRestaurants allLoggedRestaurants = new RatedRestaurants();
 
     private JFrame frameInterface;
-    private JList list = new JList();
-    private DefaultListModel model = new DefaultListModel();
+    private JList<Restaurant> listRestaurants;
+    private DefaultListModel<Restaurant> modelRestaurants = new DefaultListModel<>();
     private GridBagConstraints gbc = new GridBagConstraints();
     private JSplitPane splitPane = new JSplitPane();
 
@@ -66,12 +66,15 @@ public class GraphicalInterface extends JFrame {
     }
 
     private void initializeList() {
-        list.setModel(model);
+
+        System.out.println(allLoggedRestaurants.getTopRestaurants().size());
         for (Restaurant r: allLoggedRestaurants.getTopRestaurants()) {
-            model.addElement(r);
+            modelRestaurants.addElement(r);
         }
-        splitPane.setRightComponent(new JScrollPane(list));
-        list.revalidate();
+        listRestaurants.setModel(modelRestaurants);
+        JScrollPane scrollPane = new JScrollPane(listRestaurants);
+        splitPane.setRightComponent(scrollPane);
+        listRestaurants.revalidate();
     }
 
     // MODIFIES: this
