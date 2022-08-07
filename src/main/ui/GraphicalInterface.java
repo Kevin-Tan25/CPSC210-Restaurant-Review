@@ -28,7 +28,6 @@ public class GraphicalInterface extends JFrame {
         super("Restaurant Review");
         initializeFrame();
         initializeMenu();
-        initializeList();
 
         splitPane.revalidate();
     }
@@ -49,7 +48,7 @@ public class GraphicalInterface extends JFrame {
 
         JButton viewTopRestaurantsButton = new JButton("View top restaurants");
         ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener(viewTopRestaurantsButton);
-        addReviewButton.addActionListener(viewTopRestaurants);
+        viewTopRestaurantsButton.addActionListener(viewTopRestaurants);
         buttonPane.add(viewTopRestaurantsButton);
 
         buttonPane.add(new JButton("Search restaurant reviews"));
@@ -65,25 +64,6 @@ public class GraphicalInterface extends JFrame {
         layout.revalidate();
     }
 
-    private void initializeList() {
-        JPanel layout = new JPanel(new BorderLayout());
-        JLabel topFiveRestaurants = new JLabel("Here are your top 5 restaurant recommendations:");
-        layout.add(topFiveRestaurants, BorderLayout.NORTH);
-        if (allLoggedRestaurants.getTopRestaurants().size() == 0) {
-            JLabel noRestaurantsDisplay = new JLabel("No restaurant reviews yet.");
-            layout.add(noRestaurantsDisplay);
-        } else {
-            for (Restaurant r: allLoggedRestaurants.getTopRestaurants()) {
-                modelRestaurants.addElement(r);
-            }
-            listRestaurants.setModel(modelRestaurants);
-            JScrollPane scrollPane = new JScrollPane(listRestaurants);
-            layout.add(scrollPane);
-        }
-        splitPane.setRightComponent(layout);
-        layout.revalidate();
-    }
-
     // MODIFIES: this
     // EFFECTS: creates the JFrame for the restaurant app
     private void initializeFrame() {
@@ -96,6 +76,9 @@ public class GraphicalInterface extends JFrame {
         frameInterface.setVisible(true);
         frameInterface.setBackground(new Color(180, 180, 180));
         frameInterface.add(splitPane);
+
+        JLabel selectOption = new JLabel("Please select an action to perform.");
+        splitPane.setRightComponent(selectOption);
     }
 
     private JLabel getWelcomeMessage() {
@@ -129,7 +112,22 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            JPanel layout = new JPanel(new BorderLayout());
+            JLabel topFiveRestaurants = new JLabel("Here are your top 5 restaurant recommendations:");
+            layout.add(topFiveRestaurants, BorderLayout.NORTH);
+            if (allLoggedRestaurants.getTopRestaurants().size() == 0) {
+                JLabel noRestaurantsDisplay = new JLabel("No restaurant reviews yet.");
+                layout.add(noRestaurantsDisplay);
+            } else {
+                for (Restaurant r: allLoggedRestaurants.getTopRestaurants()) {
+                    modelRestaurants.addElement(r);
+                }
+                listRestaurants.setModel(modelRestaurants);
+                JScrollPane scrollPane = new JScrollPane(listRestaurants);
+                layout.add(scrollPane);
+            }
+            splitPane.setRightComponent(layout);
+            layout.revalidate();
         }
     }
 
