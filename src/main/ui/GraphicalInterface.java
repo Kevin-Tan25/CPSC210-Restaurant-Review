@@ -2,12 +2,19 @@ package ui;
 
 import model.RatedRestaurants;
 import model.Restaurant;
+import model.User;
+import persistence.JsonReaderAllRestaurants;
+import persistence.JsonReaderUser;
+import persistence.JsonWriterAllRestaurants;
+import persistence.JsonWriterUser;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 // Represents the main window for restaurantReviewApp
 public class GraphicalInterface extends JFrame {
@@ -16,20 +23,46 @@ public class GraphicalInterface extends JFrame {
     public static final int WIDTH = 900;
     public static final int HEIGHT = 700;
 
+    // Reader and writer files and initialization
+    private static final String JSON_USER_REVIEWS = "./data/reviews.json";
+    private static final String JSON_ALL_RESTAURANTS = "./data/allReviews.json";
+    private JsonWriterUser jsonWriterUser;
+    private JsonReaderUser jsonReaderUser;
+    private JsonWriterAllRestaurants jsonWriterAllRestaurants;
+    private JsonReaderAllRestaurants jsonReaderAllRestaurants;
+
+    private User user;
     private RatedRestaurants allLoggedRestaurants = new RatedRestaurants();
 
     private JFrame frameInterface;
-    private JList<Restaurant> listRestaurants;
-    private DefaultListModel<Restaurant> modelRestaurants = new DefaultListModel<>();
+    private JList listRestaurants = new JList();
+    private DefaultListModel modelRestaurants = new DefaultListModel();
     private GridBagConstraints gbc = new GridBagConstraints();
     private JSplitPane splitPane = new JSplitPane();
 
     public GraphicalInterface() {
         super("Restaurant Review");
+        try {
+            initializePersistence();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to run application: file not found");
+        }
+        initializeUsers();
         initializeFrame();
         initializeMenu();
 
         splitPane.revalidate();
+    }
+
+    private void initializeUsers() {
+        user = new User("Kevin");
+    }
+
+    private void initializePersistence() throws FileNotFoundException {
+        jsonWriterUser = new JsonWriterUser(JSON_USER_REVIEWS);
+        jsonReaderUser = new JsonReaderUser(JSON_USER_REVIEWS);
+        jsonWriterAllRestaurants = new JsonWriterAllRestaurants(JSON_ALL_RESTAURANTS);
+        jsonReaderAllRestaurants = new JsonReaderAllRestaurants(JSON_ALL_RESTAURANTS);
     }
 
     private void initializeMenu() {
@@ -46,14 +79,20 @@ public class GraphicalInterface extends JFrame {
         addReviewButton.addActionListener(addReview);
         buttonPane.add(addReviewButton);
 
-        JButton viewTopRestaurantsButton = new JButton("View top restaurants");
-        ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener(viewTopRestaurantsButton);
-        viewTopRestaurantsButton.addActionListener(viewTopRestaurants);
-        buttonPane.add(viewTopRestaurantsButton);
+        topRestaurantsButton(buttonPane);
 
         buttonPane.add(new JButton("Search restaurant reviews"));
-        buttonPane.add(new JButton("Save reviews to file"));
-        buttonPane.add(new JButton("Load reviews from file"));
+
+//        JButton saveReviewsButton = new JButton("Save reviews to file");
+//        SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
+//        saveReviewsButton.addActionListener(saveReviews);
+//        buttonPane.add(saveReviewsButton);
+
+        JButton loadReviewsButton = new JButton("Load reviews from file");
+        LoadReviewsListener loadReviews = new LoadReviewsListener(loadReviewsButton);
+        loadReviewsButton.addActionListener(loadReviews);
+        buttonPane.add(loadReviewsButton);
+
         buttonPane.add(new JButton("Quit"));
         menuButtonLayout.add(buttonPane);
 
@@ -62,6 +101,13 @@ public class GraphicalInterface extends JFrame {
 
         splitPane.setLeftComponent(layout);
         layout.revalidate();
+    }
+
+    private void topRestaurantsButton(JPanel buttonPane) {
+        JButton viewTopRestaurantsButton = new JButton("View top restaurants");
+        ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener(viewTopRestaurantsButton);
+        viewTopRestaurantsButton.addActionListener(viewTopRestaurants);
+        buttonPane.add(viewTopRestaurantsButton);
     }
 
     // MODIFIES: this
@@ -119,8 +165,14 @@ public class GraphicalInterface extends JFrame {
                 JLabel noRestaurantsDisplay = new JLabel("No restaurant reviews yet.");
                 layout.add(noRestaurantsDisplay);
             } else {
-                for (Restaurant r: allLoggedRestaurants.getTopRestaurants()) {
-                    modelRestaurants.addElement(r);
+                if (allLoggedRestaurants.getTopRestaurants().size() <= 5) {
+                    for (int i = 0; i < allLoggedRestaurants.getTopRestaurants().size(); i++) {
+                        addTopRestaurantsToList(i);
+                    }
+                } else {
+                    for (int i = 0; i < 5; i++) {
+                        addTopRestaurantsToList(i);
+                    }
                 }
                 listRestaurants.setModel(modelRestaurants);
                 JScrollPane scrollPane = new JScrollPane(listRestaurants);
@@ -129,11 +181,42 @@ public class GraphicalInterface extends JFrame {
             splitPane.setRightComponent(layout);
             layout.revalidate();
         }
+
+        private void addTopRestaurantsToList(int i) {
+            Restaurant topRestaurant = allLoggedRestaurants.getTopRestaurants().get(i);
+            modelRestaurants.addElement("<html>" + topRestaurant
+                    + "<br>The average rating is:" + topRestaurant.getAverageRating()
+                    + "<br>The average cost is: $" + topRestaurant.getAverageCost()
+                    + "<br>---");
+        }
+    }
+
+    class LoadReviewsListener implements ActionListener {
+        private JButton button;
+
+        public LoadReviewsListener(JButton button) {
+            this.button = button;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel loadReviewMessage = new JLabel("");
+            try {
+                user = jsonReaderUser.read();
+                allLoggedRestaurants = jsonReaderAllRestaurants.read();
+                loadReviewMessage = new JLabel("Loaded restaurant reviews!");
+            } catch (IOException exception) {
+                System.out.println("Unable to read from file: " + JSON_USER_REVIEWS);
+                loadReviewMessage = new JLabel("Unable to load reviews.");
+            } finally {
+                splitPane.setRightComponent(loadReviewMessage);
+                loadReviewMessage.revalidate();
+            }
+        }
     }
 
 
     public static void main(String[] args) {
-
         new GraphicalInterface();
     }
 }
