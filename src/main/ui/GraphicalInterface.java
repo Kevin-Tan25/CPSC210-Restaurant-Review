@@ -24,9 +24,11 @@ public class GraphicalInterface extends JFrame {
     public static final int WIDTH = 600;
     public static final int HEIGHT = 500;
 
-    // Reader and writer files and initialization
+
     private static final String JSON_USER_REVIEWS = "./data/reviews.json";
     private static final String JSON_ALL_RESTAURANTS = "./data/allReviews.json";
+
+    // Reader and writer files and initialization
     private JsonWriterUser jsonWriterUser;
     private JsonReaderUser jsonReaderUser;
     private JsonWriterAllRestaurants jsonWriterAllRestaurants;
@@ -42,6 +44,7 @@ public class GraphicalInterface extends JFrame {
     private DefaultListModel<String> modelReviews = new DefaultListModel<String>();
     private JSplitPane splitPane = new JSplitPane();
 
+    // EFFECTS: sets up the GUI for restaurant application
     public GraphicalInterface() throws FileNotFoundException {
         super("Restaurant Review");
         initializePersistence();
@@ -52,10 +55,14 @@ public class GraphicalInterface extends JFrame {
         splitPane.revalidate();
     }
 
+    // MODIFIES: user
+    // EFFECTS: initializes users that are using the application
     private void initializeUsers() {
         user = new User("Kevin");
     }
 
+    // MODIFIES: JsonWriterUser, JsonReaderUser, JsonWriterAllRestaurants, JsonReaderAllRestaurants
+    // EFFECTS: initializes Json readers and writers in app
     private void initializePersistence() throws FileNotFoundException {
         jsonWriterUser = new JsonWriterUser(JSON_USER_REVIEWS);
         jsonReaderUser = new JsonReaderUser(JSON_USER_REVIEWS);
@@ -63,6 +70,8 @@ public class GraphicalInterface extends JFrame {
         jsonReaderAllRestaurants = new JsonReaderAllRestaurants(JSON_ALL_RESTAURANTS);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates menu of actions available in application
     private void initializeMenu() {
         JPanel layout = new JPanel(new BorderLayout());
 
@@ -71,27 +80,11 @@ public class GraphicalInterface extends JFrame {
         menuButtonLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
         JPanel buttonPane = new JPanel(new GridLayout(10, 1, 10, 5));
 
-        JButton viewMyReviewsButton = new JButton("View my reviews");
-        ViewReviewsListener viewReviews = new ViewReviewsListener(viewMyReviewsButton);
-        viewMyReviewsButton.addActionListener(viewReviews);
-        buttonPane.add(viewMyReviewsButton);
-
-        JButton addReviewButton = new JButton("Write a review");
-        AddReviewListener addReview = new AddReviewListener(addReviewButton);
-        addReviewButton.addActionListener(addReview);
-        buttonPane.add(addReviewButton);
-
-        topRestaurantsButton(buttonPane);
-
-        JButton saveReviewsButton = new JButton("Save reviews to file");
-        SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
-        saveReviewsButton.addActionListener(saveReviews);
-        buttonPane.add(saveReviewsButton);
-
-        JButton loadReviewsButton = new JButton("Load reviews from file");
-        LoadReviewsListener loadReviews = new LoadReviewsListener(loadReviewsButton);
-        loadReviewsButton.addActionListener(loadReviews);
-        buttonPane.add(loadReviewsButton);
+        viewMyReviews(buttonPane);
+        addReview(buttonPane);
+        viewTopRestaurants(buttonPane);
+        saveReviews(buttonPane);
+        loadReviews(buttonPane);
 
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(new ActionListener() {
@@ -111,7 +104,37 @@ public class GraphicalInterface extends JFrame {
         layout.revalidate();
     }
 
-    private void topRestaurantsButton(JPanel buttonPane) {
+    private void loadReviews(JPanel buttonPane) {
+        JButton loadReviewsButton = new JButton("Load reviews from file");
+        LoadReviewsListener loadReviews = new LoadReviewsListener(loadReviewsButton);
+        loadReviewsButton.addActionListener(loadReviews);
+        buttonPane.add(loadReviewsButton);
+    }
+
+    private void saveReviews(JPanel buttonPane) {
+        JButton saveReviewsButton = new JButton("Save reviews to file");
+        SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
+        saveReviewsButton.addActionListener(saveReviews);
+        buttonPane.add(saveReviewsButton);
+    }
+
+    private void addReview(JPanel buttonPane) {
+        JButton addReviewButton = new JButton("Write a review");
+        AddReviewListener addReview = new AddReviewListener(addReviewButton);
+        addReviewButton.addActionListener(addReview);
+        buttonPane.add(addReviewButton);
+    }
+
+    private void viewMyReviews(JPanel buttonPane) {
+        JButton viewMyReviewsButton = new JButton("View my reviews");
+        ViewReviewsListener viewReviews = new ViewReviewsListener(viewMyReviewsButton);
+        viewMyReviewsButton.addActionListener(viewReviews);
+        buttonPane.add(viewMyReviewsButton);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: when button clicked will display top restaurants
+    private void viewTopRestaurants(JPanel buttonPane) {
         JButton viewTopRestaurantsButton = new JButton("View top restaurants");
         ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener(viewTopRestaurantsButton);
         viewTopRestaurantsButton.addActionListener(viewTopRestaurants);
@@ -136,13 +159,20 @@ public class GraphicalInterface extends JFrame {
         splitPane.setRightComponent(selectOption);
     }
 
+    // EFFECTS: displays a welcome message for the user
     private JLabel getWelcomeMessage() {
         JLabel welcomeMessage = new JLabel();
-        welcomeMessage.setText("<html>Welcome to the Restaurant Review App!<br>How can I help you today?</html>");
+        welcomeMessage.setText("<html>Welcome to the Restaurant Review App!<br>How can I help you today, "
+                + user.getUserName() + "?</html>");
         frameInterface.add(welcomeMessage);
         return welcomeMessage;
     }
 
+    // MODIFIES: allLoggedRestaurants, user
+    // EFFECTS: creates a feedback form with fields to input review
+    //          when clicked on submit:
+    //          creates and adds a review to user's written reviews
+    //          creates and adds a restaurant to allRestaurants list
     class AddReviewListener implements ActionListener {
         private JButton button;
         JTextField restaurantNameTextField;
@@ -231,6 +261,7 @@ public class GraphicalInterface extends JFrame {
         }
     }
 
+    // EFFECTS: displays top 5 restaurant recommendations based on the average ratings
     class ViewTopRestaurantsListener implements ActionListener {
         private JButton button;
 
@@ -275,6 +306,7 @@ public class GraphicalInterface extends JFrame {
         }
     }
 
+    // EFFECTS: displays all reviews written by a user
     class ViewReviewsListener implements ActionListener {
         private JButton button;
 
@@ -310,6 +342,7 @@ public class GraphicalInterface extends JFrame {
         }
     }
 
+    // EFFECT: reads allReviews.json and reviews.json file and adds appropriate data to classes
     class LoadReviewsListener implements ActionListener {
         private JButton button;
 
@@ -334,6 +367,8 @@ public class GraphicalInterface extends JFrame {
         }
     }
 
+    // MODIFIES: allReviews.json, reviews.json
+    // EFFECTS: writes changes to file
     class SaveReviewsListener implements ActionListener {
         private JButton button;
 
