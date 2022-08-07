@@ -66,15 +66,22 @@ public class GraphicalInterface extends JFrame {
     }
 
     private void initializeList() {
-
-        System.out.println(allLoggedRestaurants.getTopRestaurants().size());
-        for (Restaurant r: allLoggedRestaurants.getTopRestaurants()) {
-            modelRestaurants.addElement(r);
+        JPanel layout = new JPanel(new BorderLayout());
+        JLabel topFiveRestaurants = new JLabel("Here are your top 5 restaurant recommendations:");
+        layout.add(topFiveRestaurants, BorderLayout.NORTH);
+        if (allLoggedRestaurants.getTopRestaurants().size() == 0) {
+            JLabel noRestaurantsDisplay = new JLabel("No restaurant reviews yet.");
+            layout.add(noRestaurantsDisplay);
+        } else {
+            for (Restaurant r: allLoggedRestaurants.getTopRestaurants()) {
+                modelRestaurants.addElement(r);
+            }
+            listRestaurants.setModel(modelRestaurants);
+            JScrollPane scrollPane = new JScrollPane(listRestaurants);
+            layout.add(scrollPane);
         }
-        listRestaurants.setModel(modelRestaurants);
-        JScrollPane scrollPane = new JScrollPane(listRestaurants);
-        splitPane.setRightComponent(scrollPane);
-        listRestaurants.revalidate();
+        splitPane.setRightComponent(layout);
+        layout.revalidate();
     }
 
     // MODIFIES: this
