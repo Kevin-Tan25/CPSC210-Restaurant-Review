@@ -181,53 +181,29 @@ public class GraphicalInterface extends JFrame {
         JTextField costTextField;
         JTextField reviewCommentTextField;
 
+        JPanel layout = new JPanel(new GridBagLayout());
+        JPanel inputFieldPane = new JPanel(new GridLayout(11, 1));
+
         public AddReviewListener(JButton button) {
             this.button = button;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JPanel layout = new JPanel(new GridBagLayout());
-            JPanel inputFieldPane = new JPanel(new GridLayout(11, 1));
+
 
             inputFieldPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
-            JLabel restaurantName = new JLabel("Input restaurant name:");
-            restaurantNameTextField = new JTextField();
-            restaurantNameTextField.setPreferredSize(new Dimension(70, 15));
-
-            JLabel restaurantLocation = new JLabel("Input restaurant location:");
-            restaurantLocationTextField = new JTextField();
-            restaurantLocationTextField.setPreferredSize(new Dimension(70, 15));
-
-            JLabel rating = new JLabel("Please provide a rating (out of 5):");
-            ratingTextField = new JTextField();
-            ratingTextField.setPreferredSize(new Dimension(70, 15));
-
-            JLabel cost = new JLabel("Please provide a cost (without $ signs):");
-            costTextField = new JTextField();
-            costTextField.setPreferredSize(new Dimension(70, 15));
-
-            JLabel reviewComment = new JLabel("Please provide a comment:");
-            reviewCommentTextField = new JTextField();
-            reviewComment.setPreferredSize(new Dimension(70, 15));
+            createRestaurantLabelAndInput();
+            createRestaurantLocationLabelAndInput();
+            createRatingLabelAndInput();
+            createCostLabelAndInput();
+            createReviewCommentLabelAndInput();
 
             JButton submitButton = new JButton("Submit");
             SubmitButtonListener submitReview = new SubmitButtonListener(submitButton);
             submitButton.addActionListener(submitReview);
 
-
-
-            inputFieldPane.add(restaurantName);
-            inputFieldPane.add(restaurantNameTextField);
-            inputFieldPane.add(restaurantLocation);
-            inputFieldPane.add(restaurantLocationTextField);
-            inputFieldPane.add(rating);
-            inputFieldPane.add(ratingTextField);
-            inputFieldPane.add(cost);
-            inputFieldPane.add(costTextField);
-            inputFieldPane.add(reviewComment);
-            inputFieldPane.add(reviewCommentTextField);
             inputFieldPane.add(submitButton);
 
             layout.add(inputFieldPane);
@@ -235,6 +211,47 @@ public class GraphicalInterface extends JFrame {
             splitPane.setRightComponent(layout);
             layout.revalidate();
         }
+
+        public void createRestaurantLabelAndInput() {
+            JLabel restaurantName = new JLabel("Input restaurant name:");
+            restaurantNameTextField = new JTextField();
+            restaurantNameTextField.setPreferredSize(new Dimension(70, 15));
+            inputFieldPane.add(restaurantName);
+            inputFieldPane.add(restaurantNameTextField);
+        }
+
+        public void createRestaurantLocationLabelAndInput() {
+            JLabel restaurantLocation = new JLabel("Input restaurant location:");
+            restaurantLocationTextField = new JTextField();
+            restaurantLocationTextField.setPreferredSize(new Dimension(70, 15));
+            inputFieldPane.add(restaurantLocation);
+            inputFieldPane.add(restaurantLocationTextField);
+        }
+
+        public void createRatingLabelAndInput() {
+            JLabel rating = new JLabel("Please provide a rating (out of 5):");
+            ratingTextField = new JTextField();
+            ratingTextField.setPreferredSize(new Dimension(70, 15));
+            inputFieldPane.add(rating);
+            inputFieldPane.add(ratingTextField);
+        }
+
+        public void createCostLabelAndInput() {
+            JLabel cost = new JLabel("Please provide a cost (without $ signs):");
+            costTextField = new JTextField();
+            costTextField.setPreferredSize(new Dimension(70, 15));
+            inputFieldPane.add(cost);
+            inputFieldPane.add(costTextField);
+        }
+
+        public void createReviewCommentLabelAndInput() {
+            JLabel reviewComment = new JLabel("Please provide a comment:");
+            reviewCommentTextField = new JTextField();
+            reviewComment.setPreferredSize(new Dimension(70, 15));
+            inputFieldPane.add(reviewComment);
+            inputFieldPane.add(reviewCommentTextField);
+        }
+
 
         class SubmitButtonListener implements ActionListener {
             private JButton button;
