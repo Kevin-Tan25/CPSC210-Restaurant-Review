@@ -20,8 +20,8 @@ import java.io.IOException;
 public class GraphicalInterface extends JFrame {
 
     // The dimensions of the frame of the application
-    public static final int WIDTH = 900;
-    public static final int HEIGHT = 700;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 500;
 
     // Reader and writer files and initialization
     private static final String JSON_USER_REVIEWS = "./data/reviews.json";
@@ -37,16 +37,11 @@ public class GraphicalInterface extends JFrame {
     private JFrame frameInterface;
     private JList listRestaurants = new JList();
     private DefaultListModel modelRestaurants = new DefaultListModel();
-    private GridBagConstraints gbc = new GridBagConstraints();
     private JSplitPane splitPane = new JSplitPane();
 
     public GraphicalInterface() throws FileNotFoundException {
         super("Restaurant Review");
-        try {
-            initializePersistence();
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to run application: file not found");
-        }
+        initializePersistence();
         initializeUsers();
         initializeFrame();
         initializeMenu();
@@ -96,7 +91,7 @@ public class GraphicalInterface extends JFrame {
         buttonPane.add(new JButton("Quit"));
         menuButtonLayout.add(buttonPane);
 
-        layout.add(welcomeMessage, BorderLayout.NORTH);
+        layout.add(welcomeMessage);
         layout.add(menuButtonLayout, BorderLayout.SOUTH);
 
         splitPane.setLeftComponent(layout);
@@ -115,13 +110,14 @@ public class GraphicalInterface extends JFrame {
     private void initializeFrame() {
 
         frameInterface = new JFrame();
-        frameInterface.setLayout(new GridBagLayout());
+        frameInterface.setLayout(new BorderLayout());
         frameInterface.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        splitPane.setSize(new Dimension(WIDTH, HEIGHT));
         frameInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameInterface.setLocationRelativeTo(null);
         frameInterface.setVisible(true);
         frameInterface.setBackground(new Color(180, 180, 180));
-        frameInterface.add(splitPane);
+        frameInterface.add(splitPane, BorderLayout.CENTER);
 
         JLabel selectOption = new JLabel("Please select an action to perform.");
         splitPane.setRightComponent(selectOption);
@@ -130,8 +126,6 @@ public class GraphicalInterface extends JFrame {
     private JLabel getWelcomeMessage() {
         JLabel welcomeMessage = new JLabel();
         welcomeMessage.setText("<html>Welcome to the Restaurant Review App!<br>How can I help you today?</html>");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
         frameInterface.add(welcomeMessage);
         return welcomeMessage;
     }
@@ -145,18 +139,22 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JPanel layout = new JPanel(new FlowLayout());
+            JPanel layout = new JPanel(new GridBagLayout());
+
+            JPanel textFieldButtonLayout = new JPanel(new FlowLayout());
 
             JButton submit = new JButton("Submit");
 
             JTextField textField = new JTextField();
             textField.setPreferredSize(new Dimension(150, 30));
 
-            layout.add(submit);
-            layout.add(textField);
-            layout.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            textFieldButtonLayout.add(submit);
+            textFieldButtonLayout.add(textField);
+
+            layout.add(textFieldButtonLayout);
 
             splitPane.setRightComponent(layout);
+            layout.revalidate();
         }
     }
 
@@ -171,11 +169,12 @@ public class GraphicalInterface extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JPanel layout = new JPanel(new BorderLayout());
             JLabel topFiveRestaurants = new JLabel("Here are your top 5 restaurant recommendations:");
-            layout.add(topFiveRestaurants, BorderLayout.NORTH);
+
             if (allLoggedRestaurants.getTopRestaurants().size() == 0) {
                 JLabel noRestaurantsDisplay = new JLabel("No restaurant reviews yet.");
-                layout.add(noRestaurantsDisplay);
+                layout.add(noRestaurantsDisplay, BorderLayout.CENTER);
             } else {
+                layout.add(topFiveRestaurants, BorderLayout.NORTH);
                 if (allLoggedRestaurants.getTopRestaurants().size() <= 5) {
                     for (int i = 0; i < allLoggedRestaurants.getTopRestaurants().size(); i++) {
                         addTopRestaurantsToList(i);
