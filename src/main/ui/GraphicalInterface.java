@@ -93,7 +93,15 @@ public class GraphicalInterface extends JFrame {
         loadReviewsButton.addActionListener(loadReviews);
         buttonPane.add(loadReviewsButton);
 
-        buttonPane.add(new JButton("Quit"));
+        JButton quitButton = new JButton("Quit");
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        buttonPane.add(quitButton);
+
         menuButtonLayout.add(buttonPane);
 
         layout.add(welcomeMessage);
