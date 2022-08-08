@@ -40,7 +40,10 @@ Together, the application also compiles a top list of reviewed restaurants by fr
 
 - You can also generate another list by clicking on the "View Top Restaurants" section, which shows a list of restaurants ranked by their average rating.
 
-- You can locate my visual component by...  or You can trigger my audio component by...
+- You can locate my visual component by:
+  - Clicking on "Load Reviews from File", and program successfully loads the reviews.
+  - Clicking on "Save Reviews to File", and program successfully saves the reviews.
+  - Clicking on "Write a Review", and correctly writing a review.
 
 - You can save the state of my application by clicking on the "Save Reviews to File" button.
 
