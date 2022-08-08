@@ -45,6 +45,8 @@ public class GraphicalInterface extends JFrame {
     private JSplitPane splitPane;
 
     private ImageIcon image;
+    private Image newImage;
+    private ImageIcon newImageIcon;
 
     // EFFECTS: sets up the GUI for restaurant application
     public GraphicalInterface() throws FileNotFoundException {
@@ -65,6 +67,8 @@ public class GraphicalInterface extends JFrame {
         listRestaurants = new JList<>();
         splitPane = new JSplitPane();
         image = new ImageIcon(getClass().getResource("checkmark.png"));
+        newImage = image.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        newImageIcon = new ImageIcon(newImage);
     }
 
     // MODIFIES: user
@@ -281,8 +285,14 @@ public class GraphicalInterface extends JFrame {
                 restaurant.addReview(review);
                 user.addReview(review);
                 allLoggedRestaurants.addRestaurant(restaurant);
-                JLabel successfullyAdded = new JLabel("Successfully added!");
-                splitPane.setRightComponent(successfullyAdded);
+
+                JPanel container = new JPanel(new GridBagLayout());
+                JLabel successfullyAdded = new JLabel("Successfully added");
+                JLabel successfulIcon = new JLabel();
+                successfulIcon.setIcon(newImageIcon);
+                container.add(successfullyAdded);
+                container.add(successfulIcon);
+                splitPane.setRightComponent(container);
             }
         }
     }
