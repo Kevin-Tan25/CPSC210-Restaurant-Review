@@ -373,17 +373,22 @@ public class GraphicalInterface extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            modelReviews = new DefaultListModel<>();
             JLabel loadReviewMessage = new JLabel("");
+            JPanel container = new JPanel(new GridBagLayout());
             try {
                 user = jsonReaderUser.read();
                 allLoggedRestaurants = jsonReaderAllRestaurants.read();
-                loadReviewMessage = new JLabel("Loaded restaurant reviews: " + JSON_USER_REVIEWS);
+                loadReviewMessage.setText("Loaded restaurant reviews: " + JSON_USER_REVIEWS);
+                JLabel successfulIcon = new JLabel();
+                successfulIcon.setIcon(newImageIcon);
+                container.add(loadReviewMessage);
+                container.add(successfulIcon);
             } catch (IOException exception) {
                 loadReviewMessage = new JLabel("Unable to load reviews: " + JSON_USER_REVIEWS);
+                container.add(loadReviewMessage);
             } finally {
-                splitPane.setRightComponent(loadReviewMessage);
-                loadReviewMessage.revalidate();
+                splitPane.setRightComponent(container);
+                container.revalidate();
             }
         }
     }
@@ -395,6 +400,7 @@ public class GraphicalInterface extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JLabel saveReviewMessage = new JLabel("");
+            JPanel container = new JPanel(new GridBagLayout());
             try {
                 jsonWriterUser.open();
                 jsonWriterUser.write(user);
@@ -402,12 +408,17 @@ public class GraphicalInterface extends JFrame {
                 jsonWriterAllRestaurants.open();
                 jsonWriterAllRestaurants.write(allLoggedRestaurants);
                 jsonWriterAllRestaurants.close();
-                saveReviewMessage = new JLabel("Saved restaurant reviews: " + JSON_USER_REVIEWS);
+                saveReviewMessage.setText("Saved restaurant reviews: " + JSON_USER_REVIEWS);
+                JLabel successfulIcon = new JLabel();
+                successfulIcon.setIcon(newImageIcon);
+                container.add(saveReviewMessage);
+                container.add(successfulIcon);
             } catch (FileNotFoundException exception) {
                 saveReviewMessage = new JLabel("Unable to write to file: " + JSON_USER_REVIEWS);
+                container.add(saveReviewMessage);
             } finally {
-                splitPane.setRightComponent(saveReviewMessage);
-                saveReviewMessage.revalidate();
+                splitPane.setRightComponent(container);
+                container.revalidate();
             }
         }
     }
