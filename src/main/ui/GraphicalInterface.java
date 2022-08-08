@@ -38,10 +38,10 @@ public class GraphicalInterface extends JFrame {
     private RatedRestaurants allLoggedRestaurants = new RatedRestaurants();
 
     private JFrame frameInterface;
-    private JList<String> listRestaurants = new JList<String>();
-    private DefaultListModel<String> modelRestaurants = new DefaultListModel<String>();
-    private JList<String> listReviews = new JList<String>();
-    private DefaultListModel<String> modelReviews = new DefaultListModel<String>();
+    private JList<String> listRestaurants = new JList<>();
+    private DefaultListModel<String> modelRestaurants = new DefaultListModel<>();
+    private JList<String> listReviews = new JList<>();
+    private DefaultListModel<String> modelReviews = new DefaultListModel<>();
     private JSplitPane splitPane = new JSplitPane();
 
     // EFFECTS: sets up the GUI for restaurant application
@@ -136,7 +136,7 @@ public class GraphicalInterface extends JFrame {
     // EFFECTS: when button clicked will display top restaurants
     private void viewTopRestaurants(JPanel buttonPane) {
         JButton viewTopRestaurantsButton = new JButton("View Top Restaurants");
-        ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener(viewTopRestaurantsButton);
+        ViewTopRestaurantsListener viewTopRestaurants = new ViewTopRestaurantsListener();
         viewTopRestaurantsButton.addActionListener(viewTopRestaurants);
         buttonPane.add(viewTopRestaurantsButton);
     }
@@ -276,11 +276,6 @@ public class GraphicalInterface extends JFrame {
 
     // EFFECTS: displays top 5 restaurant recommendations based on the average ratings
     class ViewTopRestaurantsListener implements ActionListener {
-        private JButton button;
-
-        public ViewTopRestaurantsListener(JButton button) {
-            this.button = button;
-        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
