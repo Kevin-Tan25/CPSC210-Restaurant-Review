@@ -35,29 +35,42 @@ public class GraphicalInterface extends JFrame {
     private JsonReaderAllRestaurants jsonReaderAllRestaurants;
 
     private User user;
-    private RatedRestaurants allLoggedRestaurants = new RatedRestaurants();
+    private RatedRestaurants allLoggedRestaurants;
 
     private JFrame frameInterface;
-    private JList<String> listRestaurants = new JList<>();
-    private DefaultListModel<String> modelRestaurants = new DefaultListModel<>();
-    private JList<String> listReviews = new JList<>();
-    private DefaultListModel<String> modelReviews = new DefaultListModel<>();
-    private JSplitPane splitPane = new JSplitPane();
+    private JList<String> listRestaurants;
+    private DefaultListModel<String> modelRestaurants;
+    private JList<String> listReviews;
+    private DefaultListModel<String> modelReviews;
+    private JSplitPane splitPane;
+
+    private ImageIcon image;
 
     // EFFECTS: sets up the GUI for restaurant application
     public GraphicalInterface() throws FileNotFoundException {
         super("Restaurant Review");
+        initializeJComponents();
         initializePersistence();
-        initializeUsers();
+        initializeClassObjects();
         initializeFrame();
         initializeMenu();
+    }
 
-        splitPane.revalidate();
+    // MODIFIES: this
+    // EFFECTS: initializes objects in classes and JComponents: model, list, and splitPane
+    private void initializeJComponents() {
+        modelRestaurants = new DefaultListModel<>();
+        modelReviews = new DefaultListModel<>();
+        listReviews = new JList<>();
+        listRestaurants = new JList<>();
+        splitPane = new JSplitPane();
+        image = new ImageIcon(getClass().getResource("checkmark.png"));
     }
 
     // MODIFIES: user
     // EFFECTS: initializes users that are using the application
-    private void initializeUsers() {
+    private void initializeClassObjects() {
+        allLoggedRestaurants = new RatedRestaurants();
         user = new User("Kevin");
     }
 
