@@ -106,28 +106,28 @@ public class GraphicalInterface extends JFrame {
 
     private void loadReviews(JPanel buttonPane) {
         JButton loadReviewsButton = new JButton("Load Reviews from File");
-        LoadReviewsListener loadReviews = new LoadReviewsListener(loadReviewsButton);
+        LoadReviewsListener loadReviews = new LoadReviewsListener();
         loadReviewsButton.addActionListener(loadReviews);
         buttonPane.add(loadReviewsButton);
     }
 
     private void saveReviews(JPanel buttonPane) {
         JButton saveReviewsButton = new JButton("Save Reviews to File");
-        SaveReviewsListener saveReviews = new SaveReviewsListener(saveReviewsButton);
+        SaveReviewsListener saveReviews = new SaveReviewsListener();
         saveReviewsButton.addActionListener(saveReviews);
         buttonPane.add(saveReviewsButton);
     }
 
     private void addReview(JPanel buttonPane) {
         JButton addReviewButton = new JButton("Write a Review");
-        AddReviewListener addReview = new AddReviewListener(addReviewButton);
+        AddReviewListener addReview = new AddReviewListener();
         addReviewButton.addActionListener(addReview);
         buttonPane.add(addReviewButton);
     }
 
     private void viewMyReviews(JPanel buttonPane) {
         JButton viewMyReviewsButton = new JButton("View my Reviews");
-        ViewReviewsListener viewReviews = new ViewReviewsListener(viewMyReviewsButton);
+        ViewReviewsListener viewReviews = new ViewReviewsListener();
         viewMyReviewsButton.addActionListener(viewReviews);
         buttonPane.add(viewMyReviewsButton);
     }
@@ -174,18 +174,24 @@ public class GraphicalInterface extends JFrame {
     //          creates and adds a review to user's written reviews
     //          creates and adds a restaurant to allRestaurants list
     class AddReviewListener implements ActionListener {
-        private JButton button;
-        JTextField restaurantNameTextField;
-        JTextField restaurantLocationTextField;
-        JTextField ratingTextField;
-        JTextField costTextField;
-        JTextField reviewCommentTextField;
+        private JButton submitButton;
+        JTextField restaurantNameTextField = new JTextField();
+        JTextField restaurantLocationTextField = new JTextField();
+        JTextField ratingTextField = new JTextField();
+        JTextField costTextField = new JTextField();
+        JTextField reviewCommentTextField = new JTextField();
+
+        JLabel restaurantName = new JLabel("");
+        JLabel restaurantLocation = new JLabel("");
+        JLabel rating = new JLabel("");
+        JLabel cost = new JLabel("");
+        JLabel reviewComment = new JLabel("");
 
         JPanel layout = new JPanel(new GridBagLayout());
         JPanel inputFieldPane = new JPanel(new GridLayout(11, 1));
 
-        public AddReviewListener(JButton button) {
-            this.button = button;
+        public AddReviewListener() {
+            submitButton = new JButton("Submit");
         }
 
         @Override
@@ -200,8 +206,8 @@ public class GraphicalInterface extends JFrame {
             createCostLabelAndInput();
             createReviewCommentLabelAndInput();
 
-            JButton submitButton = new JButton("Submit");
-            SubmitButtonListener submitReview = new SubmitButtonListener(submitButton);
+
+            SubmitButtonListener submitReview = new SubmitButtonListener();
             submitButton.addActionListener(submitReview);
 
             inputFieldPane.add(submitButton);
@@ -213,40 +219,35 @@ public class GraphicalInterface extends JFrame {
         }
 
         public void createRestaurantLabelAndInput() {
-            JLabel restaurantName = new JLabel("Input restaurant name:");
-            restaurantNameTextField = new JTextField();
+            restaurantName.setText("Input restaurant name:");
             restaurantNameTextField.setPreferredSize(new Dimension(70, 15));
             inputFieldPane.add(restaurantName);
             inputFieldPane.add(restaurantNameTextField);
         }
 
         public void createRestaurantLocationLabelAndInput() {
-            JLabel restaurantLocation = new JLabel("Input restaurant location:");
-            restaurantLocationTextField = new JTextField();
+            restaurantLocation.setText("Input restaurant location:");
             restaurantLocationTextField.setPreferredSize(new Dimension(70, 15));
             inputFieldPane.add(restaurantLocation);
             inputFieldPane.add(restaurantLocationTextField);
         }
 
         public void createRatingLabelAndInput() {
-            JLabel rating = new JLabel("Please provide a rating (out of 5):");
-            ratingTextField = new JTextField();
+            rating.setText("Please provide a rating (out of 5):");
             ratingTextField.setPreferredSize(new Dimension(70, 15));
             inputFieldPane.add(rating);
             inputFieldPane.add(ratingTextField);
         }
 
         public void createCostLabelAndInput() {
-            JLabel cost = new JLabel("Please provide a cost (without $ signs):");
-            costTextField = new JTextField();
+            cost.setText("Please provide a cost (without $ signs):");
             costTextField.setPreferredSize(new Dimension(70, 15));
             inputFieldPane.add(cost);
             inputFieldPane.add(costTextField);
         }
 
         public void createReviewCommentLabelAndInput() {
-            JLabel reviewComment = new JLabel("Please provide a comment:");
-            reviewCommentTextField = new JTextField();
+            reviewComment.setText("Please provide a comment:");
             reviewComment.setPreferredSize(new Dimension(70, 15));
             inputFieldPane.add(reviewComment);
             inputFieldPane.add(reviewCommentTextField);
@@ -254,11 +255,6 @@ public class GraphicalInterface extends JFrame {
 
 
         class SubmitButtonListener implements ActionListener {
-            private JButton button;
-
-            public SubmitButtonListener(JButton button) {
-                this.button = button;
-            }
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -325,11 +321,6 @@ public class GraphicalInterface extends JFrame {
 
     // EFFECTS: displays all reviews written by a user
     class ViewReviewsListener implements ActionListener {
-        private JButton button;
-
-        public ViewReviewsListener(JButton button) {
-            this.button = button;
-        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -361,11 +352,6 @@ public class GraphicalInterface extends JFrame {
 
     // EFFECT: reads allReviews.json and reviews.json file and adds appropriate data to classes
     class LoadReviewsListener implements ActionListener {
-        private JButton button;
-
-        public LoadReviewsListener(JButton button) {
-            this.button = button;
-        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -387,11 +373,6 @@ public class GraphicalInterface extends JFrame {
     // MODIFIES: allReviews.json, reviews.json
     // EFFECTS: writes changes to file
     class SaveReviewsListener implements ActionListener {
-        private JButton button;
-
-        public SaveReviewsListener(JButton button) {
-            this.button = button;
-        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
