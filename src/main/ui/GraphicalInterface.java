@@ -209,6 +209,8 @@ public class GraphicalInterface extends JFrame {
 
         public AddReviewListener() {
             submitButton = new JButton("Submit");
+            SubmitButtonListener submitReview = new SubmitButtonListener();
+            submitButton.addActionListener(submitReview);
         }
 
         @Override
@@ -222,10 +224,6 @@ public class GraphicalInterface extends JFrame {
             createRatingLabelAndInput();
             createCostLabelAndInput();
             createReviewCommentLabelAndInput();
-
-
-            SubmitButtonListener submitReview = new SubmitButtonListener();
-            submitButton.addActionListener(submitReview);
 
             inputFieldPane.add(submitButton);
 
@@ -276,6 +274,7 @@ public class GraphicalInterface extends JFrame {
         }
 
 
+        // EFFECTS: adds new restaurant object with specified fields and also new user object
         class SubmitButtonListener implements ActionListener {
 
             @Override
