@@ -273,7 +273,7 @@ public class GraphicalInterface extends JFrame {
             inputFieldPane.add(reviewCommentTextField);
         }
 
-
+        // MODIFIES: user, allLoggedRestaurants
         // EFFECTS: adds new restaurant object with specified fields and also new user object
         class SubmitButtonListener implements ActionListener {
 
@@ -332,6 +332,8 @@ public class GraphicalInterface extends JFrame {
             layout.revalidate();
         }
 
+        // MODIFIES: modelRestaurants
+        // EFFECTS: string representation of each restaurant element
         private void addTopRestaurantsToList(int i) {
             Restaurant topRestaurant = allLoggedRestaurants.getTopRestaurants().get(i);
             modelRestaurants.addElement("<html>" + topRestaurant
@@ -374,6 +376,7 @@ public class GraphicalInterface extends JFrame {
     }
 
     // EFFECT: reads allReviews.json and reviews.json file and adds appropriate data to classes
+    //         throws error if file not found
     class LoadReviewsListener implements ActionListener {
 
         @Override
@@ -399,7 +402,7 @@ public class GraphicalInterface extends JFrame {
     }
 
     // MODIFIES: allReviews.json, reviews.json
-    // EFFECTS: writes changes to file
+    // EFFECTS: writes changes to file, throws exception if file not found
     class SaveReviewsListener implements ActionListener {
 
         @Override
