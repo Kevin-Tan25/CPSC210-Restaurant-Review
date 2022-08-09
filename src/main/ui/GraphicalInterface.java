@@ -238,6 +238,7 @@ public class GraphicalInterface extends JFrame {
         public void createRestaurantLabelAndInput() {
             restaurantName.setText("Input restaurant name:");
             restaurantNameTextField.setPreferredSize(new Dimension(70, 15));
+            restaurantNameTextField.setText("");
             inputFieldPane.add(restaurantName);
             inputFieldPane.add(restaurantNameTextField);
         }
@@ -245,6 +246,7 @@ public class GraphicalInterface extends JFrame {
         public void createRestaurantLocationLabelAndInput() {
             restaurantLocation.setText("Input restaurant location:");
             restaurantLocationTextField.setPreferredSize(new Dimension(70, 15));
+            restaurantLocationTextField.setText("");
             inputFieldPane.add(restaurantLocation);
             inputFieldPane.add(restaurantLocationTextField);
         }
@@ -252,6 +254,7 @@ public class GraphicalInterface extends JFrame {
         public void createRatingLabelAndInput() {
             rating.setText("Please provide a rating (out of 5):");
             ratingTextField.setPreferredSize(new Dimension(70, 15));
+            ratingTextField.setText("");
             inputFieldPane.add(rating);
             inputFieldPane.add(ratingTextField);
         }
@@ -259,13 +262,15 @@ public class GraphicalInterface extends JFrame {
         public void createCostLabelAndInput() {
             cost.setText("Please provide a cost (without $ signs):");
             costTextField.setPreferredSize(new Dimension(70, 15));
+            costTextField.setText("");
             inputFieldPane.add(cost);
             inputFieldPane.add(costTextField);
         }
 
         public void createReviewCommentLabelAndInput() {
             reviewComment.setText("Please provide a comment:");
-            reviewComment.setPreferredSize(new Dimension(70, 15));
+            reviewCommentTextField.setPreferredSize(new Dimension(70, 15));
+            reviewCommentTextField.setText("");
             inputFieldPane.add(reviewComment);
             inputFieldPane.add(reviewCommentTextField);
         }
@@ -343,6 +348,7 @@ public class GraphicalInterface extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             modelReviews = new DefaultListModel<>();
+            listReviews = new JList<>();
             JPanel layout = new JPanel(new BorderLayout());
             JLabel yourReviewsLabel = new JLabel("Here are your reviews:");
 
