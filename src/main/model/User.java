@@ -32,6 +32,11 @@ public class User implements Writable {
     // EFFECTS: adds a review to list of review
     public void addReview(Review r) {
         myReviews.add(r);
+        EventLog.getInstance().logEvent(new Event("A review for: " + r.getRestaurant().getName() + "\n"
+                + "rating: " + r.getRating() + "\n"
+                + "cost: " + r.getCost() + "\n"
+                + "and review comment: " + r.getReviewComment() + "\n"
+                + "has been added to " + userName + "'s reviews"));
     }
 
     // MODIFIES: this

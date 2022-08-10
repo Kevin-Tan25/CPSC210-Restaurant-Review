@@ -18,8 +18,8 @@ public class RatedRestaurants implements Writable {
 
     // EFFECTS: creates an empty rated restaurants object
     public RatedRestaurants() {
-        ratedRestaurants = new ArrayList<Restaurant>();
-        sortedRestaurant = new ArrayList<Restaurant>();
+        ratedRestaurants = new ArrayList<>();
+        sortedRestaurant = new ArrayList<>();
     }
 
     // REQUIRES: restaurant is not repeated in the list
@@ -28,6 +28,7 @@ public class RatedRestaurants implements Writable {
     public void addRestaurant(Restaurant restaurant) {
         ratedRestaurants.add(restaurant);
         sortedRestaurant.add(restaurant);
+        EventLog.getInstance().logEvent(new Event(restaurant.getName() + " has been added to a list of all restaurants."));
     }
 
     // REQUIRES: list is not empty, target restaurant exists in list

@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.User;
 import org.json.JSONObject;
 
@@ -43,5 +45,6 @@ public class JsonWriterUser {
     // EFFECTS: writes string to file
     private void saveToFile(String json) {
         writer.print(json);
+        EventLog.getInstance().logEvent(new Event("Saved User reviews to file."));
     }
 }

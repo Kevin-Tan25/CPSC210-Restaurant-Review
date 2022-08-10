@@ -1,8 +1,6 @@
 package persistence;
 
-import model.Restaurant;
-import model.Review;
-import model.User;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,6 +25,7 @@ public class JsonReaderUser {
     public User read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Loaded User reviews."));
         return parseReview(jsonObject);
     }
 

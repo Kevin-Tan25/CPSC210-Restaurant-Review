@@ -1,9 +1,7 @@
 package ui;
 
-import model.RatedRestaurants;
-import model.Restaurant;
-import model.Review;
-import model.User;
+import model.*;
+import model.Event;
 import persistence.JsonReaderAllRestaurants;
 import persistence.JsonReaderUser;
 import persistence.JsonWriterAllRestaurants;
@@ -107,6 +105,7 @@ public class GraphicalInterface extends JFrame {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                printEvents();
                 System.exit(0);
             }
         });
@@ -119,6 +118,12 @@ public class GraphicalInterface extends JFrame {
 
         splitPane.setLeftComponent(layout);
         layout.revalidate();
+    }
+
+    private void printEvents() {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString() + "\n");
+        }
     }
 
     private void loadReviews(JPanel buttonPane) {

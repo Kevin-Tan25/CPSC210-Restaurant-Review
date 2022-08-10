@@ -48,3 +48,90 @@ Together, the application also compiles a top list of reviewed restaurants by fr
 - You can save the state of my application by clicking on the "Save Reviews to File" button.
 
 - You can reload the state of my application by clicking on the "Load Reviews from File" button.
+
+### Phase 4: Task 2
+
+Wed Aug 10 15:21:03 PDT 2022
+Loaded User reviews.
+
+Wed Aug 10 15:21:03 PDT 2022
+A review for: McDonald's
+rating: 4
+cost: 3.99
+and review comment: Good and cheap
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:03 PDT 2022
+A review for: Burger King
+rating: 3
+cost: 5.99
+and review comment: Not bad
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:03 PDT 2022
+A review for: Five Guys
+rating: 5
+cost: 8.45
+and review comment: Lots of peanuts
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:03 PDT 2022
+A review for: A&W
+rating: 4
+cost: 6.78
+and review comment: Bomb poutine!
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:03 PDT 2022
+A review for: Miku
+rating: 5
+cost: 41.99
+and review comment: Great service. Good ambiance.
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:03 PDT 2022
+A review for: Koi Sushi
+rating: 5
+cost: 11.99
+and review comment: Cheap but good sushi
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:03 PDT 2022
+Loaded Restaurant reviews.
+
+Wed Aug 10 15:21:03 PDT 2022
+McDonald's has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:03 PDT 2022
+Burger King has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:03 PDT 2022
+Five Guys has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:03 PDT 2022
+A&W has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:03 PDT 2022
+Miku has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:03 PDT 2022
+My Home Cuisine has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:03 PDT 2022
+Koi Sushi has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:19 PDT 2022
+A review for: New Restaurant Test
+rating: 5
+cost: 11.99
+and review comment: Good restaurant
+has been added to Kevin's reviews
+
+Wed Aug 10 15:21:19 PDT 2022
+New Restaurant Test has been added to a list of all restaurants.
+
+Wed Aug 10 15:21:24 PDT 2022
+Saved User reviews to file.
+
+Wed Aug 10 15:21:24 PDT 2022
+Saved Restaurant reviews to file.

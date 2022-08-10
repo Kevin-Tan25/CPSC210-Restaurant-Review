@@ -1,9 +1,6 @@
 package persistence;
 
-import model.RatedRestaurants;
-import model.RatedRestaurantsName;
-import model.Restaurant;
-import model.Review;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,6 +25,7 @@ public class JsonReaderAllRestaurants {
     public RatedRestaurants read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Loaded Restaurant reviews."));
         return parseReview(jsonObject);
     }
 

@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.RatedRestaurants;
 import org.json.JSONObject;
 
@@ -43,5 +45,6 @@ public class JsonWriterAllRestaurants {
     // EFFECTS: writes string to file
     private void saveToFile(String json) {
         writer.print(json);
+        EventLog.getInstance().logEvent(new Event("Saved Restaurant reviews to file."));
     }
 }
