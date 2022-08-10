@@ -34,6 +34,13 @@
             "restaurantName": "Miku",
             "rating": 5,
             "comment": "Great service. Good ambiance."
+        },
+        {
+            "address": "University Blvd",
+            "cost": 11.99,
+            "restaurantName": "Koi Sushi",
+            "rating": 5,
+            "comment": "Cheap but good sushi"
         }
     ],
     "name": "Kevin"

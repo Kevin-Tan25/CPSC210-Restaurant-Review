@@ -64,5 +64,16 @@
             "comment": "Food kinda mid"
         }],
         "restaurantName": "My Home Cuisine"
+    },
+    {
+        "address": "University Blvd",
+        "reviews": [{
+            "address": "University Blvd",
+            "cost": 11.99,
+            "restaurantName": "Koi Sushi",
+            "rating": 5,
+            "comment": "Cheap but good sushi"
+        }],
+        "restaurantName": "Koi Sushi"
     }
 ]}
