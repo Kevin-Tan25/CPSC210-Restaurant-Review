@@ -146,3 +146,4 @@ There are multiple things that I would refactor for my program:
 - Another thing that I could have done to improve the readability of code is to refactor the GraphicalInterface class. Right now, all my event listeners are in one main class. I could have taken the snippets out to stylize and give functionality to each component. 
 
 
+- Also, my AddReviewListener class had another class inside that that handles the event of a button click. In other words, I had to other class declarations inside the GraphicalInterface class. I could refactor the two subclasses out to improve the readability of the code.
