@@ -138,12 +138,11 @@ Saved Restaurant reviews to file.
 
 ### Phase 4: Task 3
 
-There are multiple things that I would refactor for my program:
+There is quite low coupling in my program. The main aspects of my program are the User, Restaurant, and Review classes. Users can have multiple reviews, restaurants can have multiple reviews, and each review has one restaurant assigned. The review-restaurant relationship is necessary to identify which review corresponds to which restaurant. 
 
-- The whole point of the RatedRestaurantsName class is a tandem list that keeps track of the NAMES of the restaurants in the RatedRestaurants class. One thing that I could've done was to use a dictionary/ map data structure instead.
+However, one thing that I would change are my UI classes. In phase 0 and 1, I spent the majority of time in my UI class, creating the console version of my app. There ended up being a lot of extra functionalities and logic statements that I had to come up within the class. Instead, I could have implemented these functionalities in the model classes. An example was the "search for restaurant" functionality, which displays all reviews pertaining to a restaurant. I ended up creating this method in the UI class instead of the Restaurant class. This made it time-consuming for me to create the GUI class. I ended up having to copy-paste lots of the code from one class to another, instead of calling other classes. If I had helper classes in the UI package, or increased the cohesion for my model classes, phase 3 would have been much easier for me. Apart from cohesion and coupling problems, there are still some other aspects that I would have focused on if I had more time:
+
+- The RatedRestaurantsName class is a tandem list that keeps track of the NAMES of the restaurants in the RatedRestaurants class. One thing that I could've done was to use a dictionary/ map data structure instead, which removes code redundancy as it removes the need of an extra class entirely. This, also allows me to remove the JsonReaderAllRestaurantsName class
 
 
-- Another thing that I could have done to improve the readability of code is to refactor the GraphicalInterface class. Right now, all my event listeners are in one main class. I could have taken the snippets out to stylize and give functionality to each component. 
-
-
-- Also, my AddReviewListener class had another class inside that that handles the event of a button click. In other words, I had to other class declarations inside the GraphicalInterface class. I could refactor the two subclasses out to improve the readability of the code.
+- Another thing that I could have done to improve the readability of code is to refactor the GraphicalInterface class. Right now, all my event listeners are in one main class. I could have taken the snippets of event listeners out (class declarations) and defined the classes/ event listeners in a different file.
