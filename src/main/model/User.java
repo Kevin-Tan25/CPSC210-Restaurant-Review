@@ -17,8 +17,8 @@ public class User implements Writable {
     // EFFECTS: creates a User object
     public User(String userName) {
         this.userName = userName;
-        myReviews = new ArrayList<Review>();
-        myFriends = new ArrayList<User>();
+        myReviews = new ArrayList<>();
+        myFriends = new ArrayList<>();
     }
 
     // REQUIRES: userName is a non-empty string

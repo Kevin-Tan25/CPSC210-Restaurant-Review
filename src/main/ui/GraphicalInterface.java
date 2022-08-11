@@ -102,13 +102,7 @@ public class GraphicalInterface extends JFrame {
         loadReviews(buttonPane);
 
         JButton quitButton = new JButton("Quit");
-        quitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                printEvents();
-                System.exit(0);
-            }
-        });
+        quitButton.addActionListener(exitProgram());
         buttonPane.add(quitButton);
 
         menuButtonLayout.add(buttonPane);
@@ -118,6 +112,16 @@ public class GraphicalInterface extends JFrame {
 
         splitPane.setLeftComponent(layout);
         layout.revalidate();
+    }
+
+    private ActionListener exitProgram() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                printEvents();
+                System.exit(0);
+            }
+        };
     }
 
     private void printEvents() {

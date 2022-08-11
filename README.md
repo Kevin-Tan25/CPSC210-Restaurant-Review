@@ -135,3 +135,14 @@ Saved User reviews to file.
 
 Wed Aug 10 15:21:24 PDT 2022
 Saved Restaurant reviews to file.
+
+### Phase 4: Task 3
+
+There are multiple things that I would refactor for my program:
+
+- The whole point of the RatedRestaurantsName class is a tandem list that keeps track of the NAMES of the restaurants in the RatedRestaurants class. One thing that I could've done was to use a dictionary/ map data structure instead.
+
+
+- Another thing that I could have done to improve the readability of code is to refactor the GraphicalInterface class. Right now, all my event listeners are in one main class. I could have taken the snippets out to stylize and give functionality to each component. 
+
+
