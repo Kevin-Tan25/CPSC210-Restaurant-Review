@@ -28,7 +28,8 @@ public class RatedRestaurants implements Writable {
     public void addRestaurant(Restaurant restaurant) {
         ratedRestaurants.add(restaurant);
         sortedRestaurant.add(restaurant);
-        EventLog.getInstance().logEvent(new Event(restaurant.getName() + " has been added to a list of all restaurants."));
+        EventLog.getInstance().logEvent(new Event(restaurant.getName()
+                + " has been added to a list of all restaurants."));
     }
 
     // REQUIRES: list is not empty, target restaurant exists in list
