@@ -41,6 +41,13 @@
             "restaurantName": "Koi Sushi",
             "rating": 5,
             "comment": "Cheap but good sushi"
+        },
+        {
+            "address": "New Location",
+            "cost": 11.99,
+            "restaurantName": "New Restaurant Test",
+            "rating": 5,
+            "comment": "Good restaurant"
         }
     ],
     "name": "Kevin"
